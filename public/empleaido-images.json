@@ -1,0 +1,44 @@
+[
+  {
+    "empleaido_id": "empleaido-04094",
+    "name": "SERA",
+    "serial": 4094,
+    "imageUrl": "https://im.runware.ai/image/ws/2/ii/4670e19d-6e62-455a-b62a-c44b457099fd.jpg",
+    "success": true
+  },
+  {
+    "empleaido_id": "empleaido-05112",
+    "name": "KAEL",
+    "serial": 5112,
+    "imageUrl": "https://im.runware.ai/image/ws/2/ii/c718c09b-68d4-4e8e-8700-2ac63998bc82.jpg",
+    "success": true
+  },
+  {
+    "empleaido_id": "empleaido-06201",
+    "name": "NORA",
+    "serial": 6201,
+    "imageUrl": "https://im.runware.ai/image/ws/2/ii/3f845299-1115-42d0-b0cd-fc384580f69b.jpg",
+    "success": true
+  },
+  {
+    "empleaido_id": "empleaido-07333",
+    "name": "LIOR",
+    "serial": 7333,
+    "imageUrl": "https://im.runware.ai/image/ws/2/ii/c09a40a1-ea6e-476e-b61d-aa0b829b6a2e.jpg",
+    "success": true
+  },
+  {
+    "empleaido_id": "empleaido-08408",
+    "name": "ZIV",
+    "serial": 8408,
+    "imageUrl": "https://im.runware.ai/image/ws/2/ii/c2c7d55e-b585-4035-8ff0-62793d9a57fc.jpg",
+    "success": true
+  },
+  {
+    "empleaido_id": "empleaido-09523",
+    "name": "UXA",
+    "serial": 9523,
+    "imageUrl": "https://im.runware.ai/image/ws/2/ii/7c14a737-cf39-47a8-8f3c-8a6a735b1adf.jpg",
+    "success": true
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "pose": "idle",
+    "scene": "minimal",
+    "imageUrl": "https://im.runware.ai/image/ws/2/ii/b79855db-5d51-4fab-913a-11ad0aa7df2b.jpg",
+    "seed": 25188,
+    "generatedAt": "2026-02-08T05:19:45.624Z"
+  },
+  {
+    "pose": "wave",
+    "scene": "minimal",
+    "imageUrl": "https://im.runware.ai/image/ws/2/ii/8c0b3f0a-9569-48fd-87e6-51b8563cf47d.jpg",
+    "seed": 25189,
+    "generatedAt": "2026-02-08T05:19:48.417Z"
+  },
+  {
+    "pose": "thinking",
+    "scene": "minimal",
+    "imageUrl": "https://im.runware.ai/image/ws/2/ii/8188e960-236d-4f75-83b0-ee038f55e4c2.jpg",
+    "seed": 25190,
+    "generatedAt": "2026-02-08T05:19:52.126Z"
+  },
+  {
+    "pose": "working",
+    "scene": "minimal",
+    "imageUrl": "https://im.runware.ai/image/ws/2/ii/b3b12798-cb4e-4087-b5e5-1bba30056c01.jpg",
+    "seed": 25191,
+    "generatedAt": "2026-02-08T05:19:55.472Z"
+  },
+  {
+    "pose": "celebrating",
+    "scene": "minimal",
+    "imageUrl": "https://im.runware.ai/image/ws/2/ii/fe5c5464-ea05-451b-9e21-6afa32cc2c86.jpg",
+    "seed": 25192,
+    "generatedAt": "2026-02-08T05:19:58.149Z"
+  },
+  {
+    "pose": "supportive",
+    "scene": "minimal",
+    "imageUrl": "https://im.runware.ai/image/ws/2/ii/c4d3073d-c75e-41f9-ba0e-0defe0a3d364.jpg",
+    "seed": 25193,
+    "generatedAt": "2026-02-08T05:20:00.779Z"
+  }
+]
