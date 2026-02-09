@@ -90,9 +90,9 @@ export function Mascot({
       case 'celebrating':
         return 'animate-bounce';
       case 'wave':
-        return 'transition-shadow hover:drop-shadow-[0_0_8px_var(--led-cyan)]';
+        return 'transition-shadow hover:drop-shadow-[0_0_8px_#5ED3D0]';
       default:
-        return 'transition-shadow hover:drop-shadow-[0_0_6px_var(--led-cyan)]';
+        return 'transition-shadow hover:drop-shadow-[0_0_6px_#5ED3D0]';
     }
   };
 
@@ -119,7 +119,7 @@ export function Mascot({
       ) : (
         // Fallback: styled emoji container
         <div
-          className="flex items-center justify-center bg-mid rounded-lg border border-light/10"
+          className="flex items-center justify-center bg-[#1A434F] rounded-lg border border-[#F3E4C8]/10"
           style={{ width, height }}
         >
           <span
@@ -133,10 +133,10 @@ export function Mascot({
 
       {/* LED indicator dot */}
       {state === 'working' && (
-        <span className="absolute -top-1 -right-1 w-3 h-3 bg-cyan rounded-full led-pulse" />
+        <span className="absolute -top-1 -right-1 w-3 h-3 bg-[#5ED3D0] rounded-full led-pulse" />
       )}
       {state === 'celebrating' && (
-        <span className="absolute -top-1 -right-1 w-3 h-3 bg-success rounded-full led-pulse" />
+        <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full led-pulse" />
       )}
     </div>
   );
@@ -161,10 +161,10 @@ export function MascotWithMessage({
     <div className="flex items-start gap-3">
       <Mascot state={state} size={size} {...props} />
       {message && (
-        <div className="bg-mid rounded-lg p-3 max-w-xs relative">
+        <div className="bg-[#1A434F] rounded-lg p-3 max-w-xs relative">
           {/* Speech bubble tail */}
-          <div className="absolute left-0 top-4 -translate-x-2 w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-r-8 border-r-mid" />
-          <p className="text-sm text-light">{message}</p>
+          <div className="absolute left-0 top-4 -translate-x-2 w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-r-8 border-r-[#1A434F]" />
+          <p className="text-sm text-[#F3E4C8]">{message}</p>
         </div>
       )}
     </div>
@@ -191,7 +191,7 @@ export function MascotStateIndicator({
     <div className={`flex items-center gap-2 ${className}`}>
       <Mascot state={state} size="sm" />
       {label && (
-        <span className="text-sm text-light/70">{label}</span>
+        <span className="text-sm text-[#F3E4C8]/70">{label}</span>
       )}
     </div>
   );

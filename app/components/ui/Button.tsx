@@ -2,7 +2,8 @@
 
 import { forwardRef, ButtonHTMLAttributes } from 'react';
 
-type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'power' | 'mega';
+type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'power' | 'mega' | 'outline';
+export type { ButtonVariant };
 type ButtonSize = 'sm' | 'md' | 'lg' | 'xl' | 'mega';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -17,44 +18,50 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 // NO MOVEMENT - Only shadow/glow changes on hover
 const variants: Record<ButtonVariant, string> = {
   primary: `
-    bg-cyan text-shadow
-    border-4 border-shadow
-    shadow-[6px_6px_0_var(--ink-shadow)]
-    hover:shadow-[6px_6px_0_var(--led-cyan)]
-    active:shadow-[2px_2px_0_var(--ink-shadow)]
+    bg-[#5ED3D0] text-[#0E3A41]
+    border-4 border-[#0E3A41]
+    shadow-[6px_6px_0_#0E3A41]
+    hover:shadow-[6px_6px_0_#5ED3D0]
+    active:shadow-[2px_2px_0_#0E3A41]
   `,
   secondary: `
-    bg-transparent text-cyan
-    border-4 border-cyan
-    shadow-[6px_6px_0_var(--led-cyan)]
-    hover:bg-cyan-dim
-    active:shadow-[2px_2px_0_var(--led-cyan)]
+    bg-transparent text-[#5ED3D0]
+    border-4 border-[#5ED3D0]
+    shadow-[6px_6px_0_#5ED3D0]
+    hover:bg-[#5ED3D0]/10
+    active:shadow-[2px_2px_0_#5ED3D0]
   `,
   ghost: `
-    bg-transparent text-light
-    border-2 border-light/30
-    hover:bg-mid hover:border-cyan
+    bg-transparent text-[#F3E4C8]
+    border-2 border-[#F3E4C8]/30
+    hover:bg-[#1A434F] hover:border-[#5ED3D0]
   `,
   danger: `
-    bg-error text-shadow
-    border-4 border-shadow
-    shadow-[6px_6px_0_var(--ink-shadow)]
-    hover:shadow-[6px_6px_0_var(--state-error)]
-    active:shadow-[2px_2px_0_var(--ink-shadow)]
+    bg-red-500 text-[#0E3A41]
+    border-4 border-[#0E3A41]
+    shadow-[6px_6px_0_#0E3A41]
+    hover:shadow-[6px_6px_0_#ef4444]
+    active:shadow-[2px_2px_0_#0E3A41]
   `,
   power: `
-    bg-cyan text-shadow
-    border-4 border-shadow
-    shadow-[8px_8px_0_var(--ink-shadow)]
-    hover:shadow-[8px_8px_0_var(--led-cyan)]
-    active:shadow-[3px_3px_0_var(--ink-shadow)]
+    bg-[#5ED3D0] text-[#0E3A41]
+    border-4 border-[#0E3A41]
+    shadow-[8px_8px_0_#0E3A41]
+    hover:shadow-[8px_8px_0_#5ED3D0]
+    active:shadow-[3px_3px_0_#0E3A41]
   `,
   mega: `
-    bg-light text-shadow
-    border-[6px] border-shadow
-    shadow-[10px_10px_0_var(--ink-shadow)]
-    hover:shadow-[10px_10px_0_var(--led-cyan)]
-    active:shadow-[4px_4px_0_var(--ink-shadow)]
+    bg-[#F3E4C8] text-[#0E3A41]
+    border-[6px] border-[#0E3A41]
+    shadow-[10px_10px_0_#0E3A41]
+    hover:shadow-[10px_10px_0_#5ED3D0]
+    active:shadow-[4px_4px_0_#0E3A41]
+  `,
+  outline: `
+    bg-transparent text-[#F3E4C8]
+    border-2 border-[#F3E4C8]/50
+    hover:border-[#5ED3D0] hover:text-[#5ED3D0]
+    active:bg-[#1A434F]
   `,
 };
 
@@ -92,7 +99,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           inline-flex items-center justify-center gap-3
           font-display uppercase tracking-wider
           transition-shadow duration-fast ease-ui
-          focus-visible:outline-4 focus-visible:outline-cyan focus-visible:outline-offset-4
+          focus-visible:outline-4 focus-visible:outline-[#5ED3D0] focus-visible:outline-offset-4
           disabled:opacity-50 disabled:cursor-not-allowed
           ${variants[variant]}
           ${sizes[size]}
@@ -160,19 +167,19 @@ export function PowerButton({
     <span className={`
       group relative inline-flex items-center gap-4
       px-12 py-6 text-2xl md:text-3xl font-display uppercase tracking-widest
-      bg-light text-shadow
-      border-[6px] border-shadow rounded-2xl
-      shadow-[12px_12px_0_var(--ink-shadow)]
+      bg-[#F3E4C8] text-[#0E3A41]
+      border-[6px] border-[#0E3A41] rounded-2xl
+      shadow-[12px_12px_0_#0E3A41]
       transition-shadow duration-150 ease-ui
-      hover:shadow-[12px_12px_0_var(--led-cyan)]
-      active:shadow-[4px_4px_0_var(--ink-shadow)]
+      hover:shadow-[12px_12px_0_#5ED3D0]
+      active:shadow-[4px_4px_0_#0E3A41]
       starburst
       ${className}
     `}>
       {/* Halftone overlay */}
       <span className="absolute inset-0 rounded-xl opacity-10 pointer-events-none"
         style={{
-          backgroundImage: 'radial-gradient(circle, var(--ink-shadow) 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(circle, #0E3A41 1px, transparent 1px)',
           backgroundSize: '4px 4px'
         }}
       />

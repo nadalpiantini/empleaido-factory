@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# logs
+*.log
+dev-server.log
+dev-server.pid
+
+# temporary directories
+@/
+app/app/
+app/src/
+app/empleaido/app/

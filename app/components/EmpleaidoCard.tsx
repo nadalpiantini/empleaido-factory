@@ -1,14 +1,18 @@
-'use client';
+/**
+ * FACTORY FLOOR UI - EMPLEAIDO CARD
+ *
+ * Card vertical con numeración
+ * Hover: micro-zoom + glow + speed-lines
+ * Bordes negros gruesos (2-3px)
+ * Grid rígido 8px base
+ */
 
-import Image from 'next/image';
 import Link from 'next/link';
-import imageManifest from '../../public/empleaido-images.json';
-import { Button } from './ui';
 
 interface EmpleaidoCardProps {
   id: string;
-  name: string;
   serial: number;
+  name: string;
   role: {
     main: string;
     sub: string;
@@ -16,190 +20,153 @@ interface EmpleaidoCardProps {
   };
   sephirot: {
     primary: string;
-    secondary: string[];
   };
   skills: {
     native: string[];
-    locked: string[];
-  };
-  visual: {
-    accessory: string;
-    color_accent: string;
   };
   pricing: {
     monthly_usd: number;
     annual_usd?: number;
   };
+  index?: number; // Card number for collection display
 }
 
 export function EmpleaidoCard({
   id,
-  name,
   serial,
+  name,
   role,
   sephirot,
   skills,
-  pricing
+  pricing,
+  index = 1
 }: EmpleaidoCardProps) {
-  const imageData = imageManifest.find((img) => img.empleaido_id === id);
-  const imageUrl = imageData?.imageUrl;
+  const getRoleEmoji = (roleMain: string) => {
+    const map: Record<string, string> = {
+      'Contabilidad RD': '🧾',
+      'Growth Marketing': '📣',
+      'Operaciones': '🗂️',
+      'CFO Estrategico': '💰',
+      'Productividad Personal': '⏱️',
+      'UX Design': '🎨',
+    };
+    return map[roleMain] || '🤖';
+  };
+
+  const getTierStyles = (tier: string) => {
+    const styles = {
+      base: 'bg-[#F3E4C8] text-[#0E3A41] border-[#0E3A41]',
+      pro: 'bg-[#5ED3D0] text-[#0E3A41] border-[#5ED3D0]',
+      deluxe: 'bg-yellow-500 text-[#0E3A41] border-yellow-500',
+    };
+    return styles[tier as keyof typeof styles] || styles.base;
+  };
 
   return (
     <Link href={`/empleaido/${id}`} className="block group">
-      <div className="card-power bg-light overflow-hidden relative">
-        {/* Corner starburst for deluxe */}
-        {role.tier === 'deluxe' && (
-          <div className="absolute top-0 right-0 z-20">
-            <div className="bg-warning text-shadow px-4 py-1 font-black text-sm uppercase tracking-wider transform rotate-0 border-b-4 border-l-4 border-shadow">
-              ★ DELUXE
-            </div>
-          </div>
-        )}
+      {/* CARD CONTAINER - THICK BORDERS */}
+      <div className="relative bg-[#F3E4C8] border-4 border-[#0E3A41]
+                      shadow-[6px_6px_0_#0E3A41]
+                      group-hover:shadow-[10px_10px_0_#0E3A41]
+                      group-hover:translate-x-[-4px] group-hover:translate-y-[-4px]
+                      transition-all duration-200 overflow-hidden">
 
-        {/* IMAGE SECTION — HUGE */}
-        <div className="relative h-64 w-full bg-shadow overflow-hidden">
-          {imageUrl ? (
-            <>
-              <Image
-                src={imageUrl}
-                alt={`${name} - AI Employee`}
-                fill
-                className="object-cover  transition-transform duration-slow"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
-              {/* Halftone overlay */}
-              <div className="absolute inset-0 halftone-dark opacity-20 mix-blend-multiply" />
-            </>
-          ) : (
-            <div className="flex items-center justify-center h-full bg-mid">
-              <span className="text-8xl  transition-transform duration-med">
-                {getRoleEmoji(role.main)}
-              </span>
-            </div>
-          )}
+        {/* SPEED LINES ON HOVER */}
+        <div className="absolute top-0 right-0 w-16 h-1 bg-[#5ED3D0] opacity-0
+                          group-hover:opacity-50 transition-opacity" />
+        <div className="absolute top-2 right-0 w-12 h-1 bg-[#5ED3D0] opacity-0
+                          group-hover:opacity-40 transition-opacity delay-75" />
+        <div className="absolute bottom-0 left-0 w-20 h-1 bg-[#5ED3D0] opacity-0
+                          group-hover:opacity-50 transition-opacity" />
 
-          {/* Diagonal gradient overlay */}
-          <div className="absolute inset-0 halftone-dark opacity-40" />
-
-          {/* LED accent line top */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-cyan opacity-0 group-hover:opacity-100 transition-opacity duration-fast" />
-
-          {/* Serial number overlay */}
-          <div className="absolute top-4 left-4">
-            <span className="font-mono text-lg font-bold text-cyan bg-shadow/80 px-3 py-1 rounded border-2 border-cyan">
-              #{serial.toString().padStart(5, '0')}
-            </span>
-          </div>
-
-          {/* Name overlay at bottom */}
-          <div className="absolute bottom-0 left-0 right-0 p-4">
-            <h4 className="text-2xl font-black text-light uppercase tracking-wide drop-shadow-[2px_2px_0_rgba(14,58,65,1)]">
-              {name}
-            </h4>
-            <div className="flex items-center gap-2 mt-1">
-              <span className={`px-3 py-1 text-xs font-black uppercase tracking-wider ${getTierBadge(role.tier)} border-2 border-shadow`}>
-                {role.tier}
-              </span>
-            </div>
+        {/* COLLECTION NUMBER */}
+        <div className="absolute top-3 left-3 z-20">
+          <div className="font-mono text-3xl font-black text-[#0E3A41] opacity-30">
+            {String(index).padStart(2, '0')}
           </div>
         </div>
 
-        {/* CONTENT SECTION */}
-        <div className="p-6 bg-light">
-          {/* Role with icon */}
-          <div className="flex items-start gap-3 mb-4">
-            <span className="text-3xl">{getRoleEmoji(role.main)}</span>
-            <div>
-              <p className="text-lg font-black text-shadow uppercase">{role.main}</p>
-              <p className="text-sm text-shadow/70 font-medium">{role.sub}</p>
+        {/* TIER BADGE */}
+        <div className="absolute top-3 right-3 z-20">
+          <div className={`px-3 py-1 border-2 border-[#0E3A41] font-mono text-xs font-bold uppercase
+                          ${getTierStyles(role.tier)}`}>
+            ★ {role.tier}
+          </div>
+        </div>
+
+        {/* MAIN CONTENT */}
+        <div className="relative bg-[#1A434F] p-6 h-full">
+          {/* ICON */}
+          <div className="text-6xl mb-4 relative z-10">
+            {getRoleEmoji(role.main)}
+          </div>
+
+          {/* NAME */}
+          <h3 className="font-display text-3xl font-black text-[#F3E4C8] mb-2">
+            {name}
+          </h3>
+
+          {/* SERIAL */}
+          <div className="font-mono text-xs text-[#5ED3D0] mb-4">
+            SER:#{String(serial).padStart(4, '0')}
+          </div>
+
+          {/* ROLE */}
+          <div className="mb-4">
+            <div className="font-mono text-sm text-[#5ED3D0] mb-1">
+              [{role.main.toUpperCase()}]
+            </div>
+            <div className="text-gray-400 text-sm">
+              for {role.sub}
             </div>
           </div>
 
-          {/* Sephirah Badge - Prominent */}
+          {/* SKILLS PREVIEW */}
           <div className="mb-4">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-shadow text-cyan rounded-lg border-2 border-shadow">
-              <span className="w-2 h-2 bg-cyan rounded-full led-pulse" />
-              <span className="font-bold text-sm uppercase tracking-wider">{sephirot.primary}</span>
+            <div className="font-mono text-xs text-gray-500 mb-2">
+              NATIVE SKILLS:
             </div>
-          </div>
-
-          {/* Skills - Tags style */}
-          <div className="mb-4">
-            <p className="text-xs font-black text-shadow/50 uppercase tracking-wider mb-2">
-              ⚡ Core Skills
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {skills.native.slice(0, 3).map(s => (
-                <span
-                  key={s}
-                  className="text-xs px-3 py-1.5 bg-mid text-light font-bold rounded border-2 border-shadow/20"
-                >
-                  {s.replace(/_/g, ' ')}
-                </span>
+            <div className="space-y-1">
+              {skills.native.slice(0, 3).map((skill, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-[#5ED3D0]" />
+                  <div className="text-xs text-gray-300 font-mono">
+                    {skill}
+                  </div>
+                </div>
               ))}
-              {skills.native.length > 3 && (
-                <span className="text-xs px-3 py-1.5 bg-cyan text-shadow font-bold rounded">
-                  +{skills.native.length - 3} más
-                </span>
-              )}
             </div>
           </div>
 
-          {/* PRICE — HUGE AND PROMINENT */}
-          <div className="flex items-end justify-between pt-4 border-t-4 border-shadow/10">
-            <div>
-              <span className="text-4xl font-black text-shadow">${pricing.monthly_usd}</span>
-              <span className="text-sm text-shadow/60 font-bold ml-1">/mes</span>
-            </div>
-            <div className="text-right">
-              {pricing.annual_usd && (
-                <p className="text-xs text-shadow/50 font-medium">
-                  ${Math.round(pricing.annual_usd / 12)}/mes anual
-                </p>
-              )}
+          {/* PRICING */}
+          <div className="border-t-2 border-[#0E3A41] pt-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="font-mono text-xs text-gray-500">MONTHLY</div>
+                <div className="text-2xl font-black text-[#F3E4C8]">
+                  ${pricing.monthly_usd}
+                </div>
+              </div>
+              <div className="text-right">
+                <div className="font-mono text-xs text-gray-500">ANNUAL</div>
+                <div className="text-xl font-black text-[#5ED3D0]">
+                  ${pricing.annual_usd}
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* CTA — POWER BUTTON */}
-          <div className="mt-4">
-            <Button
-              variant="primary"
-              size="lg"
-              className="w-full "
-              starburst
-            >
-              <span className="flex items-center gap-2">
-                VER PERFIL
-                <span className="text-xl ">→</span>
-              </span>
-            </Button>
+          {/* STATUS INDICATOR */}
+          <div className="absolute bottom-2 right-2 flex items-center gap-2">
+            <div className="w-2 h-2 bg-green-500 animate-pulse" />
+            <div className="font-mono text-xs text-green-500">ACTIVE</div>
           </div>
         </div>
 
-        {/* Hover glow effect */}
-        <div className="absolute inset-0 border-4 border-cyan opacity-0 group-hover:opacity-100 transition-opacity duration-fast rounded-lg pointer-events-none" />
+        {/* HOVER GLOW */}
+        <div className="absolute inset-0 border-4 border-[#5ED3D0] opacity-0
+                        group-hover:opacity-100 transition-opacity pointer-events-none" />
       </div>
     </Link>
   );
-}
-
-function getRoleEmoji(role: string): string {
-  const map: Record<string, string> = {
-    'Contabilidad RD': '🧾',
-    'Growth Marketing': '📣',
-    'Operaciones': '🗂️',
-    'CFO Estrategico': '💰',
-    'Productividad Personal': '⏱️',
-    'UX Design': '🎨',
-  };
-  return map[role] || '🤖';
-}
-
-function getTierBadge(tier: string): string {
-  const badges = {
-    base: 'bg-light text-shadow',
-    pro: 'bg-cyan text-shadow',
-    deluxe: 'bg-warning text-shadow',
-  };
-  return badges[tier as keyof typeof badges] || badges.base;
 }

@@ -38,8 +38,8 @@ export function LoadingState({
   };
 
   return (
-    <div className={`flex items-center gap-3 ${textSizes[size]} text-light/80 ${className}`}>
-      <span className={`${sizes[size]} rounded-full bg-cyan led-pulse`} />
+    <div className={`flex items-center gap-3 ${textSizes[size]} text-[#F3E4C8]/80 ${className}`}>
+      <span className={`${sizes[size]} rounded-full bg-[#5ED3D0] led-pulse`} />
       {label}
     </div>
   );
@@ -49,7 +49,7 @@ export function LoadingState({
 export function LoadingSpinner({ className = '' }: StateProps) {
   return (
     <svg
-      className={`animate-spin h-4 w-4 text-cyan ${className}`}
+      className={`animate-spin h-4 w-4 text-[#5ED3D0] ${className}`}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
@@ -92,10 +92,10 @@ export function EmptyState({
   return (
     <div className={`text-center py-12 ${className}`}>
       {icon && (
-        <div className="text-light/30 text-5xl mb-4">{icon}</div>
+        <div className="text-[#F3E4C8]/30 text-5xl mb-4">{icon}</div>
       )}
-      <p className="font-medium text-light mb-2">{title}</p>
-      <p className="text-sm text-light/60 mb-6 max-w-sm mx-auto">{hint}</p>
+      <p className="font-medium text-[#F3E4C8] mb-2">{title}</p>
+      <p className="text-sm text-[#F3E4C8]/60 mb-6 max-w-sm mx-auto">{hint}</p>
       {action && <div>{action}</div>}
     </div>
   );
@@ -120,16 +120,16 @@ export function ErrorState({
   return (
     <div
       className={`
-        bg-mid border border-light/20 rounded-lg p-4
+        bg-[#1A434F] border border-[#F3E4C8]/20 rounded-lg p-4
         ${className}
       `}
     >
-      <p className="text-sm text-light font-medium">{message}</p>
-      {hint && <p className="text-xs text-light/60 mt-1">{hint}</p>}
+      <p className="text-sm text-[#F3E4C8] font-medium">{message}</p>
+      {hint && <p className="text-xs text-[#F3E4C8]/60 mt-1">{hint}</p>}
       {onRetry && (
         <button
           onClick={onRetry}
-          className="mt-3 text-sm text-cyan hover:underline"
+          className="mt-3 text-sm text-[#5ED3D0] hover:underline"
         >
           Intentar de nuevo
         </button>
@@ -157,7 +157,7 @@ export function SuccessState({
   return (
     <div
       className={`
-        bg-cyan text-shadow rounded-md px-4 py-2 text-sm font-medium
+        bg-[#5ED3D0] text-[#0E3A41] rounded-md px-4 py-2 text-sm font-medium
         inline-flex items-center gap-2
         ${autoDismiss ? 'animate-fade-in' : ''}
         ${className}
@@ -203,7 +203,7 @@ export function Skeleton({
   return (
     <div
       className={`
-        bg-light/10 animate-pulse
+        bg-[#F3E4C8]/10 animate-pulse
         ${width} ${height} ${radiusMap[rounded]}
         ${className}
       `}
@@ -214,7 +214,7 @@ export function Skeleton({
 // Skeleton group for common patterns
 export function SkeletonCard({ className = '' }: StateProps) {
   return (
-    <div className={`bg-mid rounded-lg p-6 space-y-4 ${className}`}>
+    <div className={`bg-[#1A434F] rounded-lg p-6 space-y-4 ${className}`}>
       <Skeleton width="w-1/3" height="h-5" />
       <Skeleton width="w-full" height="h-3" />
       <Skeleton width="w-2/3" height="h-3" />
@@ -236,7 +236,7 @@ export function SkeletonText({ lines = 3, className = '' }: { lines?: number } &
   );
 }
 
-export default {
+const StatesExport = {
   LoadingState,
   LoadingSpinner,
   EmptyState,
@@ -246,3 +246,5 @@ export default {
   SkeletonCard,
   SkeletonText,
 };
+
+export default StatesExport;

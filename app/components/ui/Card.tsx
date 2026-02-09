@@ -12,22 +12,22 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
 
 const variants: Record<CardVariant, string> = {
   default: `
-    bg-mid
+    bg-[#1A434F]
     shadow-card
   `,
   elevated: `
-    bg-mid
+    bg-[#1A434F]
     shadow-soft
   `,
   outlined: `
     bg-transparent
-    border-2 border-mid
+    border-2 border-[#1A434F]
   `,
   interactive: `
-    bg-mid
+    bg-[#1A434F]
     shadow-card
     hover:shadow-soft
-    hover:border-cyan
+    hover:border-[#5ED3D0]
     border border-transparent
     cursor-pointer
     transition-all duration-med ease-ui
@@ -58,7 +58,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         ref={ref}
         className={`
           rounded-lg
-          text-light
+          text-[#F3E4C8]
           ${variants[variant]}
           ${paddings[padding]}
           ${className}
@@ -96,10 +96,10 @@ export function CardHeader({
     >
       <div>
         {title && (
-          <h3 className="text-lg font-semibold text-light">{title}</h3>
+          <h3 className="text-lg font-semibold text-[#F3E4C8]">{title}</h3>
         )}
         {subtitle && (
-          <p className="text-sm text-light/70 mt-0.5">{subtitle}</p>
+          <p className="text-sm text-[#F3E4C8]/70 mt-0.5">{subtitle}</p>
         )}
         {children}
       </div>
@@ -108,7 +108,7 @@ export function CardHeader({
   );
 }
 
-interface CardContentProps extends HTMLAttributes<HTMLDivElement> {}
+type CardContentProps = HTMLAttributes<HTMLDivElement>;
 
 export function CardContent({
   children,
@@ -122,7 +122,7 @@ export function CardContent({
   );
 }
 
-interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {}
+type CardFooterProps = HTMLAttributes<HTMLDivElement>;
 
 export function CardFooter({
   children,
@@ -133,7 +133,7 @@ export function CardFooter({
     <div
       className={`
         mt-4 pt-4
-        border-t border-light/10
+        border-t border-[#F3E4C8]/10
         flex items-center gap-3
         ${className}
       `}

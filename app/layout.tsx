@@ -22,7 +22,9 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="antialiased font-ui">{children}</body>
+      <body className="antialiased font-ui">
+        {children}
+      </body>
     </html>
   );
 }

@@ -9,7 +9,7 @@ export default async function EmpleaidoDetail({ params }: { params: Promise<{ id
 
   if (!e) {
     return (
-      <main className="min-h-screen bg-shadow flex items-center justify-center">
+      <main className="min-h-screen bg-[#0E3A41] flex items-center justify-center">
         <Card variant="outlined" padding="lg">
           <EmptyState
             icon="🔍"
@@ -27,13 +27,13 @@ export default async function EmpleaidoDetail({ params }: { params: Promise<{ id
   }
 
   return (
-    <main className="min-h-screen bg-shadow text-light font-ui">
+    <main className="min-h-screen bg-[#0E3A41] text-[#F3E4C8] font-ui">
       {/* Header */}
-      <header className="border-b border-light/10 bg-shadow/80 backdrop-blur-sm sticky top-0 z-50">
+      <header className="border-b border-[#F3E4C8]/10 bg-[#0E3A41]/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-4xl mx-auto px-6 py-4">
           <Link
             href="/dashboard"
-            className="text-sm text-light/60 hover:text-cyan transition-colors duration-med"
+            className="text-sm text-[#F3E4C8]/60 hover:text-[#5ED3D0] transition-colors duration-med"
           >
             ← Back to my Empleaidos
           </Link>
@@ -47,23 +47,23 @@ export default async function EmpleaidoDetail({ params }: { params: Promise<{ id
           <div className="flex items-start justify-between mb-6">
             <div>
               <h1 className="text-3xl font-bold mb-2">{e.name}</h1>
-              <p className="text-light/60 font-mono">
+              <p className="text-[#F3E4C8]/60 font-mono">
                 EMPLEAIDO #{e.serial.toString().padStart(5, '0')}
               </p>
-              <p className="text-lg mt-2 text-light/80">{e.role.main}</p>
+              <p className="text-lg mt-2 text-[#F3E4C8]/80">{e.role.main}</p>
             </div>
             <div className="text-5xl">{getRoleEmoji(e.role.main)}</div>
           </div>
 
           {/* Sephirot Badges */}
           <div className="mb-6 flex flex-wrap gap-2">
-            <span className="px-3 py-1 bg-cyan-dim text-cyan rounded-full text-sm font-semibold">
+            <span className="px-3 py-1 bg-[#5ED3D0]/20 text-[#5ED3D0] rounded-full text-sm font-semibold">
               Primary: {e.sephirot.primary}
             </span>
             {e.sephirot.secondary.map((s) => (
               <span
                 key={s}
-                className="px-3 py-1 bg-light/10 text-light/70 rounded-full text-xs"
+                className="px-3 py-1 bg-[#F3E4C8]/10 text-[#F3E4C8]/70 rounded-full text-xs"
               >
                 {s}
               </span>
@@ -72,8 +72,8 @@ export default async function EmpleaidoDetail({ params }: { params: Promise<{ id
 
           {/* Motivation */}
           {e.identity?.motivation && (
-            <div className="mb-6 p-4 bg-shadow rounded-lg border-l-4 border-cyan">
-              <p className="italic text-light/90">"{e.identity.motivation}"</p>
+            <div className="mb-6 p-4 bg-[#0E3A41] rounded-lg border-l-4 border-[#5ED3D0]">
+              <p className="italic text-[#F3E4C8]/90">&ldquo;{e.identity.motivation}&rdquo;</p>
             </div>
           )}
 
@@ -93,10 +93,10 @@ export default async function EmpleaidoDetail({ params }: { params: Promise<{ id
                 <ul className="space-y-2">
                   {e.skills.native.map((s) => (
                     <li key={s} className="flex items-center gap-2 text-sm">
-                      <span className="w-5 h-5 rounded-full bg-cyan-dim flex items-center justify-center text-cyan text-xs">
+                      <span className="w-5 h-5 rounded-full bg-[#5ED3D0]/20 flex items-center justify-center text-[#5ED3D0] text-xs">
                         ✓
                       </span>
-                      <span className="text-light/80">{getSkillLabel(s)}</span>
+                      <span className="text-[#F3E4C8]/80">{getSkillLabel(s)}</span>
                     </li>
                   ))}
                 </ul>
@@ -109,10 +109,10 @@ export default async function EmpleaidoDetail({ params }: { params: Promise<{ id
                 <ul className="space-y-2">
                   {e.skills.locked.map((s) => (
                     <li key={s} className="flex items-center gap-2 text-sm">
-                      <span className="w-5 h-5 rounded-full bg-light/10 flex items-center justify-center text-light/40 text-xs">
+                      <span className="w-5 h-5 rounded-full bg-[#F3E4C8]/10 flex items-center justify-center text-[#F3E4C8]/40 text-xs">
                         🔒
                       </span>
-                      <span className="text-light/50">{getSkillLabel(s)}</span>
+                      <span className="text-[#F3E4C8]/50">{getSkillLabel(s)}</span>
                     </li>
                   ))}
                 </ul>
@@ -121,15 +121,15 @@ export default async function EmpleaidoDetail({ params }: { params: Promise<{ id
           </div>
 
           {/* OpenClaw Status */}
-          <div className="border-t border-light/10 pt-6">
+          <div className="border-t border-[#F3E4C8]/10 pt-6">
             <h3 className="font-semibold mb-3">OpenClaw Agent Status</h3>
             <div className="flex items-center gap-2 mb-2">
-              <span className="w-2 h-2 rounded-full bg-success led-pulse" />
-              <span className="text-sm font-mono text-light/80">
+              <span className="w-2 h-2 rounded-full bg-green-500 led-pulse" />
+              <span className="text-sm font-mono text-[#F3E4C8]/80">
                 empleaido-{e.name.toLowerCase()}-{e.serial}
               </span>
             </div>
-            <p className="text-xs text-light/50 font-mono">
+            <p className="text-xs text-[#F3E4C8]/50 font-mono">
               ~/.openclaw/workspace-empleaido-{e.name.toLowerCase()}-{e.serial}/
             </p>
           </div>
@@ -162,15 +162,15 @@ function StatCard({
   highlight?: boolean;
 }) {
   return (
-    <div className="bg-shadow rounded-lg p-4 text-center border border-light/10">
-      <div className={`text-2xl font-bold mb-1 ${highlight ? 'text-success' : 'text-cyan'}`}>
+    <div className="bg-[#0E3A41] rounded-lg p-4 text-center border border-[#F3E4C8]/10">
+      <div className={`text-2xl font-bold mb-1 ${highlight ? 'text-green-500' : 'text-[#5ED3D0]'}`}>
         {value}
       </div>
-      <div className="text-xs text-light/50">{label}</div>
+      <div className="text-xs text-[#F3E4C8]/50">{label}</div>
       {showBar && energy !== undefined && (
-        <div className="mt-2 w-full h-1.5 bg-mid rounded-full overflow-hidden">
+        <div className="mt-2 w-full h-1.5 bg-[#1A434F] rounded-full overflow-hidden">
           <div
-            className="h-full bg-cyan rounded-full transition-all duration-med"
+            className="h-full bg-[#5ED3D0] rounded-full transition-all duration-med"
             style={{ width: `${energy}%` }}
           />
         </div>

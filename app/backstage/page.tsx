@@ -1,229 +1,207 @@
 import Link from 'next/link';
 import empleaidos from '@/data/empleaidos.json';
-import { Button, Card, CardHeader, CardContent, Mascot } from '../components/ui';
 
-// Status indicator - POWER VERSION
-function StatusDot({ active }: { active: boolean }) {
-  return (
-    <span className="relative">
-      <span
-        className={`block w-4 h-4 rounded-full ${
-          active ? 'bg-success' : 'bg-light/30'
-        } border-2 border-shadow`}
-      />
-      {active && (
-        <span className="absolute inset-0 rounded-full bg-success led-pulse" />
-      )}
-    </span>
-  );
-}
+// Tier config
+const tierConfig = {
+  base: { label: 'Base', color: 'text-[#F3E4C8]/70' },
+  pro: { label: 'Pro', color: 'text-[#5ED3D0]' },
+  deluxe: { label: 'Deluxe', color: 'text-yellow-500' },
+};
 
-function getRoleEmoji(role: string): string {
-  const map: Record<string, string> = {
-    'Contabilidad RD': '🧾',
-    'Growth Marketing': '📣',
-    'Operaciones': '🗂️',
-    'CFO Estrategico': '💰',
-    'Productividad Personal': '⏱️',
-    'UX Design': '🎨',
-  };
-  return map[role] || '🤖';
-}
-
-export default function Backstage() {
-  const activeCount = empleaidos.filter(e => e.status === 'active').length;
-  const draftCount = empleaidos.filter(e => e.status !== 'active').length;
+export default function BackstagePage() {
+  const activeEmpleaidos = empleaidos.filter(e => e.status === 'active');
+  const inDevelopment = empleaidos.filter(e => e.status === 'draft');
 
   return (
-    <main className="min-h-screen bg-shadow text-light font-ui">
-      {/* ═══════════════════════════════════════════════════════════════
-          HEADER — Factory Command Bar
-      ═══════════════════════════════════════════════════════════════ */}
-      <header className="border-b-4 border-shadow bg-mid sticky top-0 z-50">
+    <main className="min-h-screen bg-[#0E3A41] text-[#F3E4C8]">
+      {/* ===== HEADER ===== */}
+      <header className="bg-[#F3E4C8] border-b-4 border-[#0E3A41]">
         <div className="max-w-7xl mx-auto px-lg py-md">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="text-5xl">🏭</div>
+            {/* Logo */}
+            <div className="flex items-center gap-md">
+              <div className="w-12 h-12 bg-[#1A434F] rounded-lg border-4 border-[#0E3A41] flex items-center justify-center">
+                <span className="text-2xl">🏭</span>
+              </div>
               <div>
-                <h1 className="text-2xl font-black uppercase tracking-tight flex items-center gap-3">
-                  BACKSTAGE
-                  <span className="text-cyan">/</span>
-                  FÁBRICA
+                <h1 className="font-display text-2xl tracking-tight text-[#0E3A41]">
+                  EMPLEAIDO FACTORY
                 </h1>
-                <p className="text-sm text-cyan font-mono">▸ PRODUCTION MANAGEMENT SYSTEM</p>
+                <p className="text-xs text-[#0E3A41]/60 font-medium tracking-wider">
+                  BACKSTAGE · PRODUCTION MANAGEMENT SYSTEM
+                </p>
               </div>
             </div>
-            <div className="flex gap-4">
-              <Link href="/">
-                <Button variant="ghost" size="md">
-                  ← Catálogo
-                </Button>
+
+            {/* Navigation */}
+            <nav className="flex items-center gap-sm">
+              <Link
+                href="/"
+                className="px-lg py-sm bg-[#1A434F] text-[#F3E4C8] font-bold text-sm tracking-wider uppercase border-4 border-[#0E3A41] hover:border-[#5ED3D0] transition-colors"
+              >
+                ← CATÁLOGO
               </Link>
-              <Link href="/backstage/create">
-                <Button variant="power" size="md" starburst>
-                  + CREAR EMPLEAIDO
-                </Button>
+              <Link
+                href="/backstage/create"
+                className="px-lg py-sm bg-[#5ED3D0] text-[#0E3A41] font-bold text-sm tracking-wider uppercase border-4 border-[#0E3A41] hover:bg-[#F3E4C8] transition-colors"
+              >
+                + CREAR EMPLEAIDO
               </Link>
-            </div>
+            </nav>
           </div>
         </div>
       </header>
 
-      {/* ═══════════════════════════════════════════════════════════════
-          STATS BAR — Control Panel
-      ═══════════════════════════════════════════════════════════════ */}
-      <div className="border-b-4 border-shadow/50 bg-mid/80 relative overflow-hidden">
-        <div className="absolute inset-0 stripes-diagonal opacity-20 pointer-events-none" />
-        <div className="max-w-7xl mx-auto px-lg py-lg relative z-10">
-          <div className="flex gap-12">
+      {/* ===== STATS BAR ===== */}
+      <section className="bg-[#1A434F] border-b-4 border-[#0E3A41]">
+        <div className="max-w-7xl mx-auto px-lg py-lg">
+          <div className="grid grid-cols-3 gap-lg">
             {/* Total */}
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-xl bg-shadow flex items-center justify-center border-4 border-shadow shadow-brutal">
-                <span className="text-3xl font-black text-cyan">{empleaidos.length}</span>
-              </div>
-              <div>
-                <p className="text-xs font-bold text-light/50 uppercase tracking-wider">Total</p>
-                <p className="text-lg font-black uppercase">Empleaidos</p>
-              </div>
+            <div className="bg-[#0E3A41] rounded-lg border-4 border-[#0E3A41] p-md text-center">
+              <p className="text-[#F3E4C8]/50 text-xs tracking-wider uppercase mb-xs">Empleaidos Totales</p>
+              <p className="font-display text-4xl text-[#F3E4C8]">{empleaidos.length}</p>
             </div>
 
             {/* Active */}
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-xl bg-success/20 flex items-center justify-center border-4 border-success/30 shadow-brutal">
-                <span className="text-3xl font-black text-success">{activeCount}</span>
-              </div>
-              <div>
-                <p className="text-xs font-bold text-light/50 uppercase tracking-wider">Activos</p>
-                <p className="text-lg font-black uppercase text-success">En Producción</p>
-              </div>
+            <div className="bg-[#0E3A41] rounded-lg border-4 border-[#0E3A41] p-md text-center">
+              <p className="text-[#F3E4C8]/50 text-xs tracking-wider uppercase mb-xs">Activos en Producción</p>
+              <p className="font-display text-4xl text-[#5ED3D0]">{activeEmpleaidos.length}</p>
             </div>
 
-            {/* Draft */}
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-xl bg-warning/20 flex items-center justify-center border-4 border-warning/30 shadow-brutal">
-                <span className="text-3xl font-black text-warning">{draftCount}</span>
-              </div>
-              <div>
-                <p className="text-xs font-bold text-light/50 uppercase tracking-wider">Borrador</p>
-                <p className="text-lg font-black uppercase text-warning">En Desarrollo</p>
-              </div>
-            </div>
-
-            {/* Mascot */}
-            <div className="ml-auto flex items-center gap-4">
-              <Mascot state="working" size="md" />
-              <div>
-                <p className="text-sm font-bold">Fábrica Operando</p>
-                <p className="text-xs text-cyan font-mono">24/7 PRODUCTION</p>
+            {/* In Development */}
+            <div className="bg-[#0E3A41] rounded-lg border-4 border-[#0E3A41] p-md text-center">
+              <p className="text-[#F3E4C8]/50 text-xs tracking-wider uppercase mb-xs">En Desarrollo</p>
+              <div className="flex items-center justify-center gap-sm">
+                <span className="font-display text-4xl text-[#F3E4C8]/50">{inDevelopment.length}</span>
+                <span className="text-[#F3E4C8]/30">|</span>
+                <span className="font-display text-4xl text-[#F3E4C8]/50">0</span>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* ═══════════════════════════════════════════════════════════════
-          MAIN CONTENT — Production Grid
-      ═══════════════════════════════════════════════════════════════ */}
-      <section className="max-w-7xl mx-auto px-lg py-xl relative">
-        {/* Background texture */}
-        <div className="absolute inset-0 halftone-heavy opacity-5 pointer-events-none" />
-
-        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {empleaidos.map((e, i) => (
-            <div
-              key={e.id}
-              className="card-power bg-light overflow-hidden group"
-              style={{ transform: `rotate(${i % 2 === 0 ? -1 : 1}deg)` }}
-            >
-              {/* Header */}
-              <div className="p-6 border-b-4 border-shadow/10 flex items-start justify-between">
-                <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <StatusDot active={e.status === 'active'} />
-                    <span className={`text-xs font-black uppercase tracking-wider ${
-                      e.status === 'active' ? 'text-success' : 'text-warning'
-                    }`}>
-                      {e.status === 'active' ? 'ACTIVO' : 'BORRADOR'}
-                    </span>
-                  </div>
-                  <h2 className="text-xl font-black text-shadow uppercase">{e.name}</h2>
-                  <p className="text-sm text-cyan font-mono font-bold">#{e.serial}</p>
-                </div>
-                <span className="text-4xl  transition-transform duration-med">
-                  {getRoleEmoji(e.role.main)}
-                </span>
-              </div>
-
-              {/* Role */}
-              <div className="px-6 py-4 bg-light border-b-4 border-shadow/10">
-                <p className="text-lg font-bold text-shadow">{e.role.main}</p>
-              </div>
-
-              {/* Stats - Control Panel Style */}
-              <div className="p-6 bg-mid space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-xs font-bold text-light/60 uppercase">Tier</span>
-                  <span className={`px-3 py-1 rounded text-xs font-black uppercase border-2 border-shadow ${
-                    e.role.tier === 'deluxe' ? 'bg-warning text-shadow' :
-                    e.role.tier === 'pro' ? 'bg-cyan text-shadow' :
-                    'bg-light text-shadow'
-                  }`}>
-                    {e.role.tier}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-xs font-bold text-light/60 uppercase">Sephirah</span>
-                  <span className="text-sm font-bold text-cyan">{e.sephirot.primary}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-xs font-bold text-light/60 uppercase">Level</span>
-                  <span className="text-2xl font-black text-light">{e.life.level}</span>
-                </div>
-                <div>
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-xs font-bold text-light/60 uppercase">Energy</span>
-                    <span className="text-sm font-bold text-cyan">{e.life.energy}%</span>
-                  </div>
-                  <div className="h-3 bg-shadow rounded-full overflow-hidden border-2 border-shadow">
-                    <div
-                      className="h-full bg-cyan rounded-full"
-                      style={{ width: `${e.life.energy}%` }}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Actions */}
-              <div className="p-6 bg-light flex gap-3">
-                <Link href={`/backstage/edit/${e.id}`} className="flex-1">
-                  <Button variant="secondary" size="md" className="w-full">
-                    ✏️ EDITAR
-                  </Button>
-                </Link>
-                <Link href={`/empleaido/${e.id}`} className="flex-1">
-                  <Button variant="primary" size="md" className="w-full" starburst>
-                    👁️ PREVIEW
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          ))}
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════
-          FOOTER — Factory Status
-      ═══════════════════════════════════════════════════════════════ */}
-      <footer className="border-t-4 border-shadow/50 py-lg bg-mid">
-        <div className="max-w-7xl mx-auto px-lg flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Mascot state="idle" size="sm" />
-            <p className="text-sm font-mono text-light/50">
-              EMPLEAIDO FACTORY v1.0 · BACKSTAGE MANAGEMENT
-            </p>
+      {/* ===== FACTORY STATUS ===== */}
+      <section className="bg-[#0E3A41] py-md border-b-2 border-[#1A434F]">
+        <div className="max-w-7xl mx-auto px-lg">
+          <div className="flex items-center justify-center gap-md">
+            <div className="h-px flex-1 bg-[#5ED3D0]/30" />
+            <div className="flex items-center gap-md px-lg py-sm bg-[#1A434F] rounded-full border-2 border-[#5ED3D0]">
+              <span className="font-display text-sm text-[#F3E4C8] tracking-wider">FÁBRICA OPERANDO</span>
+              <span className="text-[#5ED3D0] text-xs">24/7 · PRODUCCIÓN ACTIVA</span>
+              <span className="w-2 h-2 bg-[#5ED3D0] rounded-full animate-pulse" />
+              <span className="text-[#5ED3D0] font-bold text-sm">ACTIVO</span>
+            </div>
+            <div className="h-px flex-1 bg-[#5ED3D0]/30" />
           </div>
-          <p className="text-sm text-cyan font-mono">
-            ✦ LA FÁBRICA NUNCA DUERME ✦
+        </div>
+      </section>
+
+      {/* ===== EMPLEAIDO LIST ===== */}
+      <section className="py-xl relative">
+        {/* Halftone background */}
+        <div className="absolute inset-0 halftone opacity-5 pointer-events-none" />
+        {/* Starfield */}
+        <div className="absolute inset-0 starfield opacity-20" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-lg">
+          <div className="space-y-md">
+            {empleaidos.map((emp) => (
+              <div
+                key={emp.id}
+                className="bg-[#1A434F] rounded-xl border-4 border-[#0E3A41] overflow-hidden hover:border-[#5ED3D0] transition-all"
+              >
+                <div className="p-lg">
+                  <div className="flex items-center gap-lg">
+                    {/* Mascot */}
+                    <div className="w-20 h-20 bg-[#0E3A41] rounded-lg border-2 border-[#0E3A41] flex items-center justify-center flex-shrink-0">
+                      <span className="text-4xl">🤖</span>
+                    </div>
+
+                    {/* Info */}
+                    <div className="flex-1 min-w-0">
+                      {/* Name row */}
+                      <div className="flex items-center gap-sm mb-xs">
+                        <span className="font-display text-2xl text-[#F3E4C8]">{emp.name}</span>
+                        <span className="text-[#5ED3D0]/70 text-sm font-mono">#{emp.serial}</span>
+                        <span className="text-[#F3E4C8]/60 italic text-sm ml-sm">{emp.role.main}</span>
+                      </div>
+
+                      {/* Stats row */}
+                      <div className="flex items-center gap-lg text-sm">
+                        <div className="flex items-center gap-xs">
+                          <span className="text-[#F3E4C8]/50">Tier:</span>
+                          <span className={`font-bold ${tierConfig[emp.role.tier as keyof typeof tierConfig].color}`}>
+                            {tierConfig[emp.role.tier as keyof typeof tierConfig].label}
+                          </span>
+                        </div>
+                        <span className="text-[#F3E4C8]/30">|</span>
+                        <div className="flex items-center gap-xs">
+                          <span className="text-[#F3E4C8]/50">Sephirah:</span>
+                          <span className="text-[#F3E4C8] font-medium">{emp.sephirot.primary}</span>
+                        </div>
+                        <span className="text-[#F3E4C8]/30">|</span>
+                        <div className="flex items-center gap-xs">
+                          <span className="text-[#F3E4C8]/50">Nivel:</span>
+                          <span className="text-[#F3E4C8] font-bold">{emp.life.level}</span>
+                        </div>
+                        <span className="text-[#F3E4C8]/30">|</span>
+                        <div className="flex items-center gap-xs">
+                          <span className="text-[#F3E4C8]/50">Energía:</span>
+                          <span className="text-[#5ED3D0] font-bold">{emp.life.energy}%</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Actions */}
+                    <div className="flex items-center gap-sm flex-shrink-0">
+                      <Link
+                        href={`/backstage/edit/${emp.id.split('-')[1]}`}
+                        className="px-lg py-sm bg-[#0E3A41] text-[#F3E4C8] text-sm font-bold tracking-wider uppercase border-2 border-[#F3E4C8]/30 hover:border-[#5ED3D0] hover:text-[#5ED3D0] transition-all rounded"
+                      >
+                        EDITAR
+                      </Link>
+                      <Link
+                        href={`/empleaido/${emp.id.split('-')[1]}`}
+                        className="px-lg py-sm bg-[#0E3A41] text-[#F3E4C8] text-sm font-bold tracking-wider uppercase border-2 border-[#F3E4C8]/30 hover:border-[#5ED3D0] hover:text-[#5ED3D0] transition-all rounded"
+                      >
+                        VISTA PREVIA
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FOOTER STATUS ===== */}
+      <footer className="bg-[#1A434F] border-t-4 border-[#0E3A41] py-lg">
+        <div className="max-w-7xl mx-auto px-lg">
+          {/* System status */}
+          <div className="text-center mb-lg">
+            <div className="inline-flex items-center gap-md px-xl py-sm bg-[#0E3A41] rounded-full border-2 border-[#0E3A41]">
+              <span className="text-[#F3E4C8]/50 text-sm">EMPLEAIDO CORE:</span>
+              <span className="text-[#5ED3D0] font-bold text-sm">IDLE</span>
+              <span className="text-[#F3E4C8]/30">•</span>
+              <span className="text-[#F3E4C8]/50 text-sm">SISTEMA:</span>
+              <span className="text-green-500 font-bold text-sm">ESTABLE</span>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="flex items-center gap-md mb-lg">
+            <div className="h-px flex-1 bg-[#0E3A41]" />
+            <span className="text-[#F3E4C8]/40 text-xs tracking-widest">
+              EMPLEAIDO FACTORY v1.0 • BACKSTAGE MANAGEMENT
+            </span>
+            <div className="h-px flex-1 bg-[#0E3A41]" />
+          </div>
+
+          {/* Tagline */}
+          <p className="text-center text-[#F3E4C8]/30 text-xs tracking-widest uppercase">
+            ★ LA FÁBRICA NUNCA DUERME ★
           </p>
         </div>
       </footer>

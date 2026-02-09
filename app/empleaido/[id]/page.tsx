@@ -1,265 +1,231 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import empleaidos from '@/data/empleaidos.json';
 import { getSkillLabel } from '@/lib/skills';
-import imageManifest from '../../../public/empleaido-images.json';
-import { Button, Card, CardHeader, CardContent, EmptyState, Mascot } from '../../components/ui';
 
 export default async function EmpleaidoProfile({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const e = empleaidos.find((emp) => emp.id === id);
+  // Support both full ID (empleaido-04094) and serial (04094)
+  const emp = empleaidos.find((e) => e.id === `empleaido-${id}` || e.id === id || e.serial.toString() === id);
 
-  if (!e) {
+  if (!emp) {
     return (
-      <main className="min-h-screen bg-shadow flex items-center justify-center starfield">
-        <div className="card-power bg-light p-12 text-center max-w-lg">
-          <div className="text-8xl mb-6">🔍</div>
-          <h2 className="text-2xl font-black text-shadow uppercase mb-4">EMPLEAIDO NO ENCONTRADO</h2>
-          <p className="text-shadow/70 mb-8">Este Empleaido no existe o fue removido del sistema.</p>
-          <Link href="/">
-            <Button variant="primary" size="xl" starburst>
-              ← VOLVER AL CATÁLOGO
-            </Button>
+      <main className="min-h-screen bg-[#0E3A41] flex items-center justify-center">
+        <div className="bg-[#1A434F] p-xl rounded-xl border-4 border-[#0E3A41] text-center max-w-lg">
+          <span className="text-6xl block mb-lg">🔍</span>
+          <h2 className="font-display text-2xl text-[#F3E4C8] mb-md">EMPLEAIDO NO ENCONTRADO</h2>
+          <p className="text-[#F3E4C8]/60 mb-xl">Este Empleaido no existe o fue removido del sistema.</p>
+          <Link
+            href="/"
+            className="inline-flex px-xl py-md bg-[#5ED3D0] text-[#0E3A41] font-bold tracking-wider uppercase border-4 border-[#0E3A41]"
+          >
+            ← VOLVER AL CATÁLOGO
           </Link>
         </div>
       </main>
     );
   }
 
-  const imageData = imageManifest.find((img) => img.empleaido_id === e.id);
-  const imageUrl = imageData?.imageUrl;
-
   return (
-    <main className="min-h-screen bg-shadow text-light font-ui">
-      {/* ═══════════════════════════════════════════════════════════════
-          HEADER — Navigation Bar
-      ═══════════════════════════════════════════════════════════════ */}
-      <header className="border-b-4 border-shadow bg-mid/95 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-5xl mx-auto px-lg py-md flex items-center justify-between">
-          <Link href="/">
-            <Button variant="ghost" size="md">
+    <main className="min-h-screen bg-[#0E3A41] text-[#F3E4C8]">
+      {/* ===== HEADER ===== */}
+      <header className="bg-[#F3E4C8] border-b-4 border-[#0E3A41]">
+        <div className="max-w-4xl mx-auto px-lg py-md">
+          <div className="flex items-center justify-between">
+            <Link
+              href="/"
+              className="px-lg py-sm bg-[#1A434F] text-[#F3E4C8] font-bold text-sm tracking-wider uppercase border-4 border-[#0E3A41] hover:border-[#5ED3D0] transition-colors"
+            >
               ← Catálogo
-            </Button>
-          </Link>
-          <div className="flex items-center gap-3">
-            <Mascot state="idle" size="sm" />
-            <span className="font-bold uppercase tracking-wide">Empleaido Profile</span>
+            </Link>
+            <div className="flex items-center gap-sm">
+              <span className="text-[#0E3A41]/50 text-sm">✦</span>
+              <span className="text-[#0E3A41]/50 text-sm">✦</span>
+            </div>
           </div>
         </div>
       </header>
 
-      {/* ═══════════════════════════════════════════════════════════════
-          HERO — Profile Showcase
-      ═══════════════════════════════════════════════════════════════ */}
-      <div className="max-w-5xl mx-auto px-lg py-xl">
-        <div className="card-power bg-light overflow-hidden">
-          {/* Hero Banner */}
-          <div className="relative h-56 md:h-72 bg-shadow overflow-hidden">
-            {/* Starfield background */}
-            <div className="absolute inset-0 starfield" />
+      {/* ===== PROFILE CARD ===== */}
+      <section className="py-xl relative">
+        {/* Starfield background */}
+        <div className="absolute inset-0 starfield opacity-30" />
+        <div className="absolute inset-0 halftone opacity-5" />
 
-            {/* Decorative elements */}
-            <div className="absolute top-6 left-6 text-7xl text-cyan/20 ">✧</div>
-            <div className="absolute bottom-6 right-6 text-5xl text-cyan/20 " style={{ animationDelay: '-2s' }}>★</div>
-            <div className="absolute inset-0 halftone-dark opacity-20" />
+        <div className="relative z-10 max-w-4xl mx-auto px-lg">
+          <div className="bg-[#1A434F] rounded-xl border-4 border-[#0E3A41] overflow-hidden">
+            {/* Profile header with decorative border */}
+            <div className="border-b-2 border-[#5ED3D0]/30 px-xl py-lg">
+              <div className="flex items-center gap-md mb-md">
+                <div className="h-px flex-1 bg-[#F3E4C8]/20" />
+                <span className="text-[#F3E4C8]/40 text-xs tracking-widest">★ Empleaido Profile ★</span>
+                <div className="h-px flex-1 bg-[#F3E4C8]/20" />
+              </div>
 
-            {/* Diagonal stripes */}
-            <div className="absolute inset-0 stripes-diagonal opacity-20" />
+              <div className="flex items-start gap-xl">
+                {/* Left: Info */}
+                <div className="flex-1">
+                  {/* Serial badge */}
+                  <div className="inline-flex items-center gap-sm px-md py-xs bg-[#5ED3D0] text-[#0E3A41] rounded mb-md">
+                    <span className="w-2 h-2 bg-[#0E3A41] rounded-full" />
+                    <span className="text-xs font-bold">#{emp.serial.toString().padStart(5, '0')}</span>
+                  </div>
 
-            {/* LED accent line */}
-            <div className="absolute bottom-0 left-0 right-0 h-2 bg-cyan" />
+                  {/* Name */}
+                  <h1 className="font-display text-5xl text-[#F3E4C8] mb-xs">{emp.name}</h1>
+                  <p className="text-xl text-[#F3E4C8]/70 mb-md">{emp.name} – AI Employee</p>
 
-            {/* Serial number */}
-            <div className="absolute top-6 right-6">
-              <span className="badge-power">
-                <span className="w-2 h-2 bg-shadow rounded-full led-pulse" />
-                #{e.serial.toString().padStart(5, '0')}
-              </span>
+                  {/* Role */}
+                  <p className="font-display text-2xl text-[#5ED3D0] mb-md">{emp.role.main}</p>
+
+                  {/* Tags row */}
+                  <div className="flex items-center gap-sm mb-lg">
+                    <span className="px-md py-xs bg-[#0E3A41] text-[#F3E4C8] text-xs font-bold rounded border-2 border-[#F3E4C8]/20">
+                      👤 {emp.role.sub}
+                    </span>
+                    <span className="px-md py-xs bg-[#0E3A41] text-[#5ED3D0] text-xs font-bold rounded border-2 border-[#5ED3D0]/30">
+                      ◉ {emp.sephirot.primary}
+                    </span>
+                  </div>
+
+                  {/* Motivation quote */}
+                  {emp.identity?.motivation && (
+                    <p className="text-[#F3E4C8]/60 italic text-lg border-l-4 border-[#5ED3D0]/30 pl-md">
+                      &ldquo;{emp.identity.motivation}&rdquo;
+                    </p>
+                  )}
+                </div>
+
+                {/* Right: Mascot */}
+                <div className="flex-shrink-0">
+                  <div className="w-48 h-48 bg-[#0E3A41] rounded-xl border-4 border-[#0E3A41] flex items-center justify-center relative">
+                    {/* Stars decoration */}
+                    <span className="absolute top-2 right-2 text-[#5ED3D0] text-sm">✦</span>
+                    <span className="absolute bottom-4 left-4 text-[#5ED3D0]/50 text-xs">✦</span>
+                    <span className="text-8xl">🤖</span>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
 
-          {/* Profile Image - Overlapping */}
-          <div className="relative px-8 md:px-12">
-            <div className="absolute -top-24 md:-top-28 left-8 md:left-12 w-44 h-44 md:w-52 md:h-52 rounded-xl overflow-hidden border-[6px] border-shadow shadow-brutal-lg img-power">
-              {imageUrl ? (
-                <Image
-                  src={imageUrl}
-                  alt={`${e.name} - AI Employee`}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              ) : (
-                <div className="w-full h-full bg-mid flex items-center justify-center">
-                  <span className="text-7xl">{getRoleEmoji(e.role.main)}</span>
+            {/* Skills section */}
+            <div className="px-xl py-lg border-b-2 border-[#0E3A41]/50">
+              {/* Included Skills */}
+              <div className="mb-lg">
+                <div className="flex items-center gap-md mb-md">
+                  <div className="h-px flex-1 bg-[#F3E4C8]/10" />
+                  <span className="text-[#F3E4C8] text-sm font-bold tracking-wider">✓ Included Skills</span>
+                  <div className="h-px flex-1 bg-[#F3E4C8]/10" />
+                </div>
+
+                <div className="space-y-sm">
+                  {emp.skills.native.map((skill) => (
+                    <div key={skill} className="flex items-center gap-sm">
+                      <span className="text-[#5ED3D0]">✓</span>
+                      <span className="text-[#F3E4C8]">{getSkillLabel(skill)}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Unlockable Skills */}
+              <div className="mb-lg">
+                <div className="flex items-center gap-md mb-md">
+                  <div className="h-px flex-1 bg-[#F3E4C8]/10" />
+                  <span className="text-[#F3E4C8]/50 text-sm font-bold tracking-wider">🔒 Unlockable Skills</span>
+                  <div className="h-px flex-1 bg-[#F3E4C8]/10" />
+                </div>
+
+                <div className="space-y-sm">
+                  {emp.skills.locked.map((skill) => (
+                    <div key={skill} className="flex items-center gap-sm">
+                      <span className="text-[#F3E4C8]/30">🔒</span>
+                      <span className="text-[#F3E4C8]/50">{getSkillLabel(skill)}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Boundaries */}
+              {emp.identity?.boundaries && emp.identity.boundaries.length > 0 && (
+                <div>
+                  <div className="flex items-center gap-md mb-md">
+                    <div className="h-px flex-1 bg-yellow-500/20" />
+                    <span className="text-yellow-500 text-sm font-bold tracking-wider">⚠️ What I Don&apos;t Do</span>
+                    <div className="h-px flex-1 bg-yellow-500/20" />
+                  </div>
+
+                  <div className="space-y-sm">
+                    {emp.identity.boundaries.map((boundary, i) => (
+                      <div key={i} className="flex items-center gap-sm">
+                        <span className="text-yellow-500">✕</span>
+                        <span className="text-[#F3E4C8]/70">{boundary}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
+
+            {/* Pricing section */}
+            <div className="px-xl py-lg bg-[#0E3A41]/50">
+              <div className="grid md:grid-cols-2 gap-lg">
+                {/* Pricing card */}
+                <div className="bg-[#F3E4C8] rounded-xl border-4 border-[#0E3A41] p-lg text-center">
+                  <p className="text-[#0E3A41]/60 text-xs tracking-widest uppercase mb-sm">INVERSIÓN MENSUAL</p>
+                  <p className="font-display text-5xl text-[#0E3A41] mb-xs">${emp.pricing.monthly_usd}</p>
+                  <p className="text-[#0E3A41]/60">por mes</p>
+
+                  {emp.pricing.annual_usd && (
+                    <div className="mt-md pt-md border-t-2 border-[#0E3A41]/20">
+                      <p className="text-[#0E3A41]/60 text-sm">
+                        o ${emp.pricing.annual_usd}/año{' '}
+                        <span className="inline-flex px-sm py-xs bg-yellow-500 text-[#0E3A41] text-xs font-bold rounded ml-sm">
+                          AHORRA ${((emp.pricing.monthly_usd * 12) - emp.pricing.annual_usd).toFixed(0)}
+                        </span>
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* CTA */}
+                <div className="flex flex-col justify-center">
+                  <Link
+                    href={`/adopt/${emp.id}`}
+                    className="block w-full text-center py-lg bg-[#5ED3D0] text-[#0E3A41] font-black text-xl tracking-wider uppercase border-4 border-[#0E3A41] shadow-[6px_6px_0_#0E3A41] hover:shadow-[6px_6px_0_#5ED3D0] transition-all mb-md"
+                  >
+                    ⚡ ADOPTAR A {emp.name} →
+                  </Link>
+
+                  <p className="text-[#F3E4C8]/40 text-center text-sm">
+                    Sin compromisos. Cancela cuando quieras.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Content */}
-          <div className="pt-28 md:pt-32 px-8 md:px-12 pb-10">
-            {/* Title Row */}
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-8">
-              <div>
-                <h1 className="text-huge text-power text-shadow">{e.name}</h1>
-                <p className="text-2xl font-mono font-bold text-cyan mt-2">
-                  {e.role.main}
-                </p>
-                <p className="text-lg text-shadow/70 font-medium">{e.role.sub}</p>
-              </div>
-              <div className="flex gap-3 mt-6 md:mt-0">
-                <span className="badge-power">
-                  {e.sephirot.primary}
-                </span>
-                <span className={`px-4 py-2 rounded-full text-sm font-black uppercase tracking-wider border-4 border-shadow ${getTierBadge(e.role.tier)}`}>
-                  {getTierIcon(e.role.tier)} {e.role.tier}
-                </span>
-              </div>
-            </div>
-
-            {/* Motivation Quote - POWER */}
-            {e.identity?.motivation && (
-              <div className="mb-10 p-8 rounded-xl bg-mid border-l-8 border-cyan relative overflow-hidden">
-                <div className="absolute top-4 left-4 text-6xl text-cyan/20">"</div>
-                <p className="text-2xl font-bold text-light leading-relaxed pl-8">
-                  {e.identity.motivation}
-                </p>
-              </div>
-            )}
-
-            {/* Skills Grid - POWER */}
-            <div className="grid md:grid-cols-2 gap-8 mb-10">
-              {/* Native Skills */}
-              <div className="card-power bg-mid p-6">
-                <h3 className="text-lg font-black uppercase tracking-wider mb-4 flex items-center gap-3">
-                  <span className="text-2xl">✓</span>
-                  <span>Included Skills</span>
-                </h3>
-                <ul className="space-y-3">
-                  {e.skills.native.map((s) => (
-                    <li key={s} className="flex items-center gap-4 p-3 bg-shadow rounded-lg border-2 border-cyan/30">
-                      <span className="w-8 h-8 rounded-lg bg-cyan flex items-center justify-center text-shadow font-bold">
-                        ✓
-                      </span>
-                      <span className="text-light font-medium">{getSkillLabel(s)}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Locked Skills */}
-              <div className="card-power bg-shadow p-6 border-2 border-dashed border-light/20">
-                <h3 className="text-lg font-black uppercase tracking-wider mb-4 flex items-center gap-3 text-light/60">
-                  <span className="text-2xl">🔒</span>
-                  <span>Unlockable Skills</span>
-                </h3>
-                <ul className="space-y-3">
-                  {e.skills.locked.map((s) => (
-                    <li key={s} className="flex items-center gap-4 p-3 bg-mid/50 rounded-lg border-2 border-light/10">
-                      <span className="w-8 h-8 rounded-lg bg-light/10 flex items-center justify-center text-light/40">
-                        🔒
-                      </span>
-                      <span className="text-light/50 font-medium">{getSkillLabel(s)}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Boundaries - POWER WARNING */}
-            {e.identity?.boundaries && e.identity.boundaries.length > 0 && (
-              <div className="mb-10 p-6 card-power bg-warning/10 border-4 border-warning/50">
-                <h3 className="font-black text-lg uppercase tracking-wider mb-4 text-warning flex items-center gap-3">
-                  <span className="text-2xl">⚠️</span>
-                  What I Don't Do
-                </h3>
-                <ul className="space-y-3">
-                  {e.identity.boundaries.map((b, i) => (
-                    <li key={i} className="text-shadow/80 font-medium flex items-start gap-3 p-3 bg-light/50 rounded-lg">
-                      <span className="text-warning text-xl">✕</span>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {/* Pricing Card - MEGA */}
-            <div className="mb-10 p-8 card-power bg-mid text-center relative overflow-hidden">
-              <div className="absolute inset-0 starfield opacity-30" />
-              <div className="relative z-10">
-                <p className="text-xs font-black uppercase tracking-widest text-light/50 mb-4">INVERSIÓN MENSUAL</p>
-                <div className="text-7xl font-black text-cyan mb-2 starburst inline-block">
-                  ${e.pricing.monthly_usd}
-                </div>
-                <div className="text-xl text-light/70 font-bold">por mes</div>
-                {e.pricing.annual_usd && (
-                  <div className="mt-6 inline-flex items-center gap-4 px-6 py-3 bg-success/20 rounded-xl border-2 border-success/30">
-                    <span className="text-light/80 font-medium">
-                      o ${e.pricing.annual_usd}/año
-                    </span>
-                    <span className="px-4 py-2 bg-success text-shadow rounded-lg text-sm font-black uppercase">
-                      AHORRA ${((e.pricing.monthly_usd * 12) - e.pricing.annual_usd).toFixed(0)}
-                    </span>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* CTA - MEGA POWER */}
-            <Link href={`/adopt/${e.id}`}>
-              <Button variant="mega" size="mega" className="w-full" starburst>
-                <span className="flex items-center justify-center gap-4">
-                  🚀 ADOPTAR A {e.name.toUpperCase()}
-                  <span className="text-3xl">→</span>
-                </span>
-              </Button>
+          {/* Back to catalog link */}
+          <div className="mt-xl text-center">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-sm px-xl py-md bg-[#1A434F] text-[#F3E4C8] font-bold tracking-wider uppercase border-4 border-[#0E3A41] hover:border-[#5ED3D0] transition-colors rounded-full"
+            >
+              ★ Ver más Empleaidos ★
             </Link>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* ═══════════════════════════════════════════════════════════════
-          FOOTER — Back to catalog
-      ═══════════════════════════════════════════════════════════════ */}
-      <footer className="border-t-4 border-shadow/50 py-lg bg-mid">
-        <div className="max-w-5xl mx-auto px-lg flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 text-light/60 hover:text-cyan transition-colors">
-            <Mascot state="idle" size="sm" />
-            <span className="font-bold">← Ver más Empleaidos</span>
-          </Link>
-          <p className="text-sm text-cyan font-mono">
-            ✦ EMPLEAIDO FACTORY ✦
-          </p>
+      {/* ===== FOOTER ===== */}
+      <footer className="bg-[#1A434F] border-t-4 border-[#0E3A41] py-lg">
+        <div className="max-w-4xl mx-auto px-lg text-center">
+          <div className="flex items-center justify-center gap-md mb-md">
+            <div className="h-px flex-1 bg-[#0E3A41] max-w-32" />
+            <span className="text-[#F3E4C8]/40 text-xs tracking-widest">EMPLEAIDO FACTORY</span>
+            <div className="h-px flex-1 bg-[#0E3A41] max-w-32" />
+          </div>
         </div>
       </footer>
     </main>
   );
-}
-
-function getRoleEmoji(role: string): string {
-  const map: Record<string, string> = {
-    'Contabilidad RD': '🧾',
-    'Growth Marketing': '📣',
-    'Operaciones': '🗂️',
-    'CFO Estrategico': '💰',
-    'Productividad Personal': '⏱️',
-    'UX Design': '🎨',
-  };
-  return map[role] || '🤖';
-}
-
-function getTierBadge(tier: string): string {
-  const colors = {
-    base: 'bg-light text-shadow',
-    pro: 'bg-cyan text-shadow',
-    deluxe: 'bg-warning text-shadow',
-  };
-  return colors[tier as keyof typeof colors] || colors.base;
-}
-
-function getTierIcon(tier: string): string {
-  const icons = { base: '○', pro: '◆', deluxe: '★' };
-  return icons[tier as keyof typeof icons] || '○';
 }
