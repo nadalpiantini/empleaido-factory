@@ -1,15 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import EmpleaidoCard from '@/components/EmpleaidoCard';
-
-// Empleaidos data
-const empleaidos = [
-  { id: 'empleaido-05112', name: 'KAEL', role: 'Growth Marketing', level: 5, energy: 72 },
-  { id: 'empleaido-04094', name: 'SERA', role: 'Contabilidad RD', level: 12, energy: 81 },
-  { id: 'empleaido-06201', name: 'NORA', role: 'Operaciones', level: 3, energy: 46 },
-  { id: 'empleaido-07333', name: 'LIOR', role: 'CFO Estrategico', level: 10, energy: 65 },
-];
+import { EmpleaidoCard } from '../components/EmpleaidoCard';
+import empleaidos from '../../data/empleaidos.json';
+import type { Empleaido } from '../../lib/types';
 
 export default function Dashboard() {
   return (
@@ -63,15 +57,18 @@ export default function Dashboard() {
         </div>
 
         {/* EMPLEAIDOS GRID */}
-        <section className="grid grid-cols-4 gap-6">
-          {empleaidos.map((emp) => (
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {(empleaidos as Empleaido[]).map((emp, index) => (
             <EmpleaidoCard
               key={emp.id}
               id={emp.id}
+              serial={emp.serial}
               name={emp.name}
               role={emp.role}
-              level={emp.level}
-              energy={emp.energy}
+              sephirot={emp.sephirot}
+              skills={emp.skills}
+              pricing={emp.pricing}
+              index={index + 1}
             />
           ))}
         </section>
