@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * FACTORY FLOOR NAVIGATION
  *

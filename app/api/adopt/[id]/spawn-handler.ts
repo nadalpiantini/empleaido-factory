@@ -7,8 +7,8 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import type { Empleaido } from '../../lib/types';
-import { SEPHIROT_TONE } from '../../lib/sephirot-map';
+import type { Empleaido } from '@/lib/types';
+import { SEPHIROT_TONE } from '@/lib/sephirot-map';
 
 // ============================================
 // PATHS
