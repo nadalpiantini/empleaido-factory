@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage"
   },
   "dependencies": {
     "@runware/sdk-js": "^1.2.3",
@@ -16,20 +19,31 @@
     "clsx": "^2.1.1",
     "elevenlabs": "^1.59.0",
     "framer-motion": "^12.33.0",
+    "lightningcss": "^1.31.1",
+    "lucide-react": "^0.563.0",
     "next": "16.1.6",
+    "phaser": "^3.90.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^5.1.3",
     "dotenv": "^17.2.4",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "jsdom": "^28.0.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.0.18"
+  },
+  "optionalDependencies": {
+    "lightningcss-darwin-arm64": "^1.31.1"
   }
 }

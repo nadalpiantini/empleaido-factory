@@ -63,9 +63,9 @@ export function EmpleaidoCard({
   };
 
   return (
-    <Link href={`/empleaido/${id}`} className="block group">
+    <Link href={`/empleaido/${id}`} className="block group" aria-label={`View ${name} details`}>
       {/* CARD CONTAINER - THICK BORDERS */}
-      <div className="relative bg-[#F3E4C8] border-4 border-[#0E3A41]
+      <div className="empleaido-card relative bg-[#F3E4C8] border-4 border-[#0E3A41]
                       shadow-[6px_6px_0_#0E3A41]
                       group-hover:shadow-[10px_10px_0_#0E3A41]
                       group-hover:translate-x-[-4px] group-hover:translate-y-[-4px]
@@ -96,13 +96,20 @@ export function EmpleaidoCard({
 
         {/* MAIN CONTENT */}
         <div className="relative bg-[#1A434F] p-6 h-full">
-          {/* ICON */}
-          <div className="text-6xl mb-4 relative z-10">
-            {getRoleEmoji(role.main)}
+          {/* EMPLEAIDO IMAGE */}
+          <div className="mb-4 relative z-10 flex justify-center">
+            <div className="relative">
+              <div className="absolute inset-0 bg-[#5ED3D0] blur-xl opacity-30 rounded-full" />
+              <img
+                src="/empleaido/empleaido head logo ChatGPT Image May 8, 2025, 03_56_40 PM.png"
+                alt={name}
+                className="relative h-32 w-32 object-contain"
+              />
+            </div>
           </div>
 
           {/* NAME */}
-          <h3 className="font-display text-3xl font-black text-[#F3E4C8] mb-2">
+          <h3 className="font-display text-3xl font-black text-[#F3E4C8] mb-2 text-center">
             {name}
           </h3>
 

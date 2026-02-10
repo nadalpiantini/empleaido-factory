@@ -47,12 +47,21 @@ export function HeroSection() {
       {/* MAIN CONTENT */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-8">
         {/* HEADER LABEL */}
-        <div className="mb-8 flex items-center gap-4">
+        <div className="mb-6 flex items-center gap-4">
           <div className="h-px w-20 bg-[#5ED3D0]" />
           <div className="font-mono text-sm tracking-[0.3em] text-[#5ED3D0]">
             ⬡ EMPLEAIDO FACTORY ⬡
           </div>
           <div className="h-px w-20 bg-[#5ED3D0]" />
+        </div>
+
+        {/* EMPLEAIDO LOGO IMAGE */}
+        <div className="mb-8">
+          <img
+            src="/empleaido/empleaido-logo-typo.png"
+            alt="Empleaido Factory Logo"
+            className="h-24 md:h-32 object-contain"
+          />
         </div>
 
         {/* MAIN TITLE */}
@@ -63,6 +72,16 @@ export function HeroSection() {
           <p className="font-mono text-xl md:text-2xl text-[#5ED3D0] tracking-wider">
             COLLECTIBLE • UPGRADABLE • YOURS
           </p>
+        </div>
+
+        {/* EMPLEAIDO SHOWCASE IMAGE */}
+        <div className="mb-12 relative">
+          <div className="absolute inset-0 bg-[#5ED3D0] blur-2xl opacity-20 rounded-full" />
+          <img
+            src="/empleaido/head-empleaido.png"
+            alt="Empleaido Character"
+            className="relative h-48 md:h-64 object-contain"
+          />
         </div>
 
         {/* CONTROL PANEL CARDS */}

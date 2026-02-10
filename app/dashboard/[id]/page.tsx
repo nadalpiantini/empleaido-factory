@@ -135,11 +135,39 @@ export default async function EmpleaidoDetail({ params }: { params: Promise<{ id
           </div>
 
           {/* Actions */}
-          <div className="mt-8 flex gap-3">
-            <Button className="flex-1">Start Task</Button>
-            <Link href={`/empleaido/${e.id}`}>
-              <Button variant="secondary">View Public Profile</Button>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-3">
+            <Link href="/virtual-office" className="flex-1">
+              <Button className="w-full bg-[#5ED3D0] hover:bg-[#4AC0BC] text-[#0E3A41] font-bold">
+                🏢 Enter Virtual Office
+              </Button>
             </Link>
+            <Link href={`/dashboard/empleaidos/${e.id}/skills`} className="flex-1">
+              <Button className="w-full">
+                ⚡ Execute Skill
+              </Button>
+            </Link>
+            <Link href={`/empleaido/${e.id}`} className="md:col-span-2">
+              <Button variant="secondary" className="w-full">View Public Profile</Button>
+            </Link>
+          </div>
+
+          {/* Quick Actions */}
+          <div className="mt-6 p-4 bg-[#1A434F] rounded-lg border border-[#F3E4C8]/10">
+            <h4 className="text-sm font-semibold text-[#5ED3D0] mb-3">Quick Actions</h4>
+            <div className="grid grid-cols-2 gap-2">
+              <Button variant="secondary" size="sm" className="text-xs">
+                💬 Start Chat
+              </Button>
+              <Button variant="secondary" size="sm" className="text-xs">
+                📊 View History
+              </Button>
+              <Button variant="secondary" size="sm" className="text-xs">
+                ⚙️ Settings
+              </Button>
+              <Button variant="secondary" size="sm" className="text-xs">
+                📝 View Tasks
+              </Button>
+            </div>
           </div>
         </Card>
       </section>

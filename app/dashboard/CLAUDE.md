@@ -7,6 +7,7 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #15145 | 2:43 PM | 🔴 | Fixed data import path in dashboard page to resolve module resolution | ~168 |
 | #15144 | 2:42 PM | 🔴 | Fixed dashboard EmpleaidoCard props to match component API | ~248 |
 | #15143 | 2:41 PM | 🔄 | Dashboard page updated to use centralized empleaidos data from JSON | ~194 |
 | #15138 | 2:40 PM | 🔄 | empleaido-factory dashboard import syntax updated to named import | ~227 |

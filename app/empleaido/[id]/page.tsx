@@ -190,14 +190,16 @@ export default async function EmpleaidoProfile({ params }: { params: Promise<{ i
                 {/* CTA */}
                 <div className="flex flex-col justify-center">
                   <Link
-                    href={`/adopt/${emp.id}`}
-                    className="block w-full text-center py-lg bg-[#5ED3D0] text-[#0E3A41] font-black text-xl tracking-wider uppercase border-4 border-[#0E3A41] shadow-[6px_6px_0_#0E3A41] hover:shadow-[6px_6px_0_#5ED3D0] transition-all mb-md"
+                    href={`/cart?add=${emp.id}`}
+                    role="button"
+                    aria-label={`Buy ${emp.name} - ${emp.pricing.monthly_usd}/month`}
+                    className="purchase-button cta-button block w-full text-center py-lg bg-[#5ED3D0] text-[#0E3A41] font-black text-xl tracking-wider uppercase border-4 border-[#0E3A41] shadow-[6px_6px_0_#0E3A41] hover:shadow-[6px_6px_0_#5ED3D0] transition-all mb-md"
                   >
-                    ⚡ ADOPTAR A {emp.name} →
+                    ⚡ BUY {emp.name} →
                   </Link>
 
                   <p className="text-[#F3E4C8]/40 text-center text-sm">
-                    Sin compromisos. Cancela cuando quieras.
+                    No commitment. Cancel anytime.
                   </p>
                 </div>
               </div>

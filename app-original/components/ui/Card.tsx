@@ -1,0 +1,147 @@
+'use client';
+
+import { forwardRef, HTMLAttributes } from 'react';
+
+type CardVariant = 'default' | 'elevated' | 'outlined' | 'interactive';
+
+interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  variant?: CardVariant;
+  padding?: 'none' | 'sm' | 'md' | 'lg';
+  as?: 'div' | 'article' | 'section';
+}
+
+const variants: Record<CardVariant, string> = {
+  default: `
+    bg-[#1A434F]
+    shadow-card
+  `,
+  elevated: `
+    bg-[#1A434F]
+    shadow-soft
+  `,
+  outlined: `
+    bg-transparent
+    border-2 border-[#1A434F]
+  `,
+  interactive: `
+    bg-[#1A434F]
+    shadow-card
+    hover:shadow-soft
+    hover:border-[#5ED3D0]
+    border border-transparent
+    cursor-pointer
+    transition-all duration-med ease-ui
+  `,
+};
+
+const paddings = {
+  none: '',
+  sm: 'p-3',
+  md: 'p-4',
+  lg: 'p-6',
+};
+
+export const Card = forwardRef<HTMLDivElement, CardProps>(
+  (
+    {
+      variant = 'default',
+      padding = 'md',
+      as: Component = 'div',
+      children,
+      className = '',
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <Component
+        ref={ref}
+        className={`
+          rounded-lg
+          text-[#F3E4C8]
+          ${variants[variant]}
+          ${paddings[padding]}
+          ${className}
+        `}
+        {...props}
+      >
+        {children}
+      </Component>
+    );
+  }
+);
+
+Card.displayName = 'Card';
+
+// === CARD SUB-COMPONENTS ===
+
+interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
+  title?: string;
+  subtitle?: string;
+  action?: React.ReactNode;
+}
+
+export function CardHeader({
+  title,
+  subtitle,
+  action,
+  children,
+  className = '',
+  ...props
+}: CardHeaderProps) {
+  return (
+    <div
+      className={`flex items-start justify-between gap-4 ${className}`}
+      {...props}
+    >
+      <div>
+        {title && (
+          <h3 className="text-lg font-semibold text-[#F3E4C8]">{title}</h3>
+        )}
+        {subtitle && (
+          <p className="text-sm text-[#F3E4C8]/70 mt-0.5">{subtitle}</p>
+        )}
+        {children}
+      </div>
+      {action && <div className="shrink-0">{action}</div>}
+    </div>
+  );
+}
+
+type CardContentProps = HTMLAttributes<HTMLDivElement>;
+
+export function CardContent({
+  children,
+  className = '',
+  ...props
+}: CardContentProps) {
+  return (
+    <div className={`mt-4 ${className}`} {...props}>
+      {children}
+    </div>
+  );
+}
+
+type CardFooterProps = HTMLAttributes<HTMLDivElement>;
+
+export function CardFooter({
+  children,
+  className = '',
+  ...props
+}: CardFooterProps) {
+  return (
+    <div
+      className={`
+        mt-4 pt-4
+        border-t border-[#F3E4C8]/10
+        flex items-center gap-3
+        ${className}
+      `}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
+
+export default Card;

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSkillLabel } from '@/lib/skills';
 import empleaidos from '@/data/empleaidos.json';
+import { executeOpenClawSkill, isAgentReady } from '../../../../lib/openclaw';
 
 /**
  * POST /api/skills/execute
@@ -69,30 +70,72 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // TODO: Execute skill via OpenClaw agent
-    // const result = await executeOpenClawSkill(empleaido_id, skill_id, params);
+    // Check if agent is ready
+    const agentReady = await isAgentReady(empleaido_id);
+    if (!agentReady) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: `Empleaido ${empleaido.name} is not ready. Please complete onboarding first.`,
+          agent_status: 'not_ready',
+        },
+        { status: 503 }
+      );
+    }
 
-    // Mock execution result
+    // Execute skill via OpenClaw agent
+    const executionResult = await executeOpenClawSkill(empleaido_id, skill_id, params);
+
+    if (!executionResult.success) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: executionResult.error || 'Skill execution failed',
+          execution_time: executionResult.execution_time,
+        },
+        { status: 500 }
+      );
+    }
+
     const result = {
       skill_id,
       skill_name: getSkillLabel(skill_id as typeof empleaido.skills.native[number]),
       empleaido: empleaido.name,
       execution_time: new Date().toISOString(),
+      duration_ms: executionResult.execution_time,
       status: 'success',
-      output: `Executed ${getSkillLabel(skill_id as typeof empleaido.skills.native[number])} for ${empleaido.name}`,
-      xp_gained: 20,
-      trust_increase: 0.05,
-      energy_cost: 10,
+      output: executionResult.output,
+      xp_gained: executionResult.xp_gained,
+      trust_increase: executionResult.trust_increase,
+      energy_cost: executionResult.energy_cost,
     };
 
-    // TODO: Update life stats in Supabase
-    // await supabase.from('ef_life_events').insert({
-    //   empleaido_id,
-    //   event_type: 'skill_execution',
-    //   skill_id,
-    //   xp_gained: 20,
-    //   energy_cost: 10,
-    // });
+    // Update life stats in Supabase
+    // TODO: Re-enable after fixing Supabase client initialization
+    // try {
+    //   const { recordSkillExecution, getAdoptionByEmpleaidoId } = await import('../../../../../lib/supabase');
+    //   const userId = 'mvp-test-user-' + empleaido_id;
+    //   const adoption = await getAdoptionByEmpleaidoId(empleaido_id, userId);
+    //   if (adoption) {
+    //     await recordSkillExecution({
+    //       adoption_id: adoption.id,
+    //       skill_id,
+    //       skill_name: result.skill_name,
+    //       params,
+    //       status: 'success',
+    //       output: result.output,
+    //       duration_ms: result.duration_ms,
+    //       xp_gained: result.xp_gained,
+    //       trust_increase: result.trust_increase,
+    //       energy_cost: result.energy_cost,
+    //     });
+    //     console.log(`✅ Skill recorded in Supabase: ${skill_id}`);
+    //   }
+    // } catch (error) {
+    //   console.error('⚠️ Failed to record skill execution:', error);
+    // }
+
+    console.log(`✅ Skill executed: ${skill_id} by ${empleaido.name} (${result.duration_ms}ms)`);
 
     return NextResponse.json({
       success: true,

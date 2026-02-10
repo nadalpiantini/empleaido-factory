@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { EmpleaidoCard } from '../components/EmpleaidoCard';
+import { VirtualOfficeAccess } from '../components/dashboard/VirtualOfficeAccess';
 import empleaidos from '../../data/empleaidos.json';
 import type { Empleaido } from '../../lib/types';
 
@@ -79,20 +80,8 @@ export default function Dashboard() {
           {/* Main content left - placeholder */}
           <div className="col-span-2" />
 
-          {/* Quick Assign */}
-          <aside className="bg-[#1A434F] border-4 border-[#0E3A41] rounded-xl p-4 space-y-4">
-            <h3 className="font-bold text-[#F3E4C8] text-lg">Asignación rápida</h3>
-
-            {['KAEL', 'SERA', 'NORA'].map((name) => (
-              <button
-                key={name}
-                className="w-full flex items-center justify-between px-3 py-2 rounded bg-[#0E3A41] text-[#F3E4C8] font-bold hover:bg-[#5ED3D0] hover:text-[#0E3A41] transition"
-              >
-                {name}
-                <span className="text-[#5ED3D0]">→</span>
-              </button>
-            ))}
-          </aside>
+          {/* Virtual Office Access */}
+          <VirtualOfficeAccess />
 
         </section>
 
