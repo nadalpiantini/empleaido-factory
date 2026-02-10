@@ -357,7 +357,7 @@ export function BootstrapWizard({
                 disabled={isLoading || !userInput.trim()}
                 className="px-6"
               >
-                Enviar
+                Continue
               </Button>
             </div>
           </div>
