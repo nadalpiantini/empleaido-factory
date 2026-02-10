@@ -14,5 +14,6 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #16293 | 11:11 PM | 🔴 | Added missing checkout route for empleaido purchase flow | ~334 |
 | #16222 | 10:16 PM | 🔴 | Critical E2E test bugs fixed | ~419 |
 </claude-mem-context>
