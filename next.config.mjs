@@ -1,9 +1,13 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Fix for Turbopack root directory issue
-  turbopack: {
-    root: process.cwd(),
-  },
+  // Turbopack config to silence warning
+  turbopack: {},
 
   // TypeScript: ignore build errors set to false for strict mode
   typescript: {
@@ -11,7 +15,7 @@ const nextConfig = {
   },
 
   // External packages for server components
-  serverExternalPackages: ['@supabase/supabase-js', 'phaser'],
+  serverExternalPackages: ['@supabase/supabase-js'],
 
   // Image optimization for remote patterns
   images: {
