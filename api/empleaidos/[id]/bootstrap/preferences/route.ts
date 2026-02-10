@@ -5,7 +5,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { createRouteHandlerClient } from '@/lib/supabase';
+import { createRouteHandlerClient } from '@/lib/supabase-server';
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 

@@ -4,7 +4,7 @@
  * Executes Empleaido agents via OpenClaw with rate limiting, logging, and life engine integration.
  */
 
-import { createRouteHandlerClient } from '@/lib/supabase'
+import { createRouteHandlerClient } from '@/lib/supabase-server'
 import { applyActivity } from '@/lib/life-engine'
 import { getEmpleaido } from '@/lib/data/empleaidos'
 import type { Empleaido as FullEmpleaido } from '@/lib/types'

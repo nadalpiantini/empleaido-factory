@@ -7,6 +7,8 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #18057 | 3:16 PM | 🔵 | Supabase client utilities organized with barrel export pattern | ~167 |
+| #18043 | 3:15 PM | 🔵 | updateBootstrapStatus function not found in lib/supabase.ts | ~104 |
 | #17814 | 2:39 PM | 🔵 | Supabase server client utilities provide SSR-compatible client creation for Next.js | ~251 |
 | #17442 | 12:40 PM | 🔵 | Type definitions define Empleaido system architecture | ~349 |
 | #17383 | 12:18 PM | 🔵 | Uncommitted changes detected across multiple project areas | ~279 |
