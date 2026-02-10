@@ -32,7 +32,7 @@ export async function addKnowledgeEmbedding(
   metadata: Record<string, any> = {}
 ) {
   const embeddingResponse = await zai.generateEmbeddings(content);
-  const embedding = embeddingResponse.embedding || embeddingResponse.data?.[0]?.embedding || [] as number[];
+  const embedding = embeddingResponse.data?.[0]?.embedding || [] as number[];
 
   const { error } = await supabase.from('ef_knowledge_embeddings').insert({
     empleaido_id: empleaidoId,
@@ -56,7 +56,7 @@ export async function addUserInteractionEmbedding(
   metadata: Record<string, any> = {}
 ) {
   const embeddingResponse = await zai.generateEmbeddings(interactionText);
-  const embedding = embeddingResponse.embedding || embeddingResponse.data?.[0]?.embedding || [] as number[];
+  const embedding = embeddingResponse.data?.[0]?.embedding || [] as number[];
 
   const { error } = await supabase.from('ef_user_interaction_embeddings').insert({
     user_id: userId,
@@ -79,7 +79,8 @@ export async function searchKnowledge(
   threshold = 0.7,
   count = 5
 ): Promise<VectorMatch[]> {
-  const { data: { data: [{ embedding }] } } = await zai.generateEmbeddings(query);
+  const embeddingResponse = await zai.generateEmbeddings(query)
+  const embedding = embeddingResponse.data?.[0]?.embedding || [] as number[];
 
   const { data, error } = await supabase.rpc('search_knowledge_base', {
     query_embedding: embedding,
@@ -107,7 +108,8 @@ export async function searchUserInteractions(
   threshold = 0.7,
   count = 5
 ): Promise<VectorMatch[]> {
-  const { data: { data: [{ embedding }] } } = await zai.generateEmbeddings(query);
+  const embeddingResponse = await zai.generateEmbeddings(query)
+  const embedding = embeddingResponse.data?.[0]?.embedding || [] as number[];
 
   const { data, error } = await supabase.rpc('search_user_interactions', {
     query_embedding: embedding,

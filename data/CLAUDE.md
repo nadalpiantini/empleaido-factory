@@ -13,6 +13,7 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #17840 | 2:47 PM | 🔵 | Empleaidos catalog structure defines 5 AI worker characters with pricing tiers | ~349 |
 | #17509 | 12:57 PM | 🟣 | Landing page validation completed with comprehensive automated testing report | ~493 |
 | #17445 | 12:41 PM | 🔄 | Empleaidos data structure restructured | ~392 |
 | #17441 | 12:40 PM | 🔵 | Empleaidos data file structure identified | ~289 |

@@ -7,5 +7,7 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #17712 | 2:22 PM | 🟣 | Added life stats to Empleaido interface for gamification features | ~309 |
+| #17703 | 2:20 PM | 🔵 | Vector store implementation uses @supabase/supabase-js directly with service role key | ~359 |
 | #17383 | 12:18 PM | 🔵 | Uncommitted changes detected across multiple project areas | ~279 |
 </claude-mem-context>

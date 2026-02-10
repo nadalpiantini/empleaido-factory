@@ -7,6 +7,7 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #17814 | 2:39 PM | 🔵 | Supabase server client utilities provide SSR-compatible client creation for Next.js | ~251 |
 | #17442 | 12:40 PM | 🔵 | Type definitions define Empleaido system architecture | ~349 |
 | #17383 | 12:18 PM | 🔵 | Uncommitted changes detected across multiple project areas | ~279 |
 </claude-mem-context>

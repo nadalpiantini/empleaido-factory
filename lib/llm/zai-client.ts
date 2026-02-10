@@ -30,8 +30,8 @@ export interface Message {
 
 export interface ChatOptions {
   temperature?: number;
-  top_p?: number;
-  max_tokens?: number;
+  topP?: number;
+  maxTokens?: number;
   stream?: boolean;
   tools?: Tool[];
 }
@@ -66,7 +66,7 @@ export interface ChatResponse {
 
 export interface VisionOptions {
   temperature?: number;
-  max_tokens?: number;
+  maxTokens?: number;
 }
 
 export interface VisionResponse {
@@ -93,10 +93,7 @@ export interface ImageGenerationOptions {
 
 export interface ImageGenerationResponse {
   created: number;
-  data: Array<{
-    url: string;
-    b64_json?: string;
-  }>;
+  data: string[];
 }
 
 export interface EmbeddingOptions {
@@ -158,12 +155,12 @@ export class ZAIClient {
     options: ChatOptions = {}
   ): Promise<ChatResponse> {
     try {
-      const response = await this.client.chat.completions.create({
+      const response = await this.client.completions.create({
         model,
         messages,
         temperature: options.temperature ?? 0.7,
-        top_p: options.top_p,
-        max_tokens: options.max_tokens ?? 2048,
+        topP: options.topP,
+        maxTokens: options.maxTokens ?? 2048,
         stream: options.stream ?? false,
         tools: options.tools,
       });
@@ -188,42 +185,65 @@ export class ZAIClient {
     options: Omit<ChatOptions, 'stream'> = {}
   ): Promise<ChatResponse> {
     try {
-      const stream = await this.client.chat.completions.create({
+      const stream = await this.client.completions.create({
         model,
         messages,
         temperature: options.temperature ?? 0.7,
-        max_tokens: options.max_tokens ?? 2048,
+        maxTokens: options.maxTokens ?? 2048,
         stream: true,
-      });
+      }) as any; // IncomingMessage
 
       let fullContent = '';
 
-      for await (const chunk of stream) {
-        const content = chunk.choices[0]?.delta?.content || '';
-        if (content) {
-          fullContent += content;
-          onChunk(content);
-        }
-      }
+      // Handle Node.js IncomingMessage stream
+      // TODO: Fix stream typing - temporary patch for deployment
+      return new Promise((resolve, reject) => {
+        (stream as any).on('data', (chunk: Buffer) => {
+          const text = chunk.toString();
+          // SSE format: data: {...}
+          const lines = text.split('\n');
+          for (const line of lines) {
+            if (line.startsWith('data: ')) {
+              const data = line.slice(6);
+              if (data === '[DONE]') continue;
+              try {
+                const parsed = JSON.parse(data);
+                const content = parsed.choices?.[0]?.delta?.content || '';
+                if (content) {
+                  fullContent += content;
+                  onChunk(content);
+                }
+              } catch {
+                // Ignore parse errors for non-JSON lines
+              }
+            }
+          }
+        });
 
-      // Return final response (approximate)
-      return {
-        id: 'stream-' + Date.now(),
-        created: Date.now() / 1000,
-        model,
-        choices: [
-          {
-            index: 0,
-            message: { role: 'assistant', content: fullContent },
-            finish_reason: 'stop',
-          },
-        ],
-        usage: {
-          prompt_tokens: 0,
-          completion_tokens: 0,
-          total_tokens: 0,
-        },
-      };
+        (stream as any).on('end', () => {
+          resolve({
+            id: 'stream-' + Date.now(),
+            created: Date.now() / 1000,
+            model,
+            choices: [
+              {
+                index: 0,
+                message: { role: 'assistant', content: fullContent },
+                finish_reason: 'stop',
+              },
+            ],
+            usage: {
+              prompt_tokens: 0,
+              completion_tokens: 0,
+              total_tokens: 0,
+            },
+          });
+        });
+
+        (stream as any).on('error', (error: Error) => {
+          reject(new ZAIError(`Chat stream failed: ${error.message}`));
+        });
+      });
     } catch (error) {
       throw new ZAIError(`Chat stream failed: ${error instanceof Error ? error.message : String(error)}`);
     }
@@ -266,11 +286,11 @@ export class ZAIClient {
         }
       }
 
-      const response = await this.client.chat.completions.create({
+      const response = await this.client.completions.create({
         model,
         messages: [{ role: 'user', content: content as any }],
         temperature: options.temperature ?? 0.7,
-        max_tokens: options.max_tokens ?? 2048,
+        maxTokens: options.maxTokens ?? 2048,
       });
 
       return response as VisionResponse;
@@ -293,7 +313,7 @@ export class ZAIClient {
     options: ImageGenerationOptions = {}
   ): Promise<ImageGenerationResponse> {
     try {
-      const response = await this.client.images.generations({
+      const response = await this.client.images.create({
         model: options.model ?? 'cogview-4',
         prompt,
         size: options.size ?? '1024x1024',
@@ -322,6 +342,9 @@ export class ZAIClient {
       const response = await this.client.embeddings.create({
         model: options.model ?? 'embedding-3',
         input,
+        encodingFormat: 'float',
+        user: '',
+        sensitiveWordCheck: {},
       });
 
       return response as EmbeddingResponse;
@@ -342,7 +365,7 @@ export class ZAIClient {
    */
   async webSearch(query: string, numResults: number = 5): Promise<SearchResult[]> {
     try {
-      const response = await this.client.chat.completions.create({
+      const response = await this.client.completions.create({
         model: 'glm-4.7',
         messages: [
           {
@@ -377,7 +400,7 @@ export class ZAIClient {
       });
 
       // Parse the response to extract search results
-      const content = response.choices[0]?.message?.content || '[]';
+      const content = (response as any).choices?.[0]?.message?.content || '[]';
       try {
         // Try to parse JSON from the response
         const jsonMatch = content.match(/\[[\s\S]*\]/);

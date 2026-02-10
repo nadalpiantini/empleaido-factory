@@ -29,6 +29,12 @@ export interface Empleaido {
     adoption_fee: number
     monthly_subscription: number
   }
+  life?: {
+    level: number
+    experience: number
+    trust: number
+    energy: number
+  }
 }
 
 /**

@@ -7,6 +7,7 @@
 import { createRouteHandlerClient } from '@/lib/supabase'
 import { applyActivity } from '@/lib/life-engine'
 import { getEmpleaido } from '@/lib/data/empleaidos'
+import type { Empleaido as FullEmpleaido } from '@/lib/types'
 
 // ============================================
 // TYPES
@@ -112,7 +113,7 @@ export async function executeEmpleaido(request: ExecutionRequest): Promise<Execu
 
   // 7. Update life stats
   if (empleaido.life) {
-    await applyActivity(request.agentId, 'task_completed')
+    await applyActivity(empleaido as unknown as FullEmpleaido, 'task_completed')
   }
 
   // 8. Log execution for analytics

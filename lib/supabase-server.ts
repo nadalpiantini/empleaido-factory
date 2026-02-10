@@ -92,11 +92,9 @@ export function createMiddlewareClient({ req, res }: { req: NextRequest; res: Ne
           return cookies;
         },
         async setAll(cookiesToSet: { name: string; value: string; options: CookieOptions }[]) {
-          res.cookies.set(cookiesToSet.map(({ name, value, options }) => ({
-            name,
-            value,
-            ...options,
-          })));
+          for (const { name, value, options } of cookiesToSet) {
+            res.cookies.set(name, value, options);
+          }
         },
       },
     }

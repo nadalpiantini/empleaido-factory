@@ -21,6 +21,7 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #17681 | 2:13 PM | 🔵 | Empleaido.com connection strategy documented with Vercel redirect recommendation | ~279 |
 | #17412 | 12:21 PM | ✅ | Supabase setup documentation created with step-by-step configuration guide | ~220 |
 | #17276 | 12:04 PM | ✅ | Deployment documentation created with GitHub Actions and Vercel setup instructions | ~230 |
 </claude-mem-context>

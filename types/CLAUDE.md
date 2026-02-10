@@ -13,5 +13,9 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #17823 | 2:42 PM | 🔵 | Engine types define filtering and listing options for AI engines | ~186 |
+| #17822 | 2:41 PM | 🔵 | EngineConfig interface found at line 12 in types/engine.ts | ~139 |
+| #17821 | " | 🔴 | Removed duplicate type exports in types/engine.ts | ~279 |
+| #17819 | " | 🔵 | Engine types system defines comprehensive AI agent configuration framework | ~325 |
 | #16594 | 6:15 AM | 🟣 | Engine Type System Created for Agent Wrapping Platform | ~892 |
 </claude-mem-context>
