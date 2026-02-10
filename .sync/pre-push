@@ -16,28 +16,25 @@ echo -e "${BLUE}🔄 Pre-push check...${NC}"
 # Get current branch
 CURRENT_BRANCH=$(git branch --show-current)
 
-# Get refs to check state
-LOCAL=$(git rev-parse @)
-BASE=$(git merge-base @ @{u})
-
-# Fetch to update remote refs
+# Fetch latest from origin
 git fetch origin
 
-# Get updated remote ref after fetch
-REMOTE=$(git rev-parse @{u})
+# Count commits behind and ahead
+BEHIND=$(git rev-list --count HEAD..@{u} 2>/dev/null || echo "0")
+AHEAD=$(git rev-list --count @{u}..HEAD 2>/dev/null || echo "0")
 
-# If LOCAL == BASE and BASE != REMOTE, we're behind (need to pull)
-# If LOCAL != BASE and BASE == REMOTE, we're ahead (safe to push)
-# If LOCAL != BASE and BASE != REMOTE, we've diverged (need to pull then push)
-if [ "$LOCAL" = "$BASE" ] && [ "$BASE" != "$REMOTE" ]; then
-    echo -e "${RED}⚠️  Warning: Your branch is behind origin/${CURRENT_BRANCH}${NC}"
+if [ "$BEHIND" -gt 0 ] && [ "$AHEAD" -eq 0 ]; then
+    # Purely behind - need to pull
+    echo -e "${RED}⚠️  Warning: Your branch is $BEHIND commits behind origin/${CURRENT_BRANCH}${NC}"
     echo -e "${YELLOW}📥 Pulling latest changes first...${NC}"
     git pull origin "$CURRENT_BRANCH"
     echo -e "${GREEN}✅ Pull complete. Now you can push.${NC}"
     echo -e "${YELLOW}💡 Please run your push command again.${NC}"
     exit 1
-elif [ "$LOCAL" != "$BASE" ] && [ "$BASE" != "$REMOTE" ]; then
+elif [ "$BEHIND" -gt 0 ] && [ "$AHEAD" -gt 0 ]; then
+    # Diverged - need to pull then push
     echo -e "${RED}⚠️  Warning: Branches have diverged${NC}"
+    echo -e "   ${YELLOW}Behind: $BEHIND commits | Ahead: $AHEAD commits${NC}"
     echo -e "${YELLOW}📥 Pulling latest changes first...${NC}"
     git pull origin "$CURRENT_BRANCH"
     echo -e "${GREEN}✅ Merge complete. Now you can push.${NC}"
