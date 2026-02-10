@@ -1,5 +1,13 @@
 # Deployment
 
+## Prerequisites
+
+Before deploying, ensure you have:
+
+1. A Supabase account and project
+2. Vercel account
+3. GitHub repository configured with proper secrets
+
 ## GitHub Actions
 
 This project uses GitHub Actions for continuous deployment to Vercel. The workflow is defined in `.github/workflows/deploy.yml`.
@@ -20,6 +28,22 @@ To deploy successfully, you need to set the following secrets in your GitHub rep
 2. Push to other branches triggers preview deployment
 3. Pull requests are built but not deployed automatically
 
+## Supabase Setup
+
+Before deploying, you need to set up your Supabase project:
+
+1. Create a Supabase account at https://supabase.com/
+2. Create a new project in your Supabase dashboard
+3. Get your project URL and API keys from the project settings
+4. Link your local project to the Supabase project:
+   ```bash
+   supabase link --project-ref YOUR_PROJECT_REF
+   ```
+5. Apply the database migrations:
+   ```bash
+   supabase db push
+   ```
+
 ## Manual Deployment
 
 You can also deploy manually using the deployment script:
@@ -37,7 +61,7 @@ This script will:
 
 ## Supabase Database Migrations
 
-Database migrations are stored in `supabase/migrations/` and are applied automatically when you deploy to Vercel.
+Database migrations are stored in `supabase/migrations/` and need to be applied manually:
 
 To apply migrations locally:
 ```bash
@@ -48,3 +72,5 @@ To create a new migration:
 ```bash
 supabase migration new migration_name
 ```
+
+See [Supabase Setup](SUPABASE_SETUP.md) for detailed instructions.

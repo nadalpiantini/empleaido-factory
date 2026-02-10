@@ -131,6 +131,12 @@ This creates:
 
 The application can be deployed to Vercel using GitHub Actions or manually with the deployment script.
 
+### Prerequisites
+
+1. Create a Supabase account and project at https://supabase.com/
+2. Get your Supabase project URL and API keys
+3. Set up Vercel account and link your GitHub repository
+
 ### GitHub Actions
 
 Push to the `main` branch to trigger automatic deployment to Vercel.
@@ -141,7 +147,15 @@ Push to the `main` branch to trigger automatic deployment to Vercel.
 ./scripts/deploy.sh
 ```
 
-See [Deployment Documentation](docs/DEPLOYMENT.md) for more details.
+### Supabase Setup
+
+Before deploying, you need to link your local project to your Supabase project:
+
+1. Copy `.env.example` to `.env.local` and fill in your Supabase credentials
+2. Link your project: `supabase link --project-ref YOUR_PROJECT_REF`
+3. Apply migrations: `supabase db push`
+
+See [Deployment Documentation](docs/DEPLOYMENT.md) and [Supabase Setup](docs/SUPABASE_SETUP.md) for more details.
 
 ## Phase Status
 
