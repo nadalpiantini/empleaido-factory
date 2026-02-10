@@ -26,11 +26,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Find Empleaido
-    const empleaido = empleaidos.find((e) =>
-      e.id === empleaido_id ||
-      e.serial.toString() === empleaido_id ||
-      empleaido_id.includes(e.serial.toString().padStart(5, '0'))
-    );
+    // TODO: Support serial-based lookup when schema is updated
+    const empleaido = empleaidos.find((e) => e.id === empleaido_id);
 
     if (!empleaido) {
       return NextResponse.json(
@@ -57,7 +54,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if skill is locked
-    if (empleaido.skills.locked.includes(skill_id as typeof empleaido.skills.native[number])) {
+    if ((empleaido.skills.locked as string[]).includes(skill_id)) {
       return NextResponse.json(
         {
           success: false,
@@ -137,11 +134,8 @@ export async function GET(request: NextRequest) {
     }
 
     // Find Empleaido
-    const empleaido = empleaidos.find((e) =>
-      e.id === empleaido_id ||
-      e.serial.toString() === empleaido_id ||
-      empleaido_id.includes(e.serial.toString().padStart(5, '0'))
-    );
+    // TODO: Support serial-based lookup when schema is updated
+    const empleaido = empleaidos.find((e) => e.id === empleaido_id);
 
     if (!empleaido) {
       return NextResponse.json(

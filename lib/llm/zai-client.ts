@@ -99,6 +99,23 @@ export interface ImageGenerationResponse {
   }>;
 }
 
+export interface EmbeddingOptions {
+  model?: 'embedding-3' | 'embedding-2';
+}
+
+export interface EmbeddingResponse {
+  model: string;
+  data: Array<{
+    index: number;
+    embedding: number[];
+  }>;
+  usage: {
+    prompt_tokens: number;
+    completion_tokens: number;
+    total_tokens: number;
+  };
+}
+
 export interface SearchResult {
   title: string;
   link: string;
@@ -285,6 +302,31 @@ export class ZAIClient {
       return response as ImageGenerationResponse;
     } catch (error) {
       throw new ZAIError(`Image generation failed: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  // =====================================================
+  // EMBEDDINGS
+  // =====================================================
+
+  /**
+   * Generate embeddings for text
+   * @param input - Text to embed (string or array of strings)
+   * @param options - Embedding options (model)
+   */
+  async generateEmbeddings(
+    input: string | string[],
+    options: EmbeddingOptions = {}
+  ): Promise<EmbeddingResponse> {
+    try {
+      const response = await this.client.embeddings.create({
+        model: options.model ?? 'embedding-3',
+        input,
+      });
+
+      return response as EmbeddingResponse;
+    } catch (error) {
+      throw new ZAIError(`Embedding generation failed: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 

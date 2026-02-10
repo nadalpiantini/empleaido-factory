@@ -7,6 +7,9 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #17383 | 12:18 PM | 🔵 | Uncommitted changes detected across multiple project areas | ~279 |
+| #17304 | 12:09 PM | 🟣 | Embedding interfaces added to Z.ai client for vector integration | ~274 |
+| #17272 | 12:04 PM | 🔵 | Z.ai (Zhipu AI) client implements comprehensive LLM and vision capabilities | ~344 |
 | #16431 | 12:26 AM | 🟣 | Z.ai LLM Client Integration Completed | ~524 |
 | #16416 | 12:21 AM | 🟣 | Z.ai (Zhipu AI) LLM client library implemented | ~835 |
 </claude-mem-context>

@@ -5,8 +5,8 @@
  * Works in both server and client environments.
  */
 
-// Import JSON directly - Next.js handles this
-import empleaidosJson from '../../../data/empleaidos.json'
+// Import JSON directly - use absolute path
+import empleaidosJson from '@/data/empleaidos.json'
 const empleaidos = empleaidosJson as any[]
 
 export interface Empleaido {

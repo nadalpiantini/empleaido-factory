@@ -7,6 +7,8 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #17280 | 12:05 PM | 🟣 | pgvector extension migration implements semantic search for Empleaido knowledge and user interactions | ~461 |
+| #17218 | 11:58 AM | 🟣 | Vector database migration created with pgvector extension for semantic search | ~289 |
 | #16409 | 12:18 AM | 🟣 | Multi-Tenant Database Schema Migration Completed | ~833 |
 | #16394 | 12:13 AM | 🟣 | Analytics and cost tracking database schema created | ~893 |
 </claude-mem-context>
