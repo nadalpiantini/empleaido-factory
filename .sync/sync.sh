@@ -39,8 +39,8 @@ cd "$REPO_DIR" || exit 1
 CURRENT_BRANCH=$(git branch --show-current)
 echo -e "${YELLOW}🌿 Current branch:${NC} $CURRENT_BRANCH"
 
-# Check if there are uncommitted changes
-if [ -n "$(git status --porcelain)" ]; then
+# Check if there are uncommitted changes in tracked files
+if ! git diff --quiet || ! git diff --cached --quiet; then
     echo -e "${RED}⚠️  You have uncommitted changes!${NC}"
     echo -e "${YELLOW}Please commit or stash them first:${NC}"
     echo ""
