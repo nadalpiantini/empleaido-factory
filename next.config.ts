@@ -16,6 +16,11 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Virtual Office: Phaser 3 Support
+  experimental: {
+    serverComponentsExternalPackages: ['phaser'],
+  },
+  transpilePackages: ['phaser'],
   // Phaser configuration
   webpack: (config, { isServer }) => {
     if (!isServer) {
@@ -31,9 +36,3 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
-
-// Virtual Office: Phaser 3 Support
-experimental: {
-  serverComponentsExternalPackages: ['phaser'],
-},
-transpilePackages: ['phaser'],
