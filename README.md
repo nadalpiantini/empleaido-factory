@@ -127,6 +127,22 @@ This creates:
 2. Registers agent in `~/.openclaw/openclaw.json`
 3. Generates IDENTITY.md, SOUL.md, TOOLS.md, USER.md, MEMORY.md
 
+## Deployment
+
+The application can be deployed to Vercel using GitHub Actions or manually with the deployment script.
+
+### GitHub Actions
+
+Push to the `main` branch to trigger automatic deployment to Vercel.
+
+### Manual Deployment
+
+```bash
+./scripts/deploy.sh
+```
+
+See [Deployment Documentation](docs/DEPLOYMENT.md) for more details.
+
 ## Phase Status
 
 - [x] Definition + catalog structure
@@ -136,6 +152,7 @@ This creates:
 - [x] Life engine
 - [x] OpenClaw spawn adapter
 - [x] Sefirotic routing adapter
+- [x] Vector database integration (pgvector)
 - [ ] Backstage UI (Next.js)
 - [ ] Adoption flow (API)
 - [ ] Skills packaging per Empleaido
