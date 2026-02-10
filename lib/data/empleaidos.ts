@@ -2,11 +2,12 @@
  * EMPLEAIDOS DATA
  *
  * Centralized data access for empleaidos.
+ * Works in both server and client environments.
  */
 
-import rawEmpleaidos from '../../../data/empleaidos.json'
-
-const empleaidos = rawEmpleaidos as any[]
+// Import JSON directly - Next.js handles this
+import empleaidosJson from '../../../data/empleaidos.json'
+const empleaidos = empleaidosJson as any[]
 
 export interface Empleaido {
   id: string

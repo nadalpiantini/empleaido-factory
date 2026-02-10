@@ -4,7 +4,7 @@
  * Executes Empleaido agents via OpenClaw with rate limiting, logging, and life engine integration.
  */
 
-import { supabase } from '@/lib/supabase'
+import { createRouteHandlerClient } from '@/lib/supabase'
 import { applyActivity } from '@/lib/life-engine'
 import { getEmpleaido } from '@/lib/data/empleaidos'
 
@@ -50,6 +50,7 @@ const TIER_LIMITS = {
 }
 
 async function checkRateLimit(userId: string, tier: string = 'free'): Promise<boolean> {
+  const supabase = createRouteHandlerClient()
   const today = new Date()
   today.setHours(0, 0, 0, 0)
 
@@ -71,6 +72,7 @@ async function checkRateLimit(userId: string, tier: string = 'free'): Promise<bo
  * Main execution function - runs an empleaido agent
  */
 export async function executeEmpleaido(request: ExecutionRequest): Promise<ExecutionResult> {
+  const supabase = createRouteHandlerClient()
   const startTime = Date.now()
 
   // 1. Verify user exists
@@ -222,6 +224,7 @@ function generateResponse(agentId: string, input: string, empleaido: any): strin
  */
 async function logExecution(data: Omit<ExecutionLog, 'id' | 'created_at'>): Promise<void> {
   try {
+    const supabase = createRouteHandlerClient()
     await supabase.from('ef_executions').insert({
       empleaido_id: data.empleaido_id,
       user_id: data.user_id,
@@ -246,6 +249,7 @@ async function logExecution(data: Omit<ExecutionLog, 'id' | 'created_at'>): Prom
  * Get user's execution statistics
  */
 export async function getUserExecutionStats(userId: string, period: 'day' | 'week' | 'month' = 'month') {
+  const supabase = createRouteHandlerClient()
   const now = new Date()
   let startDate = new Date()
 
@@ -302,6 +306,7 @@ export async function getUserExecutionStats(userId: string, period: 'day' | 'wee
  * Get empleaido execution statistics
  */
 export async function getEmpleaidoStats(empleaidoId: string, period: 'day' | 'week' | 'month' = 'month') {
+  const supabase = createRouteHandlerClient()
   const now = new Date()
   let startDate = new Date()
 
