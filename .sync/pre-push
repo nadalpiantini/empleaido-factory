@@ -24,11 +24,21 @@ LOCAL=$(git rev-parse @)
 REMOTE=$(git rev-parse @{u})
 BASE=$(git merge-base @ @{u})
 
-if [ $LOCAL != $REMOTE ] && [ $LOCAL != $BASE ]; then
+# If LOCAL == BASE and BASE != REMOTE, we're behind (need to pull)
+# If LOCAL != BASE and BASE == REMOTE, we're ahead (safe to push)
+# If LOCAL != BASE and BASE != REMOTE, we've diverged (need to pull then push)
+if [ $LOCAL = $BASE ] && [ $BASE != $REMOTE ]; then
     echo -e "${RED}⚠️  Warning: Your branch is behind origin/${CURRENT_BRANCH}${NC}"
     echo -e "${YELLOW}📥 Pulling latest changes first...${NC}"
     git pull origin "$CURRENT_BRANCH"
     echo -e "${GREEN}✅ Pull complete. Now you can push.${NC}"
+    echo -e "${YELLOW}💡 Please run your push command again.${NC}"
+    exit 1
+elif [ $LOCAL != $BASE ] && [ $BASE != $REMOTE ]; then
+    echo -e "${RED}⚠️  Warning: Branches have diverged${NC}"
+    echo -e "${YELLOW}📥 Pulling latest changes first...${NC}"
+    git pull origin "$CURRENT_BRANCH"
+    echo -e "${GREEN}✅ Merge complete. Now you can push.${NC}"
     echo -e "${YELLOW}💡 Please run your push command again.${NC}"
     exit 1
 fi
