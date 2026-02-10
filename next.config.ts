@@ -31,3 +31,9 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+// Virtual Office: Phaser 3 Support
+experimental: {
+  serverComponentsExternalPackages: ['phaser'],
+},
+transpilePackages: ['phaser'],

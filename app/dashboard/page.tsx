@@ -1,100 +1,107 @@
-'use client';
+/**
+ * Main Dashboard - User Home
+ * Overview of all empleaidos and quick actions
+ */
 
+import { createClient } from '@supabase/supabase-js';
+import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import { EmpleaidoCard } from '../components/EmpleaidoCard';
-import { VirtualOfficeAccess } from '../components/dashboard/VirtualOfficeAccess';
-import empleaidos from '../../data/empleaidos.json';
-import type { Empleaido } from '../../lib/types';
 
-export default function Dashboard() {
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
+
+export default async function DashboardPage() {
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect('/auth/login');
+  }
+
+  // Get user's empleaidos
+  const { data: empleaidos } = await supabase
+    .from('ef_adoptions')
+    .select('*')
+    .eq('user_id', user.id)
+    .eq('status', 'active');
+
   return (
-    <div className="min-h-screen bg-[#0E3A41] text-[#F3E4C8] flex">
-
-      {/* SIDEBAR */}
-      <aside className="w-64 bg-[#1A434F] border-r-4 border-[#0E3A41] p-4 space-y-4">
-        <div className="text-xl font-bold font-display text-[#F3E4C8]">EMPLEAIDO</div>
-
-        <nav className="space-y-2 text-sm">
-          <button className="w-full text-left px-3 py-2 rounded bg-[#5ED3D0] text-[#0E3A41] font-bold">Dashboard</button>
-          <button className="w-full text-left px-3 py-2 rounded hover:bg-[#0E3A41] text-[#F3E4C8] font-medium">Workers</button>
-          <button className="w-full text-left px-3 py-2 rounded hover:bg-[#0E3A41] text-[#F3E4C8] font-medium">Docs</button>
-          <button className="w-full text-left px-3 py-2 rounded hover:bg-[#0E3A41] text-[#F3E4C8] font-medium">API</button>
-          <button className="w-full text-left px-3 py-2 rounded hover:bg-[#0E3A41] text-[#F3E4C8] font-medium">Settings</button>
-        </nav>
-      </aside>
-
-      {/* MAIN */}
-      <main className="flex-1 p-6 space-y-6">
-
-        {/* HEADER */}
-        <header className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold font-display text-[#F3E4C8]">Dashboard</h1>
-
-          <div className="flex items-center gap-3">
-            <span className="text-sm text-[#F3E4C8] font-medium">Factory Active</span>
-            <span className="w-3 h-3 rounded-full bg-[#5ED3D0] animate-pulse shadow-[0_0_10px_rgba(94,211,208,0.6)]" />
-          </div>
-        </header>
-
-        {/* KPI ROW */}
-        <section className="grid grid-cols-4 gap-4">
-          {[
-            { label: 'Empleaidos Activos', value: '14' },
-            { label: 'Energía Promedio', value: '57%' },
-            { label: 'Tareas Hoy', value: '32' },
-            { label: 'En Producción', value: '4' },
-          ].map((kpi) => (
-            <div key={kpi.label} className="bg-[#1A434F] border-2 border-[#0E3A41] rounded-lg p-4">
-              <div className="text-sm text-[#F3E4C8] font-medium">{kpi.label}</div>
-              <div className="text-3xl font-bold text-[#5ED3D0]">{kpi.value}</div>
+    <div className="min-h-screen bg-gray-50">
+      <header className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex justify-between items-center">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">Mi Dashboard</h1>
+              <p className="text-sm text-gray-600">Bienvenido, {user.email}</p>
             </div>
-          ))}
-        </section>
+            <nav className="flex space-x-4">
+              <Link href="/catalog" className="text-gray-700 hover:text-gray-900">Catálogo</Link>
+              <Link href="/dashboard/empleaidos" className="text-gray-700 hover:text-gray-900">Mis Empleaidos</Link>
+              <Link href="/dashboard/billing" className="text-gray-700 hover:text-gray-900">Facturación</Link>
+              <Link href="/dashboard/settings" className="text-gray-700 hover:text-gray-900">Configuración</Link>
+            </nav>
+          </div>
+        </div>
+      </header>
 
-        {/* FACTORY STATUS */}
-        <div className="flex items-center gap-2 text-sm text-[#F3E4C8] font-medium">
-          <span className="w-2 h-2 rounded-full bg-[#5ED3D0] animate-ping" />
-          La fábrica nunca duerme
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div className="bg-white rounded-lg shadow p-6">
+            <p className="text-sm text-gray-600">Empleaidos</p>
+            <p className="text-2xl font-bold">{empleaidos?.length || 0}</p>
+          </div>
+          <div className="bg-white rounded-lg shadow p-6">
+            <p className="text-sm text-gray-600">Nivel Promedio</p>
+            <p className="text-2xl font-bold">1.0</p>
+          </div>
+          <div className="bg-white rounded-lg shadow p-6">
+            <p className="text-sm text-gray-600">Confianza</p>
+            <p className="text-2xl font-bold">15%</p>
+          </div>
+          <div className="bg-white rounded-lg shadow p-6">
+            <p className="text-sm text-gray-600">Tareas</p>
+            <p className="text-2xl font-bold">0</p>
+          </div>
         </div>
 
-        {/* EMPLEAIDOS GRID */}
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {(empleaidos as Empleaido[]).map((emp, index) => (
-            <EmpleaidoCard
-              key={emp.id}
-              id={emp.id}
-              serial={emp.serial}
-              name={emp.name}
-              role={emp.role}
-              sephirot={emp.sephirot}
-              skills={emp.skills}
-              pricing={emp.pricing}
-              index={index + 1}
-            />
-          ))}
-        </section>
-
-        {/* QUICK ASSIGN PANEL */}
-        <section className="grid grid-cols-3 gap-6">
-
-          {/* Main content left - placeholder */}
-          <div className="col-span-2" />
-
-          {/* Virtual Office Access */}
-          <VirtualOfficeAccess />
-
-        </section>
-
-        {/* BACK TO CATALOG */}
-        <div className="pt-4">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 px-4 py-2 bg-[#1A434F] text-[#F3E4C8] font-bold text-sm tracking-wider uppercase border-2 border-[#0E3A41] hover:border-[#5ED3D0] hover:text-[#5ED3D0] transition-all rounded"
-          >
-            ← Volver al Catálogo
-          </Link>
+        {/* Quick Actions */}
+        <div className="bg-white rounded-lg shadow p-6 mb-8">
+          <h2 className="text-lg font-semibold mb-4">Acciones Rápidas</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Link href="/catalog" className="p-4 border rounded-lg hover:bg-gray-50">
+              <div className="text-2xl mb-2">🎁</div>
+              <div className="font-medium">Adoptar Empleaido</div>
+            </Link>
+            <Link href="/virtual-office" className="p-4 border rounded-lg hover:bg-gray-50">
+              <div className="text-2xl mb-2">🏢</div>
+              <div className="font-medium">Virtual Office</div>
+            </Link>
+            <Link href="/dashboard/activity" className="p-4 border rounded-lg hover:bg-gray-50">
+              <div className="text-2xl mb-2">📊</div>
+              <div className="font-medium">Ver Actividad</div>
+            </Link>
+          </div>
         </div>
 
+        {/* My Empleaidos */}
+        <div className="bg-white rounded-lg shadow p-6">
+          <h2 className="text-lg font-semibold mb-4">Mis Empleaidos</h2>
+          {empleaidos && empleaidos.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {empleaidos.map((e: any) => (
+                <div key={e.id} className="border rounded-lg p-4">
+                  <h3 className="font-semibold">{e.empleaido_id.toUpperCase()}</h3>
+                  <p className="text-sm text-gray-600">Level {e.level || 1}</p>
+                  <Link href={`/empleaido/${e.empleaido_id}`} className="text-purple-600 text-sm">Ver →</Link>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-gray-600 py-8">No tienes empleaidos aún</p>
+          )}
+        </div>
       </main>
     </div>
   );
