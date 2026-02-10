@@ -7,5 +7,6 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #17442 | 12:40 PM | 🔵 | Type definitions define Empleaido system architecture | ~349 |
 | #17383 | 12:18 PM | 🔵 | Uncommitted changes detected across multiple project areas | ~279 |
 </claude-mem-context>

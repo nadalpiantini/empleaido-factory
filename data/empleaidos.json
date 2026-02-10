@@ -1,87 +1,187 @@
 [
   {
     "id": "sera-001",
+    "serial": 1001,
     "name": "SERA",
-    "tagline": "Tu especialista en contabilidad y finanzas",
-    "description": "SERA es experta en facturación, impuestos, y gestión financiera. Te ayuda con DGII, NCF, y cumplimiento tributario.",
-    "emoji": "📊",
-    "image_url": "https://im.runware.ai/image/ws/2/ii/4670e19d-6e62-455a-b62a-c44b457099fd.jpg",
-    "sephirot_id": "netzach",
-    "personality": {
-      "traits": ["Profesional", "Detallista", "Confiable"],
-      "communication_style": "formal"
+    "status": "active",
+    "sephirot": {
+      "primary": "Netzach",
+      "secondary": ["Yesod", "Hod"]
+    },
+    "role": {
+      "main": "Finanzas",
+      "sub": "Empresas",
+      "tier": "pro"
     },
     "skills": {
       "native": ["Facturación", "Gastos", "Reportes", "Impuestos DGII"],
-      "locked": []
+      "locked": ["Auditoría", "Planificación Fiscal"]
+    },
+    "visual": {
+      "accessory": "glasses",
+      "color_accent": "#5ED3D0"
+    },
+    "pricing": {
+      "monthly_usd": 99,
+      "annual_usd": 990
+    },
+    "life": {
+      "level": 1,
+      "experience": 0,
+      "trust": 0.5,
+      "energy": 100
+    },
+    "meta": {
+      "created_at": "2025-01-01T00:00:00Z",
+      "version": 1
     }
   },
   {
     "id": "kael-002",
+    "serial": 1002,
     "name": "KAEL",
-    "tagline": "Experto en marketing y crecimiento",
-    "description": "KAEL domina el marketing digital, redes sociales, y estrategias de crecimiento para llevar tu negocio al siguiente nivel.",
-    "emoji": "🚀",
-    "image_url": "https://im.runware.ai/image/ws/2/ii/c718c09b-68d4-4e8e-8700-2ac63998bc82.jpg",
-    "sephirot_id": "chesed",
-    "personality": {
-      "traits": ["Creativo", "Entusiasta", "Estratega"],
-      "communication_style": "friendly"
+    "status": "active",
+    "sephirot": {
+      "primary": "Chesed",
+      "secondary": ["Netzach", "Tiferet"]
+    },
+    "role": {
+      "main": "Marketing",
+      "sub": "Empresas",
+      "tier": "pro"
     },
     "skills": {
       "native": ["Redes Sociales", "Email Marketing", "SEO", "Contenido", "Campañas"],
-      "locked": []
+      "locked": ["Branding", "Growth Hacking"]
+    },
+    "visual": {
+      "accessory": "headband",
+      "color_accent": "#FF6B6B"
+    },
+    "pricing": {
+      "monthly_usd": 99,
+      "annual_usd": 990
+    },
+    "life": {
+      "level": 1,
+      "experience": 0,
+      "trust": 0.5,
+      "energy": 100
+    },
+    "meta": {
+      "created_at": "2025-01-01T00:00:00Z",
+      "version": 1
     }
   },
   {
     "id": "nora-003",
+    "serial": 1003,
     "name": "NORA",
-    "tagline": "Maestra de operaciones y organización",
-    "description": "NORA optimiza procesos, gestiona proyectos, y mejora la eficiencia operativa de tu negocio o proyecto.",
-    "emoji": "⚙️",
-    "image_url": "https://im.runware.ai/image/ws/2/ii/3f845299-1115-42d0-b0cd-fc384580f69b.jpg",
-    "sephirot_id": "hod",
-    "personality": {
-      "traits": ["Organizado", "Eficiente", "Práctico"],
-      "communication_style": "casual"
+    "status": "active",
+    "sephirot": {
+      "primary": "Hod",
+      "secondary": ["Yesod", "Netzach"]
+    },
+    "role": {
+      "main": "Operaciones",
+      "sub": "Empresas",
+      "tier": "pro"
     },
     "skills": {
       "native": ["Procesos", "Gestión de Proyectos", "Optimización", "Documentación"],
-      "locked": []
+      "locked": ["Automatización", "Lean Six Sigma"]
+    },
+    "visual": {
+      "accessory": "none",
+      "color_accent": "#4ECDC4"
+    },
+    "pricing": {
+      "monthly_usd": 99,
+      "annual_usd": 990
+    },
+    "life": {
+      "level": 1,
+      "experience": 0,
+      "trust": 0.5,
+      "energy": 100
+    },
+    "meta": {
+      "created_at": "2025-01-01T00:00:00Z",
+      "version": 1
     }
   },
   {
     "id": "lior-004",
+    "serial": 1004,
     "name": "LIOR",
-    "tagline": "Estratega visionario para decisiones clave",
-    "description": "LIOR analiza datos, desarrolla estrategias a largo plazo, y te ayuda a tomar decisiones informadas para el crecimiento sostenible.",
-    "emoji": "🎯",
-    "image_url": "https://im.runware.ai/image/ws/2/ii/c09a40a1-ea6e-476e-b61d-aa0b829b6a2e.jpg",
-    "sephirot_id": "binah",
-    "personality": {
-      "traits": ["Analítico", "Visionario", "Prudente"],
-      "communication_style": "formal"
+    "status": "active",
+    "sephirot": {
+      "primary": "Binah",
+      "secondary": ["Chokmah", "Keter"]
+    },
+    "role": {
+      "main": "Estrategia",
+      "sub": "Empresas",
+      "tier": "deluxe"
     },
     "skills": {
       "native": ["Análisis de Datos", "Planificación", "KPIs", "Decisiones", "Forecasting"],
-      "locked": []
+      "locked": ["Market Research", "Competitive Analysis"]
+    },
+    "visual": {
+      "accessory": "badge",
+      "color_accent": "#95E1D3"
+    },
+    "pricing": {
+      "monthly_usd": 199,
+      "annual_usd": 1990
+    },
+    "life": {
+      "level": 1,
+      "experience": 0,
+      "trust": 0.5,
+      "energy": 100
+    },
+    "meta": {
+      "created_at": "2025-01-01T00:00:00Z",
+      "version": 1
     }
   },
   {
     "id": "ziv-005",
+    "serial": 1005,
     "name": "ZIV",
-    "tagline": "Coach de productividad y bienestar",
-    "description": "ZIV te ayuda a gestionar tu tiempo, establecer metas, y crear hábitos productivos para maximizar tu potencial personal y profesional.",
-    "emoji": "💪",
-    "image_url": "https://im.runware.ai/image/ws/2/ii/c2c7d55e-b585-4035-8ff0-62793d9a57fc.jpg",
-    "sephirot_id": "yesod",
-    "personality": {
-      "traits": ["Equilibrado", "Empático", "Motivador"],
-      "communication_style": "friendly"
+    "status": "active",
+    "sephirot": {
+      "primary": "Yesod",
+      "secondary": ["Hod", "Malkuth"]
+    },
+    "role": {
+      "main": "Productividad",
+      "sub": "Personal",
+      "tier": "base"
     },
     "skills": {
       "native": ["Gestión del Tiempo", "Metas", "Hábitos", "Priorización", "Focus"],
-      "locked": []
+      "locked": ["Mindfulness", "Coaching"]
+    },
+    "visual": {
+      "accessory": "none",
+      "color_accent": "#F38181"
+    },
+    "pricing": {
+      "monthly_usd": 49,
+      "annual_usd": 490
+    },
+    "life": {
+      "level": 1,
+      "experience": 0,
+      "trust": 0.5,
+      "energy": 100
+    },
+    "meta": {
+      "created_at": "2025-01-01T00:00:00Z",
+      "version": 1
     }
   }
 ]
