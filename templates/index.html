@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empleaido Factory</title>
+    {% if auth_token %}
+    <meta name="auth-token" content="{{ auth_token }}">
+    {% endif %}
+    <meta name="description" content="Sistema de creación de agentes AI con arquitectura Sefirotic">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .sefirot-glow {
+            box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <i class="fas fa-shield-alt text-green-400 text-2xl"></i>
+                <h1 class="text-6xl font-bold text-white">
+                    <i class="fas fa-robot text-purple-400"></i> Empleaido Factory
+                </h1>
+            </div>
+            <p class="text-xl text-purple-200">Sistema de Creación de Agentes AI con Arquitectura Sefirotic</p>
+            <p class="text-sm text-green-400 mt-2"><i class="fas fa-lock mr-1"></i>Secured v2.1.0</p>
+        </header>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-slate-800/50 backdrop-blur rounded-xl p-6 border border-purple-500/30">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-purple-300 text-sm">Total Empleaidos</p>
+                        <p id="total-count" class="text-4xl font-bold text-white">0</p>
+                    </div>
+                    <i class="fas fa-users text-4xl text-purple-400"></i>
+                </div>
+            </div>
+            <div class="bg-slate-800/50 backdrop-blur rounded-xl p-6 border border-purple-500/30">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-purple-300 text-sm">Activos</p>
+                        <p id="active-count" class="text-4xl font-bold text-green-400">0</p>
+                    </div>
+                    <i class="fas fa-check-circle text-4xl text-green-400"></i>
+                </div>
+            </div>
+            <div class="bg-slate-800/50 backdrop-blur rounded-xl p-6 border border-purple-500/30">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-purple-300 text-sm">Sefirot Activations</p>
+                        <p id="sefirot-count" class="text-4xl font-bold text-purple-400">0</p>
+                    </div>
+                    <i class="fas fa-dna text-4xl text-purple-400"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Create Button -->
+        <div class="mb-8">
+            <button onclick="openModal()" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 sefirot-glow">
+                <i class="fas fa-plus mr-2"></i>Crear Nuevo Empleaido
+            </button>
+        </div>
+
+        <!-- Empleaidos Grid -->
+        <div id="empleaidos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Empleaido cards will be rendered here -->
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center z-50">
+        <div class="bg-slate-800 rounded-2xl p-8 max-w-2xl w-full mx-4 border border-purple-500/30 sefirot-glow">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-white">Crear Nuevo Empleaido</h2>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <form id="empleaido-form" class="space-y-4">
+                <div>
+                    <label class="block text-purple-300 mb-2">Nombre (2-50 caracteres)</label>
+                    <input type="text" id="name" required minlength="2" maxlength="50" pattern="^[\\w\\s\\-]+$"
+                           class="w-full bg-slate-700 border border-purple-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500"
+                           placeholder="Ej: SERA">
+                </div>
+
+                <div>
+                    <label class="block text-purple-300 mb-2">Rol (2-100 caracteres)</label>
+                    <input type="text" id="role" required minlength="2" maxlength="100"
+                           class="w-full bg-slate-700 border border-purple-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500"
+                           placeholder="Ej: Executive Assistant">
+                </div>
+
+                <div>
+                    <label class="block text-purple-300 mb-2">Especialidad (2-200 caracteres)</label>
+                    <input type="text" id="specialty" required minlength="2" maxlength="200"
+                           class="w-full bg-slate-700 border border-purple-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500"
+                           placeholder="Ej: Strategic Planning">
+                </div>
+
+                <div>
+                    <label class="block text-purple-300 mb-2">Activación Sefirotic (separadas por coma)</label>
+                    <input type="text" id="sefirot" required
+                           class="w-full bg-slate-700 border border-purple-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500"
+                           placeholder="Ej: Keter, Chochmah, Binah">
+                    <p class="text-xs text-gray-400 mt-1">Válidas: Keter, Chochmah, Binah, Chesed, Gevurah, Tiferet, Netzach, Hod, Yesod, Malkuth</p>
+                </div>
+
+                <div>
+                    <label class="block text-purple-300 mb-2">Skills (separadas por coma)</label>
+                    <input type="text" id="skills" required
+                           class="w-full bg-slate-700 border border-purple-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500"
+                           placeholder="Ej: Planning, Analysis, Communication">
+                </div>
+
+                <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300">
+                    <i class="fas fa-rocket mr-2"></i>Crear Empleaido
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+[
+  {
+    "id": "64c90d5d-cc6e-4486-ac06-5f29216150b2",
+    "name": "SERA",
+    "role": "Executive Assistant",
+    "specialty": "Strategic Planning & Execution",
+    "sefirot_activation": [
+      "Keter",
+      "Chochmah",
+      "Binah"
+    ],
+    "skills": [
+      "Planning",
+      "Analysis",
+      "Communication",
+      "Leadership"
+    ],
+    "status": "active",
+    "created_at": "2026-02-08T18:54:50.178733",
+    "deployed": true
+  },
+  {
+    "id": "b5573270-0116-4053-b2e1-09923cc011d3",
+    "name": "ALEPH",
+    "role": "Knowledge Engineer",
+    "specialty": "Information Architecture & Research",
+    "sefirot_activation": [
+      "Chochmah",
+      "Daat"
+    ],
+    "skills": [
+      "Research",
+      "Knowledge Management",
+      "Analysis",
+      "Documentation"
+    ],
+    "status": "active",
+    "created_at": "2026-02-08T18:55:33.046807",
+    "deployed": true
+  },
+  {
+    "id": "01227097-6339-4a3b-954f-92ac919f1c48",
+    "name": "BET",
+    "role": "Creative Director",
+    "specialty": "Design & Innovation",
+    "sefirot_activation": [
+      "Binah",
+      "Chesed"
+    ],
+    "skills": [
+      "Design",
+      "Creativity",
+      "UI/UX",
+      "Prototyping"
+    ],
+    "status": "active",
+    "created_at": "2026-02-08T18:55:33.340420",
+    "deployed": true
+  }
+]
