@@ -7,5 +7,5 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #17498 | 12:54 PM | 🟣 | Landing page fully migrated to empleaido-factory repository | ~328 |
+| #17829 | 2:45 PM | 🔵 | Registration page uses client-side Supabase auth with role selection | ~319 |
 </claude-mem-context>

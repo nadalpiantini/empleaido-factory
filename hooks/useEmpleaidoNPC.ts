@@ -8,7 +8,7 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
-import type { EmpleaidoNPC, ChatMessage } from '@/types/virtual-office';
+import type { EmpleaidoNPC, ChatMessage } from '../types/virtual-office';
 
 interface UseEmpleaidoNPCResult {
   messages: ChatMessage[];

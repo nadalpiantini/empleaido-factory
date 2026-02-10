@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import empleaidos from '@/data/empleaidos.json';
+import empleaidos from '@/data/empleaidos';
 import { getSkillLabel } from '@/lib/skills';
 
 export default async function EmpleaidoProfile({ params }: { params: Promise<{ id: string }> }) {

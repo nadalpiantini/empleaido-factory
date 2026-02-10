@@ -3,13 +3,13 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
+import { createMiddlewareClient } from '@/lib/supabase-server';
 
 export async function middleware(request: NextRequest) {
   const res = NextResponse.next();
 
   // 1. Basic rate limiting (by IP)
-  const ip = request.ip ?? '127.0.0.1';
+  const ip = request.headers.get('x-forwarded-for') ?? request.headers.get('x-real-ip') ?? '127.0.0.1';
   if (request.nextUrl.pathname.startsWith('/api/')) {
     console.log(`[API Request] ${ip} → ${request.nextUrl.pathname}`);
   }

@@ -8,7 +8,6 @@
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
 | #13736 | 4:34 AM | 🔵 | Comprehensive Project Architecture Documentation Completed | ~647 |
-| #13707 | 4:28 AM | 🔵 | Six Founding Empleaidos with Rich Metadata Structure | ~460 |
 
 ### Feb 9, 2026
 
@@ -19,4 +18,11 @@
 | #16333 | 11:43 PM | ✅ | Git staging completed with checkout route additions | ~190 |
 | #16293 | 11:11 PM | 🔴 | Added missing checkout route for empleaido purchase flow | ~334 |
 | #16222 | 10:16 PM | 🔴 | Critical E2E test bugs fixed | ~419 |
+
+### Feb 10, 2026
+
+| ID | Time | T | Title | Read |
+|----|------|---|-------|------|
+| #17498 | 12:54 PM | 🟣 | Landing page fully migrated to empleaido-factory repository | ~328 |
+| #17371 | 12:16 PM | ✅ | Documented complete landing page migration status to empleaido-factory | ~338 |
 </claude-mem-context>

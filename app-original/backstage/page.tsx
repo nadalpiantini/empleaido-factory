@@ -9,8 +9,9 @@ const tierConfig = {
 };
 
 export default function BackstagePage() {
-  const activeEmpleaidos = empleaidos.filter(e => e.status === 'active');
-  const inDevelopment = empleaidos.filter(e => e.status === 'draft');
+  // TODO: Add status field to empleaido schema
+  const activeEmpleaidos = empleaidos; // .filter(e => e.status === 'active');
+  const inDevelopment: any[] = []; // empleaidos.filter(e => e.status === 'draft');
 
   return (
     <main className="min-h-screen bg-[#0E3A41] text-[#F3E4C8]">

@@ -3,20 +3,20 @@
  * POST /api/engines/[id]/validate - Validate engine config
  */
 
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { createRouteHandlerClient } from '@/lib/supabase-server';
 import { NextRequest, NextResponse } from 'next/server';
 import type { EngineValidationResult } from '@/types/engine';
 
 interface RouteContext {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export async function POST(req: NextRequest, context: RouteContext) {
   try {
-    const { id } = context.params;
-    const supabase = createRouteHandlerClient({ req });
+    const { id } = await context.params;
+    const supabase = createRouteHandlerClient();
 
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import empleaidos from '@/data/empleaidos.json';
+import empleaidos from '@/data/empleaidos';
 import { getSkillLabel } from '@/lib/skills';
 import { Button, Card, CardHeader, CardContent, EmptyState } from '../../components/ui';
 

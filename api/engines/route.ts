@@ -3,7 +3,7 @@
  * CRUD operations for agent engines
  */
 
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { createRouteHandlerClient } from '@/lib/supabase-server';
 import { NextRequest, NextResponse } from 'next/server';
 import type {
   CreateEngineRequest,
@@ -19,7 +19,7 @@ import { hasPermission } from '@/lib/auth/permissions';
 
 export async function GET(req: NextRequest) {
   try {
-    const supabase = createRouteHandlerClient({ req });
+    const supabase = createRouteHandlerClient();
     const {
       data: { user },
     } = await supabase.auth.getUser();
@@ -113,7 +113,7 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    const supabase = createRouteHandlerClient({ req });
+    const supabase = createRouteHandlerClient();
     const {
       data: { user },
     } = await supabase.auth.getUser();

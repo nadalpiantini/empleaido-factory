@@ -3,14 +3,14 @@
  * GET, UPDATE, DELETE individual engines
  */
 
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { createRouteHandlerClient } from '@/lib/supabase-server';
 import { NextRequest, NextResponse } from 'next/server';
 import type { EngineResponse, UpdateEngineRequest } from '@/types/engine';
 
 interface RouteContext {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 // =====================================================
@@ -19,8 +19,8 @@ interface RouteContext {
 
 export async function GET(req: NextRequest, context: RouteContext) {
   try {
-    const { id } = context.params;
-    const supabase = createRouteHandlerClient({ req });
+    const { id } = await context.params;
+    const supabase = createRouteHandlerClient();
 
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
@@ -87,8 +87,8 @@ export async function GET(req: NextRequest, context: RouteContext) {
 
 export async function PATCH(req: NextRequest, context: RouteContext) {
   try {
-    const { id } = context.params;
-    const supabase = createRouteHandlerClient({ req });
+    const { id } = await context.params;
+    const supabase = createRouteHandlerClient();
 
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
@@ -168,8 +168,8 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
 
 export async function DELETE(req: NextRequest, context: RouteContext) {
   try {
-    const { id } = context.params;
-    const supabase = createRouteHandlerClient({ req });
+    const { id } = await context.params;
+    const supabase = createRouteHandlerClient();
 
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {

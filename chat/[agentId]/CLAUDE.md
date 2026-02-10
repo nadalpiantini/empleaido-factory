@@ -7,5 +7,5 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #17498 | 12:54 PM | 🟣 | Landing page fully migrated to empleaido-factory repository | ~328 |
+| #17894 | 2:54 PM | 🔵 | Confirmed nested app directory structure in monorepo | ~241 |
 </claude-mem-context>

@@ -52,7 +52,7 @@ export interface DashboardStats {
  * Get all departments for Virtual Office
  */
 export async function getDepartments(): Promise<Department[]> {
-  // Using imported supabase client
+  const supabase = createRouteHandlerClient()
   const { data, error } = await supabase
     .from('ef_departments')
     .select('*')
@@ -71,7 +71,7 @@ export async function getDepartments(): Promise<Department[]> {
  * Get department by slug
  */
 export async function getDepartmentBySlug(slug: string): Promise<Department | null> {
-  // Using imported supabase client
+  const supabase = createRouteHandlerClient()
   const { data, error } = await supabase
     .from('ef_departments')
     .select('*')
@@ -90,7 +90,7 @@ export async function getDepartmentBySlug(slug: string): Promise<Department | nu
  * Get department activity
  */
 export async function getDepartmentActivity(departmentId: string, limit = 10) {
-  // Using imported supabase client
+  const supabase = createRouteHandlerClient()
   const { data, error } = await supabase
     .from('ef_activity_log')
     .select('*')
@@ -114,7 +114,7 @@ export async function getDepartmentActivity(departmentId: string, limit = 10) {
  * Get dashboard statistics
  */
 export async function getDashboardStats(): Promise<DashboardStats> {
-  // Using imported supabase client
+  const supabase = createRouteHandlerClient()
   // Get active empleaidos count
   const { count: activeEmpleaidos } = await supabase
     .from('ef_adoptions')
@@ -162,7 +162,7 @@ export async function getDashboardStats(): Promise<DashboardStats> {
  * Get activity timeline for dashboard
  */
 export async function getActivityTimeline(limit = 10): Promise<ActivityLog[]> {
-  // Using imported supabase client
+  const supabase = createRouteHandlerClient()
   const { data, error } = await supabase
     .from('ef_activity_log')
     .select('*')
@@ -181,7 +181,7 @@ export async function getActivityTimeline(limit = 10): Promise<ActivityLog[]> {
  * Get activity for a specific empleaido
  */
 export async function getEmpleaidoActivity(empleaidoId: string, limit = 10): Promise<ActivityLog[]> {
-  // Using imported supabase client
+  const supabase = createRouteHandlerClient()
   const { data, error } = await supabase
     .from('ef_activity_log')
     .select('*')
