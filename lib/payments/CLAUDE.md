@@ -7,5 +7,7 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #15721 | 5:47 PM | 🔴 | Supabase Integration Temporarily Disabled | ~201 |
+| #16340 | 11:49 PM | 🟣 | Checkout Service Stub Created | ~182 |
+| #16339 | " | 🟣 | Payment Type System Implemented | ~170 |
+| #16338 | " | ✅ | Payment System Architecture Document Created | ~179 |
 </claude-mem-context>
