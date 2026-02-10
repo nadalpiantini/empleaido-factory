@@ -1,0 +1,124 @@
+{
+  "summary": {
+    "totalBugs": 8,
+    "criticalBugs": 3,
+    "highBugs": 3,
+    "mediumBugs": 2,
+    "lowBugs": 0,
+    "totalWarnings": 5,
+    "totalSuggestions": 0
+  },
+  "bugs": [
+    {
+      "id": "BUG-1",
+      "severity": "critical",
+      "title": "Catalog route not found. Tried: /catalog, /empleaido, /empleaidos, /products",
+      "description": "Catalog Navigator",
+      "location": "critical",
+      "screenshot": null,
+      "timestamp": "2026-02-10T01:30:05.080Z"
+    },
+    {
+      "id": "BUG-2",
+      "severity": "critical",
+      "title": "Catalog access test failed: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n\u001b[2m  - navigating to \"/\", waiting until \"load\"\u001b[22m\n",
+      "description": "Catalog Navigator",
+      "location": "critical",
+      "screenshot": null,
+      "timestamp": "2026-02-10T01:30:05.080Z"
+    },
+    {
+      "id": "BUG-3",
+      "severity": "high",
+      "title": "Product listings test failed: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n\u001b[2m  - navigating to \"/empleaido\", waiting until \"load\"\u001b[22m\n",
+      "description": "Catalog Navigator",
+      "location": "high",
+      "screenshot": null,
+      "timestamp": "2026-02-10T01:30:05.080Z"
+    },
+    {
+      "id": "BUG-4",
+      "severity": "high",
+      "title": "Product details test failed: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n\u001b[2m  - navigating to \"/empleaido/1\", waiting until \"networkidle\"\u001b[22m\n",
+      "description": "Catalog Navigator",
+      "location": "high",
+      "screenshot": null,
+      "timestamp": "2026-02-10T01:30:05.080Z"
+    },
+    {
+      "id": "BUG-5",
+      "severity": "medium",
+      "title": "Search and filters test failed: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n\u001b[2m  - navigating to \"/empleaido\", waiting until \"load\"\u001b[22m\n",
+      "description": "Catalog Navigator",
+      "location": "medium",
+      "screenshot": null,
+      "timestamp": "2026-02-10T01:30:05.080Z"
+    },
+    {
+      "id": "BUG-6",
+      "severity": "critical",
+      "title": "Purchase flow test failed: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n\u001b[2m  - navigating to \"/empleaido/1\", waiting until \"networkidle\"\u001b[22m\n",
+      "description": "Purchase Flow Tester",
+      "location": "critical",
+      "screenshot": null,
+      "timestamp": "2026-02-10T01:30:05.080Z"
+    },
+    {
+      "id": "BUG-7",
+      "severity": "medium",
+      "title": "Cart functionality test failed: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n\u001b[2m  - navigating to \"/\", waiting until \"load\"\u001b[22m\n",
+      "description": "Purchase Flow Tester",
+      "location": "medium",
+      "screenshot": null,
+      "timestamp": "2026-02-10T01:30:05.080Z"
+    },
+    {
+      "id": "BUG-8",
+      "severity": "high",
+      "title": "Checkout process test failed: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n\u001b[2m  - navigating to \"/checkout\", waiting until \"networkidle\"\u001b[22m\n",
+      "description": "Purchase Flow Tester",
+      "location": "high",
+      "screenshot": null,
+      "timestamp": "2026-02-10T01:30:05.080Z"
+    }
+  ],
+  "warnings": [
+    {
+      "id": "WARN-1",
+      "title": "No navigation element found",
+      "description": "Landing Explorer",
+      "location": "medium",
+      "timestamp": "2026-02-10T01:30:05.080Z"
+    },
+    {
+      "id": "WARN-2",
+      "title": "Landing page has only 2 sections. Consider adding more content.",
+      "description": "Landing Explorer",
+      "location": "low",
+      "timestamp": "2026-02-10T01:30:05.080Z"
+    },
+    {
+      "id": "WARN-3",
+      "title": "Page load time is 3022.5ms. Consider optimizing.",
+      "description": "Landing Explorer",
+      "location": "low",
+      "timestamp": "2026-02-10T01:30:05.080Z"
+    },
+    {
+      "id": "WARN-4",
+      "title": "Cart page not found. Tried: /cart, /checkout, /basket",
+      "description": "Purchase Flow Tester",
+      "location": "medium",
+      "timestamp": "2026-02-10T01:30:05.080Z"
+    },
+    {
+      "id": "WARN-5",
+      "title": "Authentication requirement test failed: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n\u001b[2m  - navigating to \"/empleaido/1\", waiting until \"load\"\u001b[22m\n",
+      "description": "Purchase Flow Tester",
+      "location": "low",
+      "timestamp": "2026-02-10T01:30:05.080Z"
+    }
+  ],
+  "suggestions": [],
+  "generatedAt": "2026-02-10T01:30:05.081Z"
+}

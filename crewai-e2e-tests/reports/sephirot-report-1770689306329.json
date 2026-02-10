@@ -1,0 +1,73 @@
+{
+  "summary": {
+    "totalBugs": 3,
+    "criticalBugs": 1,
+    "highBugs": 2,
+    "mediumBugs": 0,
+    "lowBugs": 0,
+    "totalWarnings": 2,
+    "totalSuggestions": 2
+  },
+  "bugs": [
+    {
+      "id": "BUG-1",
+      "severity": "high",
+      "title": "Product details test failed: page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/empleaido/empleaido-04094\", waiting until \"networkidle\"\u001b[22m\n",
+      "description": "Catalog Navigator",
+      "location": "high",
+      "screenshot": null,
+      "timestamp": "2026-02-10T02:08:26.241Z"
+    },
+    {
+      "id": "BUG-2",
+      "severity": "critical",
+      "title": "Purchase flow test failed: page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"load\"\u001b[22m\n",
+      "description": "Purchase Flow Tester",
+      "location": "critical",
+      "screenshot": null,
+      "timestamp": "2026-02-10T02:08:26.242Z"
+    },
+    {
+      "id": "BUG-3",
+      "severity": "high",
+      "title": "Checkout process test failed: page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/checkout\", waiting until \"networkidle\"\u001b[22m\n",
+      "description": "Purchase Flow Tester",
+      "location": "high",
+      "screenshot": null,
+      "timestamp": "2026-02-10T02:08:26.242Z"
+    }
+  ],
+  "warnings": [
+    {
+      "id": "WARN-1",
+      "title": "Page load time is 3767ms. Consider optimizing.",
+      "description": "Landing Explorer",
+      "location": "low",
+      "timestamp": "2026-02-10T02:08:26.156Z"
+    },
+    {
+      "id": "WARN-2",
+      "title": "Authentication requirement test failed: page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"load\"\u001b[22m\n",
+      "description": "Purchase Flow Tester",
+      "location": "low",
+      "timestamp": "2026-02-10T02:08:26.242Z"
+    }
+  ],
+  "suggestions": [
+    {
+      "id": "SUG-1",
+      "title": "Consider adding search functionality to catalog",
+      "description": "Catalog Navigator",
+      "location": "low",
+      "timestamp": "2026-02-10T02:08:26.242Z"
+    },
+    {
+      "id": "SUG-2",
+      "title": "Consider adding filters to improve catalog navigation",
+      "description": "Catalog Navigator",
+      "location": "low",
+      "timestamp": "2026-02-10T02:08:26.242Z"
+    }
+  ],
+  "generatedAt": "2026-02-10T02:08:26.329Z"
+}

@@ -1,0 +1,114 @@
+{
+  "summary": {
+    "totalBugs": 6,
+    "criticalBugs": 1,
+    "highBugs": 4,
+    "mediumBugs": 1,
+    "lowBugs": 0,
+    "totalWarnings": 4,
+    "totalSuggestions": 2
+  },
+  "bugs": [
+    {
+      "id": "BUG-1",
+      "severity": "high",
+      "title": "Onboarding route not accessible: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n\u001b[2m  - navigating to \"/onboarding/test-user\", waiting until \"networkidle\"\u001b[22m\n",
+      "description": "Onboarding Tester",
+      "location": "high",
+      "screenshot": null,
+      "timestamp": "2026-02-10T02:09:06.195Z"
+    },
+    {
+      "id": "BUG-2",
+      "severity": "high",
+      "title": "Onboarding steps test failed: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n\u001b[2m  - navigating to \"/onboarding/test-user\", waiting until \"load\"\u001b[22m\n",
+      "description": "Onboarding Tester",
+      "location": "high",
+      "screenshot": null,
+      "timestamp": "2026-02-10T02:09:06.195Z"
+    },
+    {
+      "id": "BUG-3",
+      "severity": "medium",
+      "title": "Form validation test failed: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n\u001b[2m  - navigating to \"/onboarding/test-user\", waiting until \"load\"\u001b[22m\n",
+      "description": "Onboarding Tester",
+      "location": "medium",
+      "screenshot": null,
+      "timestamp": "2026-02-10T02:09:06.195Z"
+    },
+    {
+      "id": "BUG-4",
+      "severity": "high",
+      "title": "Onboarding completion test failed: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n\u001b[2m  - navigating to \"/onboarding/test-user\", waiting until \"load\"\u001b[22m\n",
+      "description": "Onboarding Tester",
+      "location": "high",
+      "screenshot": null,
+      "timestamp": "2026-02-10T02:09:06.195Z"
+    },
+    {
+      "id": "BUG-5",
+      "severity": "high",
+      "title": "Product details test failed: page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"load\"\u001b[22m\n",
+      "description": "Catalog Navigator",
+      "location": "high",
+      "screenshot": null,
+      "timestamp": "2026-02-10T02:09:06.195Z"
+    },
+    {
+      "id": "BUG-6",
+      "severity": "critical",
+      "title": "Purchase flow test failed: page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/empleaido/empleaido-04094\", waiting until \"networkidle\"\u001b[22m\n",
+      "description": "Purchase Flow Tester",
+      "location": "critical",
+      "screenshot": null,
+      "timestamp": "2026-02-10T02:09:06.195Z"
+    }
+  ],
+  "warnings": [
+    {
+      "id": "WARN-1",
+      "title": "No obvious onboarding entry point found",
+      "description": "Onboarding Tester",
+      "location": "medium",
+      "timestamp": "2026-02-10T02:09:06.194Z"
+    },
+    {
+      "id": "WARN-2",
+      "title": "Cart page not found. Tried: /cart, /checkout, /basket",
+      "description": "Purchase Flow Tester",
+      "location": "medium",
+      "timestamp": "2026-02-10T02:09:06.195Z"
+    },
+    {
+      "id": "WARN-3",
+      "title": "Payment section not clearly visible",
+      "description": "Purchase Flow Tester",
+      "location": "medium",
+      "timestamp": "2026-02-10T02:09:06.195Z"
+    },
+    {
+      "id": "WARN-4",
+      "title": "Authentication requirement test failed: page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/empleaido/empleaido-04094\", waiting until \"load\"\u001b[22m\n",
+      "description": "Purchase Flow Tester",
+      "location": "low",
+      "timestamp": "2026-02-10T02:09:06.195Z"
+    }
+  ],
+  "suggestions": [
+    {
+      "id": "SUG-1",
+      "title": "Consider adding search functionality to catalog",
+      "description": "Catalog Navigator",
+      "location": "low",
+      "timestamp": "2026-02-10T02:09:06.195Z"
+    },
+    {
+      "id": "SUG-2",
+      "title": "Consider adding filters to improve catalog navigation",
+      "description": "Catalog Navigator",
+      "location": "low",
+      "timestamp": "2026-02-10T02:09:06.195Z"
+    }
+  ],
+  "generatedAt": "2026-02-10T02:09:06.201Z"
+}

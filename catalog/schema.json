@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://empleaido.ai/schemas/empleaido.json",
+  "title": "Empleaido",
+  "description": "Canonical schema for identity-based AI agents",
+  "type": "object",
+  "required": ["id", "serial", "name", "status", "sephirot", "role", "skills", "visual", "pricing", "life", "meta"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^empleaido-[0-9]{5}$",
+      "description": "Unique identifier (EID format)"
+    },
+    "serial": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 99999,
+      "description": "Numeric serial for display (e.g., #04094)"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 20,
+      "description": "Display name (human-readable callsign)"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "paused", "archived", "draft"],
+      "description": "Current operational status"
+    },
+    "sephirot": {
+      "type": "object",
+      "required": ["primary"],
+      "properties": {
+        "primary": {
+          "type": "string",
+          "enum": ["Keter", "Chokmah", "Binah", "Chesed", "Gevurah", "Tiferet", "Netzach", "Hod", "Yesod", "Malkuth"],
+          "description": "Dominant Sephirah defining core behavior"
+        },
+        "secondary": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["Keter", "Chokmah", "Binah", "Chesed", "Gevurah", "Tiferet", "Netzach", "Hod", "Yesod", "Malkuth"]
+          },
+          "maxItems": 2,
+          "description": "Supporting Sephirot influences"
+        }
+      }
+    },
+    "role": {
+      "type": "object",
+      "required": ["main", "tier"],
+      "properties": {
+        "main": {
+          "type": "string",
+          "description": "Primary role title (what user is buying)"
+        },
+        "sub": {
+          "type": "string",
+          "description": "Target audience or specialization"
+        },
+        "tier": {
+          "type": "string",
+          "enum": ["base", "pro", "deluxe"],
+          "description": "Capability tier affecting pricing and features"
+        }
+      }
+    },
+    "skills": {
+      "type": "object",
+      "required": ["native", "locked"],
+      "properties": {
+        "native": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Skills included at adoption"
+        },
+        "locked": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Skills available for unlock (upgrade/usage)"
+        }
+      }
+    },
+    "visual": {
+      "type": "object",
+      "required": ["accessory"],
+      "properties": {
+        "accessory": {
+          "type": "string",
+          "enum": ["none", "headband", "moustache", "badge", "glasses", "earring"],
+          "description": "Single differentiating visual element"
+        },
+        "color_accent": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$",
+          "description": "Brand color accent (hex)"
+        }
+      }
+    },
+    "pricing": {
+      "type": "object",
+      "required": ["monthly_usd"],
+      "properties": {
+        "monthly_usd": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Monthly subscription price in USD"
+        },
+        "annual_usd": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Annual subscription price in USD (optional discount)"
+        }
+      }
+    },
+    "life": {
+      "type": "object",
+      "required": ["level", "experience", "trust", "energy"],
+      "properties": {
+        "level": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1,
+          "description": "Current level (XP-based)"
+        },
+        "experience": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0,
+          "description": "Total XP accumulated"
+        },
+        "trust": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.6,
+          "description": "Trust score (0-1)"
+        },
+        "energy": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 100,
+          "description": "Current energy (regenerates)"
+        }
+      }
+    },
+    "identity": {
+      "type": "object",
+      "properties": {
+        "motivation": {
+          "type": "string",
+          "description": "Why they 'care' (narrative hook)"
+        },
+        "boundaries": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "What they refuse or hand off"
+        },
+        "safety_rejections": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Pre-written refusal styles for brand consistency"
+        }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "required": ["created_at", "version"],
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date",
+          "description": "Creation date"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date",
+          "description": "Last modification date"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Schema version for migrations"
+        }
+      }
+    }
+  }
+}

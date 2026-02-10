@@ -1,0 +1,78 @@
+{
+  "summary": {
+    "totalBugs": 6,
+    "criticalBugs": 0,
+    "highBugs": 4,
+    "mediumBugs": 2,
+    "lowBugs": 0,
+    "totalWarnings": 1,
+    "totalSuggestions": 0
+  },
+  "bugs": [
+    {
+      "id": "BUG-1",
+      "severity": "high",
+      "title": "Onboarding route not accessible: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n\u001b[2m  - navigating to \"/onboarding/test-user\", waiting until \"networkidle\"\u001b[22m\n",
+      "description": "Onboarding Tester",
+      "location": "high",
+      "screenshot": null,
+      "timestamp": "2026-02-10T02:12:03.905Z"
+    },
+    {
+      "id": "BUG-2",
+      "severity": "high",
+      "title": "Onboarding steps test failed: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n\u001b[2m  - navigating to \"/onboarding/test-user\", waiting until \"load\"\u001b[22m\n",
+      "description": "Onboarding Tester",
+      "location": "high",
+      "screenshot": null,
+      "timestamp": "2026-02-10T02:12:03.905Z"
+    },
+    {
+      "id": "BUG-3",
+      "severity": "medium",
+      "title": "Form validation test failed: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n\u001b[2m  - navigating to \"/onboarding/test-user\", waiting until \"load\"\u001b[22m\n",
+      "description": "Onboarding Tester",
+      "location": "medium",
+      "screenshot": null,
+      "timestamp": "2026-02-10T02:12:03.905Z"
+    },
+    {
+      "id": "BUG-4",
+      "severity": "high",
+      "title": "Onboarding completion test failed: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n\u001b[2m  - navigating to \"/onboarding/test-user\", waiting until \"load\"\u001b[22m\n",
+      "description": "Onboarding Tester",
+      "location": "high",
+      "screenshot": null,
+      "timestamp": "2026-02-10T02:12:03.905Z"
+    },
+    {
+      "id": "BUG-5",
+      "severity": "high",
+      "title": "Product listings test failed: page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"networkidle\"\u001b[22m\n",
+      "description": "Catalog Navigator",
+      "location": "high",
+      "screenshot": null,
+      "timestamp": "2026-02-10T02:12:03.905Z"
+    },
+    {
+      "id": "BUG-6",
+      "severity": "medium",
+      "title": "Search and filters test failed: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/empleaido\", waiting until \"load\"\u001b[22m\n",
+      "description": "Catalog Navigator",
+      "location": "medium",
+      "screenshot": null,
+      "timestamp": "2026-02-10T02:12:03.905Z"
+    }
+  ],
+  "warnings": [
+    {
+      "id": "WARN-1",
+      "title": "No obvious onboarding entry point found",
+      "description": "Onboarding Tester",
+      "location": "medium",
+      "timestamp": "2026-02-10T02:12:03.905Z"
+    }
+  ],
+  "suggestions": [],
+  "generatedAt": "2026-02-10T02:12:03.905Z"
+}

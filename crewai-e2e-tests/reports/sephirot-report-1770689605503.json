@@ -1,0 +1,110 @@
+{
+  "summary": {
+    "totalBugs": 4,
+    "criticalBugs": 0,
+    "highBugs": 3,
+    "mediumBugs": 1,
+    "lowBugs": 0,
+    "totalWarnings": 6,
+    "totalSuggestions": 2
+  },
+  "bugs": [
+    {
+      "id": "BUG-1",
+      "severity": "high",
+      "title": "Onboarding route not accessible: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n\u001b[2m  - navigating to \"/onboarding/test-user\", waiting until \"networkidle\"\u001b[22m\n",
+      "description": "Onboarding Tester",
+      "location": "high",
+      "screenshot": null,
+      "timestamp": "2026-02-10T02:13:25.502Z"
+    },
+    {
+      "id": "BUG-2",
+      "severity": "high",
+      "title": "Onboarding steps test failed: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n\u001b[2m  - navigating to \"/onboarding/test-user\", waiting until \"load\"\u001b[22m\n",
+      "description": "Onboarding Tester",
+      "location": "high",
+      "screenshot": null,
+      "timestamp": "2026-02-10T02:13:25.502Z"
+    },
+    {
+      "id": "BUG-3",
+      "severity": "medium",
+      "title": "Form validation test failed: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n\u001b[2m  - navigating to \"/onboarding/test-user\", waiting until \"load\"\u001b[22m\n",
+      "description": "Onboarding Tester",
+      "location": "medium",
+      "screenshot": null,
+      "timestamp": "2026-02-10T02:13:25.502Z"
+    },
+    {
+      "id": "BUG-4",
+      "severity": "high",
+      "title": "Onboarding completion test failed: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n\u001b[2m  - navigating to \"/onboarding/test-user\", waiting until \"load\"\u001b[22m\n",
+      "description": "Onboarding Tester",
+      "location": "high",
+      "screenshot": null,
+      "timestamp": "2026-02-10T02:13:25.502Z"
+    }
+  ],
+  "warnings": [
+    {
+      "id": "WARN-1",
+      "title": "Navigation link 3 failed: locator.textContent: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('nav, header').first().locator('a').nth(3)\u001b[22m\n",
+      "description": "Landing Explorer",
+      "location": "low",
+      "timestamp": "2026-02-10T02:13:25.502Z"
+    },
+    {
+      "id": "WARN-2",
+      "title": "Landing page has only 0 sections. Consider adding more content.",
+      "description": "Landing Explorer",
+      "location": "low",
+      "timestamp": "2026-02-10T02:13:25.502Z"
+    },
+    {
+      "id": "WARN-3",
+      "title": "Page load time is 8249.099999999627ms. Consider optimizing.",
+      "description": "Landing Explorer",
+      "location": "low",
+      "timestamp": "2026-02-10T02:13:25.502Z"
+    },
+    {
+      "id": "WARN-4",
+      "title": "No obvious onboarding entry point found",
+      "description": "Onboarding Tester",
+      "location": "medium",
+      "timestamp": "2026-02-10T02:13:25.502Z"
+    },
+    {
+      "id": "WARN-5",
+      "title": "Payment section not clearly visible",
+      "description": "Purchase Flow Tester",
+      "location": "medium",
+      "timestamp": "2026-02-10T02:13:25.502Z"
+    },
+    {
+      "id": "WARN-6",
+      "title": "Authentication requirement test failed: page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/empleaido/empleaido-04094\", waiting until \"load\"\u001b[22m\n",
+      "description": "Purchase Flow Tester",
+      "location": "low",
+      "timestamp": "2026-02-10T02:13:25.502Z"
+    }
+  ],
+  "suggestions": [
+    {
+      "id": "SUG-1",
+      "title": "Consider adding search functionality to catalog",
+      "description": "Catalog Navigator",
+      "location": "low",
+      "timestamp": "2026-02-10T02:13:25.502Z"
+    },
+    {
+      "id": "SUG-2",
+      "title": "Consider adding filters to improve catalog navigation",
+      "description": "Catalog Navigator",
+      "location": "low",
+      "timestamp": "2026-02-10T02:13:25.502Z"
+    }
+  ],
+  "generatedAt": "2026-02-10T02:13:25.503Z"
+}

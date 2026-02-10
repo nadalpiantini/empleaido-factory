@@ -1,0 +1,87 @@
+{
+  "summary": {
+    "totalBugs": 3,
+    "criticalBugs": 1,
+    "highBugs": 2,
+    "mediumBugs": 0,
+    "lowBugs": 0,
+    "totalWarnings": 4,
+    "totalSuggestions": 2
+  },
+  "bugs": [
+    {
+      "id": "BUG-1",
+      "severity": "critical",
+      "title": "No products displayed in catalog",
+      "description": "Catalog Navigator",
+      "location": "critical",
+      "screenshot": null,
+      "timestamp": "2026-02-10T01:43:07.648Z"
+    },
+    {
+      "id": "BUG-2",
+      "severity": "high",
+      "title": "No purchase/CTA button found on product page",
+      "description": "Catalog Navigator",
+      "location": "high",
+      "screenshot": null,
+      "timestamp": "2026-02-10T01:43:07.648Z"
+    },
+    {
+      "id": "BUG-3",
+      "severity": "high",
+      "title": "Could not find or click purchase button",
+      "description": "Purchase Flow Tester",
+      "location": "high",
+      "screenshot": null,
+      "timestamp": "2026-02-10T01:43:07.648Z"
+    }
+  ],
+  "warnings": [
+    {
+      "id": "WARN-1",
+      "title": "No navigation element found",
+      "description": "Landing Explorer",
+      "location": "medium",
+      "timestamp": "2026-02-10T01:43:07.648Z"
+    },
+    {
+      "id": "WARN-2",
+      "title": "Landing page has only 2 sections. Consider adding more content.",
+      "description": "Landing Explorer",
+      "location": "low",
+      "timestamp": "2026-02-10T01:43:07.648Z"
+    },
+    {
+      "id": "WARN-3",
+      "title": "Checkout form not clearly visible",
+      "description": "Purchase Flow Tester",
+      "location": "medium",
+      "timestamp": "2026-02-10T01:43:07.648Z"
+    },
+    {
+      "id": "WARN-4",
+      "title": "Payment section not clearly visible",
+      "description": "Purchase Flow Tester",
+      "location": "medium",
+      "timestamp": "2026-02-10T01:43:07.648Z"
+    }
+  ],
+  "suggestions": [
+    {
+      "id": "SUG-1",
+      "title": "Consider adding search functionality to catalog",
+      "description": "Catalog Navigator",
+      "location": "low",
+      "timestamp": "2026-02-10T01:43:07.648Z"
+    },
+    {
+      "id": "SUG-2",
+      "title": "Consider adding filters to improve catalog navigation",
+      "description": "Catalog Navigator",
+      "location": "low",
+      "timestamp": "2026-02-10T01:43:07.648Z"
+    }
+  ],
+  "generatedAt": "2026-02-10T01:43:07.651Z"
+}
