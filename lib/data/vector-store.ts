@@ -31,7 +31,8 @@ export async function addKnowledgeEmbedding(
   contentType: 'skill_description' | 'faq' | 'user_interaction' | string,
   metadata: Record<string, any> = {}
 ) {
-  const { data: { data: [{ embedding }] } } = await zai.generateEmbeddings(content);
+  const embeddingResponse = await zai.generateEmbeddings(content);
+  const embedding = embeddingResponse.embedding || embeddingResponse.data?.[0]?.embedding || [] as number[];
 
   const { error } = await supabase.from('ef_knowledge_embeddings').insert({
     empleaido_id: empleaidoId,
@@ -54,7 +55,8 @@ export async function addUserInteractionEmbedding(
   interactionType: 'question' | 'command' | 'feedback' | string = 'question',
   metadata: Record<string, any> = {}
 ) {
-  const { data: { data: [{ embedding }] } } = await zai.generateEmbeddings(interactionText);
+  const embeddingResponse = await zai.generateEmbeddings(interactionText);
+  const embedding = embeddingResponse.embedding || embeddingResponse.data?.[0]?.embedding || [] as number[];
 
   const { error } = await supabase.from('ef_user_interaction_embeddings').insert({
     user_id: userId,

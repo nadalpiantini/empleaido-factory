@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import imageManifest from '../../public/empleaido-images.json';
+import imageManifest from '../public/empleaido-images.json';
 
 interface EmpleaidoCedulaProps {
   id: string;
