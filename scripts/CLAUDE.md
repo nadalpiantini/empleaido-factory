@@ -7,6 +7,7 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #17632 | 1:31 PM | 🟣 | Simple CLI setup script created without build step to avoid potential build issues | ~247 |
 | #17416 | 12:24 PM | 🟣 | Supabase setup helper script created for automated configuration | ~207 |
 | #17271 | 12:03 PM | 🟣 | Deployment script created for automated Vercel deployment | ~197 |
 </claude-mem-context>

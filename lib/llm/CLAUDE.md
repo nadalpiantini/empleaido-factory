@@ -7,9 +7,7 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #17383 | 12:18 PM | 🔵 | Uncommitted changes detected across multiple project areas | ~279 |
-| #17304 | 12:09 PM | 🟣 | Embedding interfaces added to Z.ai client for vector integration | ~274 |
-| #17272 | 12:04 PM | 🔵 | Z.ai (Zhipu AI) client implements comprehensive LLM and vision capabilities | ~344 |
-| #16431 | 12:26 AM | 🟣 | Z.ai LLM Client Integration Completed | ~524 |
-| #16416 | 12:21 AM | 🟣 | Z.ai (Zhipu AI) LLM client library implemented | ~835 |
+| #17578 | 1:14 PM | 🔴 | Git push operation failing with authentication issues | ~398 |
+| #17308 | 12:09 PM | 🟣 | Embeddings generation method added to Z.ai client | ~256 |
+| #17179 | 11:55 AM | 🔵 | Z.ai client library discovered in project | ~266 |
 </claude-mem-context>

@@ -19,6 +19,11 @@ const config: Config = {
         'cyan-dim': 'var(--led-cyan-dim)',
         'cyan-glow': 'var(--led-cyan-glow)',
 
+        // Empleaido.com colors
+        'empleaido-jade': '#00A3A0',
+        'empleaido-jade-dark': '#008B89',
+        'empleaido-jade-light': '#00BCB9',
+
         // States
         success: 'var(--state-success)',
         warning: 'var(--state-warning)',
@@ -71,6 +76,8 @@ const config: Config = {
       /* === TYPOGRAPHY (Retro 50s) === */
       fontFamily: {
         display: ['var(--font-display)'], // Bebas Neue - Headlines
+        poppins: ['Poppins', 'sans-serif'], // Empleaido.com headings
+        inter: ['Inter', 'sans-serif'],    // Empleaido.com body
         sans: ['var(--font-sans)'],       // IBM Plex Sans - Body
         mono: ['var(--font-mono)'],       // IBM Plex Mono
         ui: ['var(--font-sans)'],         // Default UI

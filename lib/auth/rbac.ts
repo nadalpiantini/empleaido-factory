@@ -207,29 +207,30 @@ export function useIsAdmin(): boolean {
  * Higher-order component to protect routes/pages based on permissions
  * This is a placeholder for React implementation
  */
-export function withPermission<P extends object>(
-  WrappedComponent: React.ComponentType<P>,
-  requiredPermission: Permission
-) {
-  return function PermissionGuard(props: P) {
-    // This would check session context and redirect if not permitted
-    // For now, just render the component
-    return <WrappedComponent {...props} />;
-  };
-}
+// TODO: React HOCs commented out - move to separate .tsx file if needed
+// export function withPermission<P extends object>(
+//   WrappedComponent: React.ComponentType<P>,
+//   requiredPermission: Permission
+// ) {
+//   return function PermissionGuard(props: P) {
+//     // This would check session context and redirect if not permitted
+//     // For now, just render the component
+//     return React.createElement(WrappedComponent, props);
+//   };
+// }
 
 /**
  * Higher-order component to protect routes for specific roles
  */
-export function withRole<P extends object>(
-  WrappedComponent: React.ComponentType<P>,
-  allowedRoles: UserRole[]
-) {
-  return function RoleGuard(props: P) {
-    // This would check session context and redirect if role not allowed
-    return <WrappedComponent {...props} />;
-  };
-}
+// export function withRole<P extends object>(
+//   WrappedComponent: React.ComponentType<P>,
+//   allowedRoles: UserRole[]
+// ) {
+//   return function RoleGuard(props: P) {
+//     // This would check session context and redirect if role not allowed
+//     return React.createElement(WrappedComponent, props);
+//   };
+// }
 
 // =====================================================
 // API ROUTE MIDDLEWARE
