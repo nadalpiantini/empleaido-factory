@@ -137,6 +137,20 @@ The application can be deployed to Vercel using GitHub Actions or manually with 
 2. Get your Supabase project URL and API keys
 3. Set up Vercel account and link your GitHub repository
 
+### Automated CLI Setup
+
+Run the complete setup script:
+
+```bash
+./scripts/full-production-setup.sh
+```
+
+This script will:
+1. Check all prerequisites
+2. Install dependencies
+3. Build the application
+4. Provide step-by-step instructions for Supabase and GitHub setup
+
 ### GitHub Actions
 
 Push to the `main` branch to trigger automatic deployment to Vercel.
