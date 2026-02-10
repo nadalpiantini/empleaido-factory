@@ -13,28 +13,30 @@ NC='\033[0m'
 
 echo -e "${BLUE}🔄 Pre-push check...${NC}"
 
-# Fetch latest from origin
-git fetch origin
-
 # Get current branch
 CURRENT_BRANCH=$(git branch --show-current)
 
-# Check if local is behind remote
+# Get refs to check state
 LOCAL=$(git rev-parse @)
-REMOTE=$(git rev-parse @{u})
 BASE=$(git merge-base @ @{u})
+
+# Fetch to update remote refs
+git fetch origin
+
+# Get updated remote ref after fetch
+REMOTE=$(git rev-parse @{u})
 
 # If LOCAL == BASE and BASE != REMOTE, we're behind (need to pull)
 # If LOCAL != BASE and BASE == REMOTE, we're ahead (safe to push)
 # If LOCAL != BASE and BASE != REMOTE, we've diverged (need to pull then push)
-if [ $LOCAL = $BASE ] && [ $BASE != $REMOTE ]; then
+if [ "$LOCAL" = "$BASE" ] && [ "$BASE" != "$REMOTE" ]; then
     echo -e "${RED}⚠️  Warning: Your branch is behind origin/${CURRENT_BRANCH}${NC}"
     echo -e "${YELLOW}📥 Pulling latest changes first...${NC}"
     git pull origin "$CURRENT_BRANCH"
     echo -e "${GREEN}✅ Pull complete. Now you can push.${NC}"
     echo -e "${YELLOW}💡 Please run your push command again.${NC}"
     exit 1
-elif [ $LOCAL != $BASE ] && [ $BASE != $REMOTE ]; then
+elif [ "$LOCAL" != "$BASE" ] && [ "$BASE" != "$REMOTE" ]; then
     echo -e "${RED}⚠️  Warning: Branches have diverged${NC}"
     echo -e "${YELLOW}📥 Pulling latest changes first...${NC}"
     git pull origin "$CURRENT_BRANCH"
