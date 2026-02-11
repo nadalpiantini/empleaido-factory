@@ -1,24 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ===== EMPLEAIDO DESIGN SYSTEM ===== */
+/* ===== ASTROBOY STYLE - EMPLEAIDO DESIGN SYSTEM ===== */
 
-/* Colors */
+/* Astro Boy Inspired Colors - Bold Primary Colors */
 :root {
-  /* Empleaido.com palette */
-  --empleaido-dark: #0E3A41;
-  --empleaido-border: #1A434F;
-  --empleaido-light: #F3E4C8;
-  --empleaido-accent: #5ED3D0;
+  /* Primary anime palette */
+  --astro-red: #DC2626;      /* Astro Boy's boots/shorts - bold action red */
+  --astro-black: #0A0A0A;    /* Manga outlines - pure black */
+  --astro-yellow: #FBBF24;   /* Belt buckle - energy gold */
+  --astro-green: #10B981;    /* Eye color - circuit green */
+  --astro-blue: #3B82F6;     /* Arms/legs - tech blue */
+  --astro-white: #FAFAFA;    /* Body base - clean white */
 
   /* System defaults */
-  --background: var(--empleaido-dark);
-  --foreground: var(--empleaido-light);
-}
+  --background: #0A0A0A;
+  --foreground: #FAFAFA;
+  --border: #DC2626;
+  --accent: #FBBF24;
+  --glow: #10B981;
 
-/* Typography */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+  /* Semantic mappings */
+  --empleaido-dark: var(--astro-black);
+  --empleaido-border: var(--astro-red);
+  --empleaido-light: var(--astro-white);
+  --empleaido-accent: var(--astro-yellow);
+  --empleaido-tech: var(--astro-blue);
+  --empleaido-circuit: var(--astro-green);
+}
 
 :root {
   --font-display: 'Inter', sans-serif;
@@ -67,6 +79,135 @@
   }
 }
 
+/* ===== ASTROBOY ANIME EFFECTS ===== */
+
+/* Circuit board pattern - robot tech aesthetic */
+.circuit-pattern {
+  position: relative;
+  background-image:
+    linear-gradient(90deg, rgba(16, 185, 129, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 25% 25%, rgba(251, 191, 36, 0.05) 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, rgba(220, 38, 38, 0.05) 2px, transparent 2px);
+  background-size: 100px 100px, 100px 100px, 50px 50px, 50px 50px;
+}
+
+/* Energy burst glow */
+.energy-glow {
+  box-shadow:
+    0 0 20px rgba(251, 191, 36, 0.3),
+    0 0 40px rgba(251, 191, 36, 0.1),
+    inset 0 0 20px rgba(251, 191, 36, 0.05);
+}
+
+/* Anime speed lines */
+.speed-lines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 50px,
+    rgba(220, 38, 38, 0.03) 50px,
+    rgba(220, 38, 38, 0.03) 51px
+  );
+  pointer-events: none;
+}
+
+/* Robot panel border */
+.robot-border {
+  border: 3px solid var(--astro-red);
+  box-shadow:
+    0 0 0 1px var(--astro-black),
+    0 0 0 2px var(--astro-yellow),
+    0 4px 20px rgba(220, 38, 38, 0.4);
+}
+
+/* Anime bold text styling */
+.anime-title {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow:
+    3px 3px 0 var(--astro-red),
+    -1px -1px 0 var(--astro-black),
+    1px -1px 0 var(--astro-black),
+    -1px 1px 0 var(--astro-black),
+    1px 1px 0 var(--astro-black);
+}
+
+/* Manga halftone effect */
+.halftone {
+  background-image: radial-gradient(circle, var(--astro-black) 1px, transparent 1px);
+  background-size: 4px 4px;
+  opacity: 0.1;
+}
+
+/* Tech HUD overlay */
+.hud-overlay {
+  position: relative;
+}
+
+.hud-overlay::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 49%, rgba(16, 185, 129, 0.2) 50%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, rgba(16, 185, 129, 0.2) 50%, transparent 51%);
+  background-size: 20px 20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.hud-overlay:hover::after {
+  opacity: 1;
+}
+
+/* Power charge animation */
+@keyframes power-charge {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--astro-yellow), 0 0 10px var(--astro-yellow);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--astro-yellow), 0 0 30px var(--astro-yellow), 0 0 40px var(--astro-red);
+  }
+}
+
+.power-charging {
+  animation: power-charge 2s ease-in-out infinite;
+}
+
+/* Anime burst effect */
+@keyframes anime-burst {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.anime-burst:hover {
+  animation: anime-burst 0.3s ease-out;
+}
+
+/* Robot eye blink */
+@keyframes eye-blink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+
+.robot-eye {
+  animation: eye-blink 4s ease-in-out infinite;
+}
+
 /* Starfield background effect */
 .starfield {
   position: relative;
@@ -80,11 +221,11 @@
   right: 0;
   bottom: 0;
   background-image:
-    radial-gradient(2px 2px at 20% 30%, white, transparent),
-    radial-gradient(2px 2px at 60% 70%, white, transparent),
-    radial-gradient(1px 1px at 50% 50%, white, transparent);
+    radial-gradient(2px 2px at 20% 30%, var(--astro-yellow), transparent),
+    radial-gradient(2px 2px at 60% 70%, var(--astro-red), transparent),
+    radial-gradient(1px 1px at 50% 50%, var(--astro-green), transparent);
   background-size: 200% 200%;
-  opacity: 0.3;
+  opacity: 0.4;
   animation: stars 120s linear infinite;
 }
 
@@ -93,27 +234,66 @@
   to { transform: translateY(-100%); }
 }
 
-/* LED pulse animation */
-@keyframes led-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+/* Circuit pulse animation */
+@keyframes circuit-pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 5px var(--astro-green), 0 0 10px var(--astro-green);
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 15px var(--astro-green), 0 0 25px var(--astro-circuit);
+  }
 }
 
-.led-pulse {
-  animation: led-pulse 2s ease-in-out infinite;
+.circuit-pulse {
+  animation: circuit-pulse 2s ease-in-out infinite;
 }
 
-/* Custom grid pattern */
+/* Tech grid pattern */
 .bg-grid-pattern {
-  background-image: linear-gradient(to right, rgba(94, 211, 208, 0.1) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(94, 211, 208, 0.1) 1px, transparent 1px);
+  background-image:
+    linear-gradient(to right, rgba(220, 38, 38, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.1) 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
-/* Base styles */
+/* Base styles - Astro Boy Theme */
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: var(--font-ui);
   font-weight: 400;
+  /* Tech feel with subtle grid */
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.03) 0%, transparent 50%),
+    linear-gradient(0deg, rgba(16, 185, 129, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+}
+
+/* Selection styling */
+::selection {
+  background: var(--astro-red);
+  color: var(--astro-white);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--astro-black);
+  border-left: 2px solid var(--astro-red);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--astro-red);
+  border: 2px solid var(--astro-black);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--astro-yellow);
 }
