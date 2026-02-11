@@ -10,12 +10,12 @@ const config: Config = {
       /* === COLORS — ADN VISUAL === */
       colors: {
         // Tri-tonal base
-        shadow: 'var(--ink-shadow)',
-        mid: 'var(--ink-mid)',
-        light: 'var(--ink-light)',
+        shadow: '#0E3A41',
+        mid: '#1A434F',
+        light: '#F3E4C8',
 
         // Accent
-        cyan: 'var(--led-cyan)',
+        cyan: '#5ED3D0',
         'cyan-dim': 'var(--led-cyan-dim)',
         'cyan-glow': 'var(--led-cyan-glow)',
 
