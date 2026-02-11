@@ -7,5 +7,6 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #18280 | 10:29 AM | 🔴 | Fixed bootstrap preferences route import to use supabase-server | ~206 |
+| #18272 | 10:17 AM | 🔴 | Fixed agent execution API import to use supabase-server | ~134 |
+| #18264 | 10:11 AM | 🔵 | Agent execution API route imports from old Supabase barrel export | ~237 |
 </claude-mem-context>

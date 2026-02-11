@@ -1,10 +1,12 @@
 import { HeroSection } from '@/components/HeroSection';
+import { NavigationBar } from '@/components/NavigationBar';
 import { EmpleaidoCard } from '@/components/EmpleaidoCard';
 import { empleaidos } from '@/data/empleaidos';
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-background text-foreground font-ui overflow-x-hidden">
+      <NavigationBar />
       {/* ASTROBOY Hero Section */}
       <HeroSection />
 
