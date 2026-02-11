@@ -4,7 +4,7 @@ import { empleaidos } from '@/data/empleaidos';
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#0E3A41] text-[#F3E4C8] font-ui overflow-x-hidden">
+    <main className="min-h-screen bg-background text-foreground font-ui overflow-x-hidden">
       {/* ASTROBOY Hero Section */}
       <HeroSection />
 
