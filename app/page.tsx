@@ -3,30 +3,30 @@ import { empleaidos } from '@/data/empleaidos';
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <main className="min-h-screen bg-[#0E3A41] text-[#F3E4C8] font-ui overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center starfield">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+        <div className="relative max-w-7xl mx-auto px-lg py-3xl">
           <div className="text-center">
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight">
+            <h1 className="text-5xl md:text-7xl font-display font-black tracking-tight uppercase mb-lg">
               EMPLEAIDO FACTORY
             </h1>
-            <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto">
-              Adopt AI-powered employees with unique personalities and skills that grow with your business
+            <p className="text-xl md:text-2xl text-[#F3E4C8]/80 mb-xl max-w-3xl mx-auto">
+              Adopta empleados AI con personalidades únicas y skills que crecen con tu negocio
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-md justify-center">
               <a
                 href="/catalog"
-                className="px-8 py-4 bg-[#5ED3D0] hover:bg-[#4bc4b0] text-white font-bold rounded-lg transition-colors"
+                className="px-xl py-lg bg-[#5ED3D0] hover:bg-[#4bc4b0] text-[#0E3A41] font-display font-bold uppercase tracking-wider border-2 border-[#0E3A41] transition-all"
               >
-                View Catalog
+                Ver Catálogo
               </a>
               <a
                 href="/virtual-office"
-                className="px-8 py-4 border-2 border-[#5ED3D0] text-[#5ED3D0] hover:bg-[#5ED3D0] hover:text-white font-bold rounded-lg transition-colors"
+                className="px-xl py-lg border-2 border-[#5ED3D0] text-[#5ED3D0] hover:bg-[#5ED3D0] hover:text-[#0E3A41] font-display font-bold uppercase tracking-wider transition-all"
               >
-                Enter Office
+                Entrar a la Oficina
               </a>
             </div>
           </div>
@@ -34,11 +34,11 @@ export default function HomePage() {
       </section>
 
       {/* Empleaidos Showcase */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-3xl font-bold text-white mb-12 text-center">
-          Meet Our Founding Empleaidos
+      <section className="max-w-7xl mx-auto px-lg py-3xl">
+        <h2 className="text-4xl font-display font-black uppercase text-center mb-xl">
+          Conoce a los Empleaidos Fundadores
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xl">
           {empleaidos.map((empleaido, index) => (
             <EmpleaidoCard
               key={empleaido.id}

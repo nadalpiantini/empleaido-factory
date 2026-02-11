@@ -7,6 +7,7 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #18105 | 8:27 PM | ✅ | Committed memory documentation and onboarding component updates | ~261 |
 | #18100 | 8:24 PM | 🔵 | Uncommitted changes found in empleaido-factory repository | ~231 |
 | #18091 | 8:20 PM | 🔵 | spawn.ts implements Empleaido factory pattern with Sephirot-based workspace generation | ~382 |
 | #18057 | 3:16 PM | 🔵 | Supabase client utilities organized with barrel export pattern | ~167 |

@@ -7,5 +7,6 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #18105 | 8:27 PM | ✅ | Committed memory documentation and onboarding component updates | ~261 |
 | #18096 | 8:21 PM | 🔵 | Empleaido GET endpoint retrieves individual agents from catalog | ~194 |
 </claude-mem-context>
