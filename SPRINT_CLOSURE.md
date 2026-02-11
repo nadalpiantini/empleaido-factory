@@ -114,3 +114,5 @@ When ready:
 **Assets**: Professional quality  
 
 **Start server**: `cd ~/Dev/empleaido-factory/app && npm run dev`
+
+**Sprint closed**: 2026-02-11
