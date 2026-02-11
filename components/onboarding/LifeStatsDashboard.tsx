@@ -6,7 +6,7 @@
  * Displays Empleaido life progression: Level, XP, Trust, Energy
  */
 
-import { Card } from '@/app/components/ui/Card';
+import { Card } from '@/components/ui/Card';
 import { useEffect, useState } from 'react';
 
 interface LifeStats {

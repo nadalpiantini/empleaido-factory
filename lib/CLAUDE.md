@@ -7,6 +7,8 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #18100 | 8:24 PM | 🔵 | Uncommitted changes found in empleaido-factory repository | ~231 |
+| #18091 | 8:20 PM | 🔵 | spawn.ts implements Empleaido factory pattern with Sephirot-based workspace generation | ~382 |
 | #18057 | 3:16 PM | 🔵 | Supabase client utilities organized with barrel export pattern | ~167 |
 | #18043 | 3:15 PM | 🔵 | updateBootstrapStatus function not found in lib/supabase.ts | ~104 |
 | #17814 | 2:39 PM | 🔵 | Supabase server client utilities provide SSR-compatible client creation for Next.js | ~251 |

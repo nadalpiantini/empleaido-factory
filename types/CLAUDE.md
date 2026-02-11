@@ -13,6 +13,8 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #18100 | 8:24 PM | 🔵 | Uncommitted changes found in empleaido-factory repository | ~231 |
+| #18094 | 8:21 PM | 🔵 | Empleaido type defines complete agent data structure | ~306 |
 | #17823 | 2:42 PM | 🔵 | Engine types define filtering and listing options for AI engines | ~186 |
 | #17822 | 2:41 PM | 🔵 | EngineConfig interface found at line 12 in types/engine.ts | ~139 |
 | #17821 | " | 🔴 | Removed duplicate type exports in types/engine.ts | ~279 |

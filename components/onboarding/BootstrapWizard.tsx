@@ -8,8 +8,8 @@
  */
 
 import { useState, useEffect } from 'react';
-import { Card } from '@/app/components/ui/Card';
-import { Button } from '@/app/components/ui/Button';
+import { Card } from '@/components/ui/Card';
+import { Button } from '@/components/ui/Button';
 
 interface BootstrapWizardProps {
   empleaidoId: string;

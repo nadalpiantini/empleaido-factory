@@ -39,10 +39,17 @@ export default function HomePage() {
           Meet Our Founding Empleaidos
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-          {empleaidos.map((empleaido) => (
+          {empleaidos.map((empleaido, index) => (
             <EmpleaidoCard
               key={empleaido.id}
-              empleaido={empleaido}
+              id={empleaido.id}
+              serial={empleaido.serial}
+              name={empleaido.name}
+              role={empleaido.role}
+              sephirot={empleaido.sephirot}
+              skills={empleaido.skills}
+              pricing={empleaido.pricing}
+              index={index + 1}
             />
           ))}
         </div>

@@ -9,8 +9,6 @@
 |----|------|---|-------|------|
 | #13221 | 11:37 PM | 🔵 | Skill system architecture uses domain-organized catalog with native/locked tiers and Sephirot behavioral routing | ~586 |
 | #13202 | 11:33 PM | 🔵 | Five founding Empleaidos defined with complete identity, skills, and pricing configurations | ~578 |
-| #13201 | 11:32 PM | 🔵 | JSON Schema validates Empleaido entity structure with strict formatting rules | ~465 |
-| #13081 | 9:39 PM | 🟣 | Five Founding Empleaidos Catalog Created | ~674 |
 
 ### Feb 8, 2026
 
@@ -29,5 +27,7 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #18100 | 8:24 PM | 🔵 | Uncommitted changes found in empleaido-factory repository | ~231 |
+| #18092 | 8:21 PM | 🔵 | Empleaido catalog defines AI agent products with Sephirot-based personalities | ~401 |
 | #17142 | 11:34 AM | 🔵 | Empleaido catalog contains 6 AI agents with unique personas, skills, and Sephirot-based routing | ~310 |
 </claude-mem-context>
