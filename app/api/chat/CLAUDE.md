@@ -7,6 +7,5 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #18209 | 9:35 AM | 🔵 | Empleaido images manifest file is empty | ~190 |
-| #18207 | 9:34 AM | 🔵 | Employer image assets exist in public directory | ~178 |
+| #18212 | 9:35 AM | 🔵 | Chat API uses SEPHIROT cognitive engine for empleaido personalities | ~248 |
 </claude-mem-context>

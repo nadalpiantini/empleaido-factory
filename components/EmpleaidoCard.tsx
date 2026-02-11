@@ -8,6 +8,7 @@
  */
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface EmpleaidoCardProps {
   id: string;
@@ -96,9 +97,15 @@ export function EmpleaidoCard({
 
         {/* MAIN CONTENT */}
         <div className="relative bg-[#1A434F] p-6 h-full">
-          {/* ICON */}
-          <div className="text-6xl mb-4 relative z-10">
-            {getRoleEmoji(role.main)}
+          {/* EMPLEAIDO HEAD IMAGE */}
+          <div className="relative w-32 h-32 mb-4 mx-auto group-hover:scale-110 transition-transform duration-500">
+            <div className="absolute inset-0 bg-[#5ED3D0]/10 blur-xl rounded-full" />
+            <Image
+              src="/empleaido/head-empleaido.png"
+              alt={`${name} Head Unit`}
+              fill
+              className="object-contain grayscale group-hover:grayscale-0 transition-all"
+            />
           </div>
 
           {/* NAME */}

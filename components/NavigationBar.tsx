@@ -8,6 +8,7 @@
  */
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 export function NavigationBar() {
@@ -25,16 +26,21 @@ export function NavigationBar() {
         <div className="flex items-center justify-between h-16">
           {/* LOGO */}
           <Link href="/" className="flex items-center gap-3 group">
-            {/* FACTORY ICON */}
-            <div className="w-10 h-10 bg-[#F3E4C8] border-2 border-[#5ED3D0]
+            {/* OFFICIAL LOGO IMAGE */}
+            <div className="relative w-10 h-10 bg-[#F3E4C8] border-2 border-[#5ED3D0]
                             flex items-center justify-center
-                            group-hover:bg-[#5ED3D0] transition-colors">
-              <span className="text-2xl">🏭</span>
+                            group-hover:bg-[#5ED3D0] transition-colors overflow-hidden p-1">
+              <Image
+                src="/empleaido/empleaido-logo-typo.png"
+                alt="Empleaido Logo"
+                fill
+                className="object-contain p-1"
+              />
             </div>
 
             {/* BRAND */}
             <div className="hidden md:block">
-              <div className="font-display font-black text-xl text-[#F3E4C8] tracking-wider">
+              <div className="font-display font-black text-xl text-[#F3E4C8] tracking-wider uppercase">
                 EMPLEAIDO
               </div>
               <div className="font-mono text-xs text-[#5ED3D0]">

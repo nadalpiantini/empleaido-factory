@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 interface FooterProps {
   version?: string;
   poweredBy?: string;
@@ -5,7 +7,7 @@ interface FooterProps {
 }
 
 export function Footer({
-  version = 'v1.0',
+  version = 'v2.1',
   poweredBy = 'OpenClaw',
   tagline = '✦ TRABAJAR MEJOR, CON UNA SONRISA ✦'
 }: FooterProps) {
@@ -15,9 +17,15 @@ export function Footer({
         <div className="flex flex-col md:flex-row items-center justify-between gap-lg">
           {/* Logo */}
           <div className="flex items-center gap-md">
-            {/* Placeholder for Empleaido idle */}
-            <div className="w-10 h-10 bg-[#5ED3D0] rounded-full flex items-center justify-center">
-              <span className="text-xl">🤖</span>
+            {/* Official Logo usage in Footer */}
+            <div className="relative w-12 h-12 bg-[#F3E4C8] border-2 border-[#5ED3D0]
+                            flex items-center justify-center p-1 overflow-hidden">
+              <Image
+                src="/empleaido/empleaido-logo-typo.png"
+                alt="Empleaido Logo Footer"
+                fill
+                className="object-contain p-1"
+              />
             </div>
             <div>
               <p className="font-display font-black text-lg uppercase tracking-wide text-[#F3E4C8]">EMPLEAIDO FACTORY</p>

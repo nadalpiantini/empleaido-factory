@@ -7,6 +7,7 @@
  */
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 export function HeroSection() {
   return (
@@ -46,6 +47,29 @@ export function HeroSection() {
 
       {/* MAIN CONTENT */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-8">
+        {/* EMPLEAIDO HEAD - CENTERPIECE */}
+        <div className="relative mb-8 group">
+          {/* BACKGROUND GLOW */}
+          <div className="absolute inset-0 bg-[#5ED3D0] blur-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-1000" />
+
+          <div className="relative w-48 h-48 md:w-64 md:h-64 border-4 border-[#5ED3D0] bg-[#0E3A41] p-4 shadow-[0_0_30px_rgba(94,211,208,0.2)]">
+            <div className="relative w-full h-full grayscale hover:grayscale-0 transition-all duration-500">
+              <Image
+                src="/empleaido/head-empleaido.png"
+                alt="Empleaido Head Unit"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+
+            {/* HUD SCANNER DECORATION */}
+            <div className="absolute top-0 left-0 w-4 h-1 bg-[#5ED3D0] animate-pulse" />
+            <div className="absolute bottom-0 right-0 w-4 h-1 bg-[#5ED3D0] animate-pulse" />
+            <div className="absolute top-4 -right-2 w-1 h-8 bg-[#5ED3D0]/30" />
+          </div>
+        </div>
+
         {/* HEADER LABEL */}
         <div className="mb-8 flex items-center gap-4">
           <div className="h-px w-20 bg-[#5ED3D0]" />
