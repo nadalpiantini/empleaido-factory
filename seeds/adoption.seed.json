@@ -1,0 +1,23 @@
+{
+  "$comment": "Adoption relationship model - links users to Empleaidos",
+  "adoption": {
+    "id": "adoption-001",
+    "user_id": "user-demo",
+    "empleaido_id": "empleaido-04094",
+    "status": "active",
+    "bond_started_at": "2026-02-07T00:00:00Z",
+    "bond_ended_at": null,
+    "cycle": 1,
+    "confidence": 0.9
+  },
+  "schema": {
+    "id": "string (unique adoption ID)",
+    "user_id": "string (references user)",
+    "empleaido_id": "string (references empleaido)",
+    "status": "active | paused | ended",
+    "bond_started_at": "ISO datetime",
+    "bond_ended_at": "ISO datetime | null",
+    "cycle": "integer (billing cycle count)",
+    "confidence": "number 0-1 (relationship health)"
+  }
+}

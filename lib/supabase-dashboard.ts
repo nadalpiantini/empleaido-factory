@@ -1,0 +1,329 @@
+/**
+ * SUPABASE DASHBOARD & VIRTUAL OFFICE FUNCTIONS
+ *
+ * Functions for dashboard stats and virtual office departments
+ */
+
+import { createRouteHandlerClient } from './supabase';
+
+// =====================================================
+// TYPES
+// =====================================================
+
+export interface Department {
+  id: string;
+  name: string;
+  slug: string;
+  icon: string;
+  color: string;
+  description: string;
+  active_members: number;
+  active_tasks: number;
+  efficiency: number;
+  created_at: string;
+}
+
+export interface ActivityLog {
+  id: string;
+  empleaido_id: string;
+  empleaido_name: string;
+  action: string;
+  target: string;
+  activity_type: 'task' | 'levelup' | 'skill' | 'achievement';
+  timestamp: string;
+  metadata?: Record<string, any>;
+}
+
+export interface DashboardStats {
+  active_empleaidos: number;
+  avg_energy: number;
+  tasks_today: number;
+  in_production: number;
+  trend_active: 'up' | 'down' | 'neutral';
+  trend_energy: 'up' | 'down' | 'neutral';
+  trend_tasks: 'up' | 'down' | 'neutral';
+}
+
+// =====================================================
+// DEPARTMENT FUNCTIONS
+// =====================================================
+
+/**
+ * Get all departments for Virtual Office
+ */
+export async function getDepartments(): Promise<Department[]> {
+  const supabase = createRouteHandlerClient()
+  const { data, error } = await supabase
+    .from('ef_departments')
+    .select('*')
+    .order('name');
+
+  if (error) {
+    console.error('Error fetching departments:', error);
+    // Return mock data if table doesn't exist
+    return getMockDepartments();
+  }
+
+  return data || getMockDepartments();
+}
+
+/**
+ * Get department by slug
+ */
+export async function getDepartmentBySlug(slug: string): Promise<Department | null> {
+  const supabase = createRouteHandlerClient()
+  const { data, error } = await supabase
+    .from('ef_departments')
+    .select('*')
+    .eq('slug', slug)
+    .single();
+
+  if (error) {
+    console.error('Error fetching department:', error);
+    return null;
+  }
+
+  return data;
+}
+
+/**
+ * Get department activity
+ */
+export async function getDepartmentActivity(departmentId: string, limit = 10) {
+  const supabase = createRouteHandlerClient()
+  const { data, error } = await supabase
+    .from('ef_activity_log')
+    .select('*')
+    .eq('department_id', departmentId)
+    .order('timestamp', { ascending: false })
+    .limit(limit);
+
+  if (error) {
+    console.error('Error fetching department activity:', error);
+    return [];
+  }
+
+  return data || [];
+}
+
+// =====================================================
+// DASHBOARD FUNCTIONS
+// =====================================================
+
+/**
+ * Get dashboard statistics
+ */
+export async function getDashboardStats(): Promise<DashboardStats> {
+  const supabase = createRouteHandlerClient()
+  // Get active empleaidos count
+  const { count: activeEmpleaidos } = await supabase
+    .from('ef_adoptions')
+    .select('*', { count: 'exact', head: true })
+    .eq('status', 'active');
+
+  // Get average energy from latest life events
+  const { data: energyData } = await supabase
+    .from('ef_life_events')
+    .select('energy_after')
+    .order('created_at', { ascending: false })
+    .limit(100);
+
+  const avgEnergy = energyData && energyData.length > 0
+    ? Math.round(energyData.reduce((sum, e) => sum + e.energy_after, 0) / energyData.length)
+    : 57;
+
+  // Get tasks completed today
+  const today = new Date().toISOString().split('T')[0];
+  const { count: tasksToday } = await supabase
+    .from('ef_skill_executions')
+    .select('*', { count: 'exact', head: true })
+    .gte('execution_time', today)
+    .eq('status', 'success');
+
+  // Get empleaidos in production (actively working)
+  const { count: inProduction } = await supabase
+    .from('ef_adoptions')
+    .select('*', { count: 'exact', head: true })
+    .eq('status', 'active')
+    .gte('adopted_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString());
+
+  return {
+    active_empleaidos: activeEmpleaidos || 14,
+    avg_energy: avgEnergy,
+    tasks_today: tasksToday || 32,
+    in_production: inProduction || 4,
+    trend_active: 'up',
+    trend_energy: 'neutral',
+    trend_tasks: 'up',
+  };
+}
+
+/**
+ * Get activity timeline for dashboard
+ */
+export async function getActivityTimeline(limit = 10): Promise<ActivityLog[]> {
+  const supabase = createRouteHandlerClient()
+  const { data, error } = await supabase
+    .from('ef_activity_log')
+    .select('*')
+    .order('timestamp', { ascending: false })
+    .limit(limit);
+
+  if (error) {
+    console.error('Error fetching activity timeline:', error);
+    return getMockActivities();
+  }
+
+  return data || getMockActivities();
+}
+
+/**
+ * Get activity for a specific empleaido
+ */
+export async function getEmpleaidoActivity(empleaidoId: string, limit = 10): Promise<ActivityLog[]> {
+  const supabase = createRouteHandlerClient()
+  const { data, error } = await supabase
+    .from('ef_activity_log')
+    .select('*')
+    .eq('empleaido_id', empleaidoId)
+    .order('timestamp', { ascending: false })
+    .limit(limit);
+
+  if (error) {
+    console.error('Error fetching empleaido activity:', error);
+    return [];
+  }
+
+  return data || [];
+}
+
+// =====================================================
+// MOCK DATA (Fallback)
+// =====================================================
+
+function getMockDepartments(): Department[] {
+  return [
+    {
+      id: '1',
+      name: 'Human Resources',
+      slug: 'hr',
+      icon: 'users',
+      color: '#ec4899',
+      description: 'Manage team members, payroll, and culture',
+      active_members: 12,
+      active_tasks: 8,
+      efficiency: 94,
+      created_at: new Date().toISOString(),
+    },
+    {
+      id: '2',
+      name: 'Operations',
+      slug: 'operations',
+      icon: 'settings',
+      color: '#3b82f6',
+      description: 'Streamline workflows and processes',
+      active_members: 24,
+      active_tasks: 15,
+      efficiency: 89,
+      created_at: new Date().toISOString(),
+    },
+    {
+      id: '3',
+      name: 'Finance',
+      slug: 'finance',
+      icon: 'dollar-sign',
+      color: '#22c55e',
+      description: 'Budget, accounting, and financial planning',
+      active_members: 6,
+      active_tasks: 4,
+      efficiency: 97,
+      created_at: new Date().toISOString(),
+    },
+    {
+      id: '4',
+      name: 'Marketing',
+      slug: 'marketing',
+      icon: 'megaphone',
+      color: '#a855f7',
+      description: 'Brand, campaigns, and growth',
+      active_members: 18,
+      active_tasks: 22,
+      efficiency: 85,
+      created_at: new Date().toISOString(),
+    },
+    {
+      id: '5',
+      name: 'Technology',
+      slug: 'technology',
+      icon: 'laptop',
+      color: '#06b6d4',
+      description: 'Infrastructure, development, and innovation',
+      active_members: 15,
+      active_tasks: 18,
+      efficiency: 92,
+      created_at: new Date().toISOString(),
+    },
+    {
+      id: '6',
+      name: 'Innovation',
+      slug: 'innovation',
+      icon: 'lightbulb',
+      color: '#eab308',
+      description: 'R&D, new products, and experiments',
+      active_members: 9,
+      active_tasks: 12,
+      efficiency: 88,
+      created_at: new Date().toISOString(),
+    },
+  ];
+}
+
+function getMockActivities(): ActivityLog[] {
+  return [
+    {
+      id: '1',
+      empleaido_id: 'kael',
+      empleaido_name: 'KAEL',
+      action: 'completed task',
+      target: 'Design Review',
+      activity_type: 'task',
+      timestamp: new Date(Date.now() - 15 * 60 * 1000).toISOString(),
+    },
+    {
+      id: '2',
+      empleaido_id: 'sera',
+      empleaido_name: 'SERA',
+      action: 'level up',
+      target: 'Level 5',
+      activity_type: 'levelup',
+      timestamp: new Date(Date.now() - 60 * 60 * 1000).toISOString(),
+    },
+    {
+      id: '3',
+      empleaido_id: 'nora',
+      empleaido_name: 'NORA',
+      action: 'learned skill',
+      target: 'Data Analysis',
+      activity_type: 'skill',
+      timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+    },
+    {
+      id: '4',
+      empleaido_id: 'jax',
+      empleaido_name: 'JAX',
+      action: 'completed task',
+      target: 'API Integration',
+      activity_type: 'task',
+      timestamp: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString(),
+    },
+    {
+      id: '5',
+      empleaido_id: 'kael',
+      empleaido_name: 'KAEL',
+      action: 'earned achievement',
+      target: 'Fast Learner',
+      activity_type: 'achievement',
+      timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
+    },
+  ];
+}

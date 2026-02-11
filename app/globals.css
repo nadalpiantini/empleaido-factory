@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== ASTROBOY LABORATORY - EMPLEAIDO DESIGN SYSTEM ===== */
+
+:root {
+  /* Laboratory Palette - Approved */
+  --lab-blue: #1A434F;       /* Deep industrial blue */
+  --lab-dark: #0E3A41;       /* Dark panel */
+  --lab-cyan: #5ED3D0;       /* Cyan glow */
+  --lab-cream: #F3E4C8;      /* Cream text/accent */
+  --lab-white: #FAFAFA;      /* Pure highlight */
+  --lab-black: #051A1E;      /* Deepest shadow */
+
+  /* System defaults */
+  --background: var(--lab-dark);
+  --foreground: var(--lab-cream);
+  --border: var(--lab-blue);
+  --accent: var(--lab-cyan);
+  --glow: var(--lab-cyan);
+
+  /* Semantic mappings */
+  --empleaido-dark: var(--lab-dark);
+  --empleaido-border: var(--lab-blue);
+  --empleaido-light: var(--lab-cream);
+  --empleaido-accent: var(--lab-cyan);
+  --empleaido-tech: var(--lab-cyan);
+  --empleaido-circuit: var(--lab-cyan);
+}
+
+:root {
+  --font-display: 'Inter', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'Courier New', monospace;
+  --font-ui: 'Inter', sans-serif;
+}
+
+/* Custom Spacing System */
+:root {
+  --space-xs: 0.25rem;    /* 4px */
+  --space-sm: 0.5rem;     /* 8px */
+  --space-md: 0.75rem;    /* 12px */
+  --space-lg: 1rem;       /* 16px */
+  --space-xl: 1.5rem;     /* 24px */
+  --space-2xl: 2rem;      /* 32px */
+  --space-3xl: 3rem;      /* 48px */
+}
+
+/* Add custom spacing to Tailwind */
+@layer utilities {
+  .px-xs { padding-left: var(--space-xs); padding-right: var(--space-xs); }
+  .px-sm { padding-left: var(--space-sm); padding-right: var(--space-sm); }
+  .px-md { padding-left: var(--space-md); padding-right: var(--space-md); }
+  .px-lg { padding-left: var(--space-lg); padding-right: var(--space-lg); }
+  .px-xl { padding-left: var(--space-xl); padding-right: var(--space-xl); }
+  .px-2xl { padding-left: var(--space-2xl); padding-right: var(--space-2xl); }
+  .px-3xl { padding-left: var(--space-3xl); padding-right: var(--space-3xl); }
+
+  .py-xs { padding-top: var(--space-xs); padding-bottom: var(--space-xs); }
+  .py-sm { padding-top: var(--space-sm); padding-bottom: var(--space-sm); }
+  .py-md { padding-top: var(--space-md); padding-bottom: var(--space-md); }
+  .py-lg { padding-top: var(--space-lg); padding-bottom: var(--space-lg); }
+  .py-xl { padding-top: var(--space-xl); padding-bottom: var(--space-xl); }
+  .py-2xl { padding-top: var(--space-2xl); padding-bottom: var(--space-2xl); }
+  .py-3xl { padding-top: var(--space-3xl); padding-bottom: var(--space-3xl); }
+
+  .gap-xs { gap: var(--space-xs); }
+  .gap-sm { gap: var(--space-sm); }
+  .gap-md { gap: var(--space-md); }
+  .gap-lg { gap: var(--space-lg); }
+  .gap-xl { gap: var(--space-xl); }
+  .gap-2xl { gap: var(--space-2xl); }
+  .gap-3xl { gap: var(--space-3xl); }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ===== ASTROBOY ANIME EFFECTS ===== */
+
+/* Circuit board pattern - robot tech aesthetic */
+.circuit-pattern {
+  position: relative;
+  background-image:
+    linear-gradient(90deg, rgba(16, 185, 129, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 25% 25%, rgba(251, 191, 36, 0.05) 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, rgba(220, 38, 38, 0.05) 2px, transparent 2px);
+  background-size: 100px 100px, 100px 100px, 50px 50px, 50px 50px;
+}
+
+/* Energy burst glow */
+.energy-glow {
+  box-shadow:
+    0 0 20px rgba(251, 191, 36, 0.3),
+    0 0 40px rgba(251, 191, 36, 0.1),
+    inset 0 0 20px rgba(251, 191, 36, 0.05);
+}
+
+/* Anime speed lines */
+.speed-lines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 50px,
+    rgba(220, 38, 38, 0.03) 50px,
+    rgba(220, 38, 38, 0.03) 51px
+  );
+  pointer-events: none;
+}
+
+/* Robot panel border */
+.robot-border {
+  border: 3px solid var(--lab-cyan);
+  box-shadow:
+    0 0 0 1px var(--lab-dark),
+    0 0 0 2px var(--lab-cream),
+    0 4px 20px rgba(94, 211, 208, 0.4);
+}
+
+/* Anime bold text styling */
+.anime-title {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow:
+    3px 3px 0 var(--lab-blue),
+    -1px -1px 0 var(--lab-black),
+    1px -1px 0 var(--lab-black),
+    -1px 1px 0 var(--lab-black),
+    1px 1px 0 var(--lab-black);
+}
+
+/* Manga halftone effect */
+.halftone {
+  background-image: radial-gradient(circle, var(--lab-black) 1px, transparent 1px);
+  background-size: 4px 4px;
+  opacity: 0.1;
+}
+
+/* Tech HUD overlay */
+.hud-overlay {
+  position: relative;
+}
+
+.hud-overlay::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 49%, rgba(16, 185, 129, 0.2) 50%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, rgba(16, 185, 129, 0.2) 50%, transparent 51%);
+  background-size: 20px 20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.hud-overlay:hover::after {
+  opacity: 1;
+}
+
+/* Power charge animation */
+@keyframes power-charge {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--lab-cyan), 0 0 10px var(--lab-cyan);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--lab-cyan), 0 0 30px var(--lab-cyan), 0 0 40px var(--lab-blue);
+  }
+}
+
+.power-charging {
+  animation: power-charge 2s ease-in-out infinite;
+}
+
+/* Anime burst effect */
+@keyframes anime-burst {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.anime-burst:hover {
+  animation: anime-burst 0.3s ease-out;
+}
+
+/* Robot eye blink */
+@keyframes eye-blink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+
+.robot-eye {
+  animation: eye-blink 4s ease-in-out infinite;
+}
+
+/* Starfield background effect */
+.starfield {
+  position: relative;
+}
+
+.starfield::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, var(--lab-cyan), transparent),
+    radial-gradient(2px 2px at 60% 70%, var(--lab-blue), transparent),
+    radial-gradient(1px 1px at 50% 50%, var(--lab-cream), transparent);
+  background-size: 200% 200%;
+  opacity: 0.4;
+  animation: stars 120s linear infinite;
+}
+
+@keyframes stars {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100%); }
+}
+
+/* Circuit pulse animation */
+@keyframes circuit-pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 5px var(--lab-cyan), 0 0 10px var(--lab-cyan);
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 15px var(--lab-cyan), 0 0 25px var(--lab-tech);
+  }
+}
+
+.circuit-pulse {
+  animation: circuit-pulse 2s ease-in-out infinite;
+}
+
+/* Tech grid pattern */
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(to right, rgba(94, 211, 208, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(94, 211, 208, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Base styles - ASTROBOY LABORATORY Theme */
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-ui);
+  font-weight: 400;
+  /* Tech feel with subtle grid */
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(94, 211, 208, 0.03) 0%, transparent 50%),
+    linear-gradient(0deg, rgba(94, 211, 208, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(94, 211, 208, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+}
+
+/* Selection styling */
+::selection {
+  background: var(--lab-cyan);
+  color: var(--lab-dark);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--lab-dark);
+  border-left: 2px solid var(--lab-cyan);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--lab-cyan);
+  border: 2px solid var(--lab-dark);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--lab-cream);
+}

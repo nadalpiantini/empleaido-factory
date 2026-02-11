@@ -1,208 +1,405 @@
-# 📚 INDEX - Guía Rápida de Archivos
+# 📖 DOCUMENTATION INDEX - EMPLEAIDO FACTORY
 
-**Ubicación**: ~/agent-wrapping-plan/
-**Comando para ejecutar**: `bash EJECUTAR.sh`
+**Last Updated**: 2026-02-07
+**Sprint**: #1 Complete
+**Total Files**: 17 documents (~80KB)
 
 ---
 
 ## 🚀 START HERE
 
-1. **[RESUMEN_EJECUTIVO.md](./RESUMEN_EJECUTIVO.md)** ⭐ LEER PRIMERO
-   - 5 minutos de lectura
-   - Resumen completo del proyecto
-   - Qué vamos a construir y cómo
-   - Tiempo: 5 min
+**New to the project?** Read in this order:
 
-2. **[EJECUTAR.sh](./EJECUTAR.sh)** 🎯 EJECUTAR ESTE
-   - Script principal interactivo
-   - Ejecuta todo el plan
-   - Comando: `bash EJECUTAR.sh`
-   - Tiempo: 8 semanas (todo el proyecto)
+1. **README.md** (6.3KB) - Project overview
+2. **PROJECT.md** (12KB) - Quick start & initialization
+3. **PRD.md** (6.9KB) - Product vision & roadmap
+4. **SPRINT_01_CLOSURE.md** (19KB) - What was built
 
----
+**Resuming work?** Start here:
 
-## 📖 DOCUMENTACIÓN PRINCIPAL
-
-### Fundamentos
-- **[00-MARCO_TEORICO.md](./00-MARCO_TEORICO.md)**
-  - Por qué construimos esto
-  - Decisiones arquitectónicas
-  - Stack tecnológico y trade-offs
-  - Tiempo: 15 min
-
-### Fases del Proyecto
-- **[03-FASE_2_ENSAMBLAJE.md](./03-FASE_2_ENSAMBLAJE.md)**
-  - Next.js + tRPC + Supabase
-  - Builder no-code
-  - Template marketplace
-  - Tiempo: 15 min
-
-- **[04-FASE_3_DELIVERY.md](./04-FASE_3_DELIVERY.md)**
-  - Onboarding wizard
-  - Email automation
-  - First run experience
-  - Tiempo: 10 min
-
-- **[05-FASE_4_USUARIO_FINAL.md](./05-FASE_4_USUARIO_FINAL.md)**
-  - Chat interface
-  - Dashboard
-  - Analytics
-  - Tiempo: 10 min
-
-- **[06-FASE_5_SERVICIO.md](./06-FASE_5_SERVICIO.md)**
-  - Soporte post-venta
-  - Monitoring & alerting
-  - Update automation
-  - Tiempo: 10 min
+1. **HANDOFF.md** (8.8KB) - Next session guide
+2. **BEST_PRACTICES.md** (15KB) - Learnings & guidelines
+3. **requirements.md** (13KB) - Feature specs
 
 ---
 
-## 🔬 FASE 1: FABRICACIÓN DE MOTORES
+## 📂 DOCUMENTATION BY TYPE
 
-### Documentación Detallada
-- **[fase-1/README.md](./fase-1-fabricacion-motores/README.md)**
-  - Índice de Fase 1
-  - Checklist de implementación
-  - Tiempo: 5 min
+### 🎯 Product & Planning
 
-- **[fase-1/01-arquitectura-agentes.md](./fase-1-fabricacion-motores/01-arquitectura-agentes.md)**
-  - Arquitectura modular
-  - Sistema de bloques
-  - Implementación técnica
-  - ⚠️ LEER ANTES DE CODEAR
-  - Tiempo: 25 min
+| File | Size | Purpose | Audience |
+|------|------|---------|----------|
+| **PRD.md** | 6.9KB | Product Requirements Document | Everyone |
+| **requirements.md** | 13KB | Functional specifications | Developers |
+| **SPRINT_01_CLOSURE.md** | 19KB | Sprint 1 completion report | Stakeholders |
 
-- **[fase-1/02-agente-contabilidad.md](./fase-1-fabricacion-motores/02-agente-contabilidad.md)**
-  - Implementación completa
-  - Código paso a paso
-  - Testing
-  - Tiempo: 40 min
-
-### Scripts Ejecutables
-- **[fase-1/scripts/01-setup-entorno.sh](./fase-1-fabricacion-motores/scripts/01-setup-entorno.sh)**
-  - Setup inicial del entorno
-  - Verificar dependencias
-  - Crear estructura
-  - Tiempo: 5 min
-
-- **[fase-1/scripts/02-crear-motor-contable.sh](./fase-1-fabricacion-motores/scripts/02-crear-motor-contable.sh)**
-  - Crear agente contable
-  - Implementar bloques
-  - Tests
-  - Tiempo: 30 min
+**Key Sections**:
+- Product definition (1.1-1.6 in PRD.md)
+- Must Haves vs Nice to Haves
+- Success criteria
+- Roadmap (Sprint 2-4)
 
 ---
 
-## 📂 ESTRUCTURA COMPLETA
+### 🛠️ Technical Documentation
 
-```
-agent-wrapping-plan/
-│
-├── 📘 RESUMEN_EJECUTIVO.md        # START HERE - Resumen completo
-├── 📖 INDEX.md                     # ESTE ARCHIVO - Índice
-├── 🚀 EJECUTAR.sh                  # EJECUTAR ESTE SCRIPT
-├── 📋 README.md                    # Índice maestro
-│
-├── 🎯 00-MARCO_TEORICO.md          # Fundamentos (leer 1ro)
-│
-├── 📦 fase-1-fabricacion-motores/  # FASE 1: Motores
-│   ├── README.md
-│   ├── 01-arquitectura-agentes.md  # ⚠️ Leer antes de codear
-│   ├── 02-agente-contabilidad.md   # Implementación completa
-│   └── scripts/
-│       ├── 01-setup-entorno.sh     # Setup inicial
-│       └── 02-crear-motor-contable.sh
-│
-├── 🏭 03-FASE_2_ENSAMBLAJE.md      # FASE 2: Plataforma
-├── 🚚 04-FASE_3_DELIVERY.md        # FASE 3: Delivery
-├── 👤 05-FASE_4_USUARIO_FINAL.md   # FASE 4: Usuario
-└── 🛠️ 06-FASE_5_SERVICIO.md        # FASE 5: Soporte
-```
+| File | Size | Purpose | Audience |
+|------|------|---------|----------|
+| **tech-stack.md** | 8.0KB | Technology choices & config | Developers |
+| **design-notes.md** | 15KB | Architecture & system design | Architects |
+| **PROJECT.md** | 12KB | Setup & development guide | Developers |
+| **BEST_PRACTICES.md** | 15KB | Guidelines & learnings | Everyone |
+
+**Key Topics**:
+- Next.js 16 configuration
+- Supabase database setup
+- OpenClaw integration
+- Sephirot Framework
+- Life Engine mechanics
 
 ---
 
-## ⏱️ TIEMPOS DE LECTURA
+### 📋 Operational Docs
 
-- **Resumen Ejecutivo**: 5 min ⭐
-- **Marco Teórico**: 15 min
-- **Fase 1 - Arquitectura**: 25 min
-- **Fase 1 - Contabilidad**: 40 min
-- **Fase 2**: 15 min
-- **Fase 3**: 10 min
-- **Fase 4**: 10 min
-- **Fase 5**: 10 min
+| File | Size | Purpose | Audience |
+|------|------|---------|----------|
+| **HANDOFF.md** | 8.8KB | Session transition guide | Next developer |
+| **INDEX.md** | This file | Documentation navigation | Everyone |
+| **README.md** | 6.3KB | Project introduction | Public |
 
-**Total lectura**: ~2 horas
-**Total implementación**: 8 semanas
-
----
-
-## 🎯 FLUJO RECOMENDADO
-
-### Para Empezar AHORA:
-```bash
-1. Leer RESUMEN_EJECUTIVO.md (5 min)
-2. Ejecutar: bash EJECUTAR.sh
-3. Seguir el menú interactivo
-```
-
-### Para Entender TODO Primero:
-```bash
-1. Leer RESUMEN_EJECUTIVO.md
-2. Leer 00-MARCO_TEORICO.md
-3. Leer fase-1/README.md
-4. Ejecutar: bash EJECUTAR.sh
-```
-
-### Para Ir Directo al Código:
-```bash
-1. Leer fase-1/01-arquitectura-agentes.md
-2. Ejecutar: cd fase-1-fabricacion-motores/scripts
-3. Ejecutar: bash 01-setup-entorno.sh
-4. Ejecutar: bash 02-crear-motor-contable.sh
-```
+**When to Use**:
+- Starting new session → **HANDOFF.md**
+- Finding specific info → **INDEX.md** (this file)
+- Public repo/sharing → **README.md**
 
 ---
 
-## 📞 QUICK HELP
+### 📊 Status Reports
 
-### No sé por dónde empezar
-→ Leer **RESUMEN_EJECUTIVO.md**
+| File | Size | Purpose | Status |
+|------|------|---------|--------|
+| **SPRINT_01_CLOSURE.md** | 19KB | Complete sprint report | ✅ Final |
+| **FINAL_STATUS_100.md** | 7.4KB | Production ready status | ✅ Final |
+| **RALPH_COMPLETION_REPORT.md** | 4.6KB | UI fix technical report | ✅ Final |
+| **COMPLETE_VALIDATION.md** | 3.9KB | Validation checklist | ✅ Final |
+| **STATUS.md** | 2.1KB | Quick status (old) | 📦 Archive |
+| **DELIVERY_REPORT.md** | 4.2KB | Deliverables summary (old) | 📦 Archive |
 
-### Quiero entender la arquitectura
-→ Leer **00-MARCO_TEORICO.md**
-
-### Quiero empezar a codear YA
-→ Ejecutar **bash EJECUTAR.sh** → Opción "2"
-
-### Quiero leer sobre una fase específica
-→ Ver sección "FASES DEL PROYECTO" arriba
-
-### Tengo un error durante ejecución
-→ Ver logs en `~/agent-wrapping-plan/logs/`
-
-### Quiero ver el estado del proyecto
-→ Ejecutar **bash EJECUTAR.sh** → Opción "4"
+**Note**: SPRINT_01_CLOSURE.md is the canonical status document.
 
 ---
 
-## ✅ CHECKLIST RÁPIDO
+## 🔍 FIND BY TOPIC
 
-Antes de empezar, asegúrate de:
+### Architecture & Design
 
-- [ ] Leído RESUMEN_EJECUTIVO.md
-- [ ] Entendido el objetivo del proyecto
-- [ ] Verificado que tienes M2 o máquina similar
-- [ ] Verificado Python 3.11+ instalado
-- [ ] Verificado Node.js 20+ instalado
-- [ ] Obtenido API keys (OpenAI, Anthropic)
-- [ ] Creado cuenta Supabase
-- [ ] Listo para invertir 8 semanas
+**Start**: design-notes.md
+**Also See**:
+- tech-stack.md (technology choices)
+- requirements.md (NFR section)
+- BEST_PRACTICES.md (architecture patterns)
+
+**Key Topics**:
+- System architecture diagrams
+- Sephirot Framework (Three Pillars)
+- Life Engine (XP/Trust/Energy)
+- Component patterns
+- ADRs (Architecture Decision Records)
 
 ---
 
-**🚀 Listo? Ejecuta: `bash EJECUTAR.sh`**
+### Database
 
-**📚 Dudas? Lee: `RESUMEN_EJECUTIVO.md`**
+**Start**: tech-stack.md (Database section)
+**Also See**:
+- design-notes.md (data flow)
+- requirements.md (DR-001, DR-002)
+- BEST_PRACTICES.md (database practices)
 
-**💬 Soporte? Próximamente Discord**
+**Key Topics**:
+- Multi-tenant schema (ef_ prefix)
+- Row Level Security (RLS)
+- Table structure
+- Functions (ef_apply_activity)
+- Migration strategy
+
+---
+
+### Next.js & Frontend
+
+**Start**: tech-stack.md (Frontend section)
+**Also See**:
+- design-notes.md (UI/UX principles)
+- BEST_PRACTICES.md (Next.js 15+ patterns)
+- PROJECT.md (development workflow)
+
+**Key Topics**:
+- Next.js 16 App Router
+- Server Components
+- Dynamic routes (async params)
+- Tailwind CSS
+- Responsive design
+
+---
+
+### OpenClaw Integration
+
+**Start**: design-notes.md (OpenClaw section)
+**Also See**:
+- docs/openclaw-integration.md
+- BEST_PRACTICES.md (OpenClaw practices)
+- SPRINT_01_CLOSURE.md (spawn validation)
+
+**Key Topics**:
+- Agent spawning system
+- Workspace structure (5 .md files)
+- Sefirotic routing adapter
+- SERA proof of concept
+
+---
+
+### Life Engine & Gamification
+
+**Start**: design-notes.md (Life Engine section)
+**Also See**:
+- requirements.md (FR-003)
+- lib/life-engine.ts (code)
+
+**Key Topics**:
+- XP calculation formulas
+- Trust progression
+- Energy daily reset
+- Level-up thresholds
+- Skill unlock mechanics
+
+---
+
+### Sephirot Framework
+
+**Start**: design-notes.md (Sephirot section)
+**Also See**:
+- docs/architecture.md
+- lib/sephirot.ts (code)
+
+**Key Topics**:
+- Three Pillars (Expansion/Restriction/Balance)
+- Empleaido mapping (SERA, KAEL, NORA, LIOR, ZIV)
+- Behavioral archetypes
+- Routing logic
+
+---
+
+## 🎯 COMMON TASKS
+
+### "I need to add a new feature"
+
+1. Read: **requirements.md** (understand current features)
+2. Check: **PRD.md** (is it in roadmap?)
+3. Follow: **BEST_PRACTICES.md** (checklist at bottom)
+4. Update: **requirements.md** (add new FR-XXX)
+5. Document: Create ADR if major decision
+
+---
+
+### "I'm starting a new session"
+
+1. Read: **HANDOFF.md** (session transition guide)
+2. Check: **SPRINT_01_CLOSURE.md** (what's complete)
+3. Review: **BEST_PRACTICES.md** (avoid past mistakes)
+4. Start: `npm run dev` (from /app directory)
+
+---
+
+### "I need to understand the architecture"
+
+1. Start: **design-notes.md** (architecture overview)
+2. Deep dive: **tech-stack.md** (technology details)
+3. Code: `/lib` directory (core utilities)
+4. Database: `supabase-schema.sql` (schema)
+
+---
+
+### "I'm setting up locally"
+
+1. Read: **PROJECT.md** (Quick Start section)
+2. Install: Dependencies (npm install)
+3. Configure: Environment variables (.env.local)
+4. Verify: All routes working
+
+---
+
+### "I need to deploy"
+
+1. Read: **tech-stack.md** (Hosting section)
+2. Check: **PROJECT.md** (Deployment section)
+3. Follow: **BEST_PRACTICES.md** (deployment checklist)
+4. Verify: Pre-deployment gates
+
+---
+
+### "I'm debugging an issue"
+
+1. Check: **BEST_PRACTICES.md** (common issues)
+2. Review: **RALPH_COMPLETION_REPORT.md** (past fixes)
+3. Search: All docs for keyword (use grep/search)
+4. Document: Add to BEST_PRACTICES.md if new
+
+---
+
+## 📚 REFERENCE DOCUMENTS
+
+### External (in /docs)
+
+- `docs/architecture.md` - System architecture
+- `docs/openclaw-integration.md` - OpenClaw details
+
+### Code Documentation
+
+- `lib/types.ts` - TypeScript interfaces
+- `lib/sephirot.ts` - Sephirot framework code
+- `lib/skills.ts` - Skills system
+- `lib/life-engine.ts` - Life progression logic
+
+### Database
+
+- `supabase-schema.sql` - Complete schema
+- `seeds/empleaidos-seed.sql` - Seed data
+
+---
+
+## 🔄 UPDATE FREQUENCY
+
+| Document | Update When | Owner |
+|----------|-------------|-------|
+| PRD.md | Product vision changes | Product |
+| requirements.md | New features added | Development |
+| tech-stack.md | Technology changes | Tech Lead |
+| design-notes.md | Architecture changes | Architect |
+| BEST_PRACTICES.md | New learnings | Everyone |
+| HANDOFF.md | End of sprint | Sprint Lead |
+| INDEX.md | New docs added | Documentation |
+
+---
+
+## 📊 DOCUMENTATION STATS
+
+### By Category
+
+- **Product**: 3 files (39KB)
+- **Technical**: 4 files (50KB)
+- **Operational**: 3 files (17KB)
+- **Status Reports**: 7 files (31KB)
+
+### Total: 17 files, ~137KB
+
+### Quality Metrics
+
+- ✅ All docs follow Edward Honour method
+- ✅ Cross-referenced (no orphans)
+- ✅ Up to date (Sprint 1 complete)
+- ✅ Actionable (clear next steps)
+- ✅ Searchable (good structure)
+
+---
+
+## 🎓 LEARNING PATH
+
+### For New Developers
+
+**Week 1**: Understand the product
+1. Day 1-2: README.md + PRD.md
+2. Day 3-4: requirements.md + design-notes.md
+3. Day 5: Code walkthrough (/lib, /app)
+
+**Week 2**: Get productive
+1. Day 1-2: PROJECT.md (setup local env)
+2. Day 3-4: BEST_PRACTICES.md (avoid mistakes)
+3. Day 5: Build first feature
+
+---
+
+### For Product Team
+
+**Essential Reading**:
+1. PRD.md (product vision)
+2. SPRINT_01_CLOSURE.md (what's built)
+3. requirements.md (features)
+
+**Optional**:
+- design-notes.md (UX principles)
+- FINAL_STATUS_100.md (status summary)
+
+---
+
+### For Architects
+
+**Essential Reading**:
+1. design-notes.md (system design)
+2. tech-stack.md (technology)
+3. BEST_PRACTICES.md (patterns)
+
+**Deep Dive**:
+- docs/architecture.md
+- Code in /lib
+- supabase-schema.sql
+
+---
+
+## 🔗 QUICK LINKS
+
+### Internal
+- [Product Requirements](./PRD.md)
+- [Sprint 1 Closure](./SPRINT_01_CLOSURE.md)
+- [Handoff Guide](./HANDOFF.md)
+- [Best Practices](./BEST_PRACTICES.md)
+- [Tech Stack](./tech-stack.md)
+- [Design Notes](./design-notes.md)
+- [Requirements](./requirements.md)
+- [Project Setup](./PROJECT.md)
+
+### External
+- Next.js Docs: https://nextjs.org/docs
+- Supabase Docs: https://supabase.com/docs
+- OpenClaw: [Local installation]
+- Runware: https://runware.ai
+
+---
+
+## ✅ DOCUMENTATION CHECKLIST
+
+Before closing a sprint:
+
+- [ ] All ADRs documented
+- [ ] Requirements.md updated
+- [ ] HANDOFF.md created
+- [ ] Sprint closure report written
+- [ ] BEST_PRACTICES.md updated with learnings
+- [ ] INDEX.md reflects new docs
+- [ ] Cross-references verified
+
+**Sprint 1**: ✅ All complete
+
+---
+
+## 🎯 NEXT STEPS
+
+**For Sprint 2**:
+1. Create SPRINT_02_PLAN.md
+2. Update requirements.md (new features)
+3. Document new ADRs
+4. Update HANDOFF.md (end of sprint)
+
+**Maintain**:
+- Keep BEST_PRACTICES.md updated
+- Add ADRs for major decisions
+- Update INDEX.md if doc structure changes
+
+---
+
+**Last Review**: 2026-02-07
+**Next Review**: End of Sprint 2
+**Status**: ✅ Complete & Current
+
+---
+
+*"Good documentation is code that never rots."*

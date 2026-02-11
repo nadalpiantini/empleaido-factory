@@ -1,0 +1,187 @@
+[
+  {
+    "id": "sera-001",
+    "serial": 1001,
+    "name": "SERA",
+    "status": "active",
+    "sephirot": {
+      "primary": "Netzach",
+      "secondary": ["Yesod", "Hod"]
+    },
+    "role": {
+      "main": "Finanzas",
+      "sub": "Empresas",
+      "tier": "pro"
+    },
+    "skills": {
+      "native": ["Facturación", "Gastos", "Reportes", "Impuestos DGII"],
+      "locked": ["Auditoría", "Planificación Fiscal"]
+    },
+    "visual": {
+      "accessory": "glasses",
+      "color_accent": "#5ED3D0"
+    },
+    "pricing": {
+      "monthly_usd": 99,
+      "annual_usd": 990
+    },
+    "life": {
+      "level": 1,
+      "experience": 0,
+      "trust": 0.5,
+      "energy": 100
+    },
+    "meta": {
+      "created_at": "2025-01-01T00:00:00Z",
+      "version": 1
+    }
+  },
+  {
+    "id": "kael-002",
+    "serial": 1002,
+    "name": "KAEL",
+    "status": "active",
+    "sephirot": {
+      "primary": "Chesed",
+      "secondary": ["Netzach", "Tiferet"]
+    },
+    "role": {
+      "main": "Marketing",
+      "sub": "Empresas",
+      "tier": "pro"
+    },
+    "skills": {
+      "native": ["Redes Sociales", "Email Marketing", "SEO", "Contenido", "Campañas"],
+      "locked": ["Branding", "Growth Hacking"]
+    },
+    "visual": {
+      "accessory": "headband",
+      "color_accent": "#FF6B6B"
+    },
+    "pricing": {
+      "monthly_usd": 99,
+      "annual_usd": 990
+    },
+    "life": {
+      "level": 1,
+      "experience": 0,
+      "trust": 0.5,
+      "energy": 100
+    },
+    "meta": {
+      "created_at": "2025-01-01T00:00:00Z",
+      "version": 1
+    }
+  },
+  {
+    "id": "nora-003",
+    "serial": 1003,
+    "name": "NORA",
+    "status": "active",
+    "sephirot": {
+      "primary": "Hod",
+      "secondary": ["Yesod", "Netzach"]
+    },
+    "role": {
+      "main": "Operaciones",
+      "sub": "Empresas",
+      "tier": "pro"
+    },
+    "skills": {
+      "native": ["Procesos", "Gestión de Proyectos", "Optimización", "Documentación"],
+      "locked": ["Automatización", "Lean Six Sigma"]
+    },
+    "visual": {
+      "accessory": "none",
+      "color_accent": "#4ECDC4"
+    },
+    "pricing": {
+      "monthly_usd": 99,
+      "annual_usd": 990
+    },
+    "life": {
+      "level": 1,
+      "experience": 0,
+      "trust": 0.5,
+      "energy": 100
+    },
+    "meta": {
+      "created_at": "2025-01-01T00:00:00Z",
+      "version": 1
+    }
+  },
+  {
+    "id": "lior-004",
+    "serial": 1004,
+    "name": "LIOR",
+    "status": "active",
+    "sephirot": {
+      "primary": "Binah",
+      "secondary": ["Chokmah", "Keter"]
+    },
+    "role": {
+      "main": "Estrategia",
+      "sub": "Empresas",
+      "tier": "deluxe"
+    },
+    "skills": {
+      "native": ["Análisis de Datos", "Planificación", "KPIs", "Decisiones", "Forecasting"],
+      "locked": ["Market Research", "Competitive Analysis"]
+    },
+    "visual": {
+      "accessory": "badge",
+      "color_accent": "#95E1D3"
+    },
+    "pricing": {
+      "monthly_usd": 199,
+      "annual_usd": 1990
+    },
+    "life": {
+      "level": 1,
+      "experience": 0,
+      "trust": 0.5,
+      "energy": 100
+    },
+    "meta": {
+      "created_at": "2025-01-01T00:00:00Z",
+      "version": 1
+    }
+  },
+  {
+    "id": "ziv-005",
+    "serial": 1005,
+    "name": "ZIV",
+    "status": "active",
+    "sephirot": {
+      "primary": "Yesod",
+      "secondary": ["Hod", "Malkuth"]
+    },
+    "role": {
+      "main": "Productividad",
+      "sub": "Personal",
+      "tier": "base"
+    },
+    "skills": {
+      "native": ["Gestión del Tiempo", "Metas", "Hábitos", "Priorización", "Focus"],
+      "locked": ["Mindfulness", "Coaching"]
+    },
+    "visual": {
+      "accessory": "none",
+      "color_accent": "#F38181"
+    },
+    "pricing": {
+      "monthly_usd": 49,
+      "annual_usd": 490
+    },
+    "life": {
+      "level": 1,
+      "experience": 0,
+      "trust": 0.5,
+      "energy": 100
+    },
+    "meta": {
+      "created_at": "2025-01-01T00:00:00Z",
+      "version": 1
+    }
+  }
+]
