@@ -56,5 +56,23 @@
     "status": "active",
     "created_at": "2026-02-08T18:55:33.340420",
     "deployed": true
+  },
+  {
+    "id": "_Mim_oXbKgxODN1FfOVRvQ",
+    "name": "DAATH",
+    "role": "Voice & Audio Specialist",
+    "specialty": "Audio Transcription & Speech Analysis using Whisper AI",
+    "sefirot_activation": [
+      "Yesod"
+    ],
+    "skills": [
+      "Speaker Diarization",
+      "Voice Analysis",
+      "Whisper Transcription",
+      "Audio Processing"
+    ],
+    "status": "active",
+    "created_at": "2026-02-11T19:40:40.533457",
+    "deployed": true
   }
 ]
