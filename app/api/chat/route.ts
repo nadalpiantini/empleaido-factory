@@ -21,7 +21,16 @@ import type { Message } from '@/lib/llm/zai-client';
 /**
  * Generate SEPHIROT-based system prompt for an Empleaido
  */
-function generateSEPHIROTPrompt(empleaido: any): string {
+interface ChatEmpleaido {
+  name: string;
+  serial: number;
+  sephirot: { primary: string };
+  role: { main: string; sub: string; tier: string };
+  skills: { native: string[]; locked: string[] };
+  life: { level: number; trust: number; energy: number; experience: number };
+}
+
+function generateSEPHIROTPrompt(empleaido: ChatEmpleaido): string {
   const { name, serial, sephirot, role, skills, life } = empleaido;
 
   const primarySephirah = sephirot.primary as keyof typeof getTone;
@@ -30,7 +39,7 @@ function generateSEPHIROTPrompt(empleaido: any): string {
 
   // Build behavioral traits list
   const traits = Object.entries(behavior)
-    .filter(([_, value]) => value === true)
+    .filter(([, value]) => value === true)
     .map(([key]) => key)
     .join(', ');
 

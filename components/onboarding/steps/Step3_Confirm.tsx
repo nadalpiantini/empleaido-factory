@@ -9,8 +9,16 @@
 import { empleaidos } from '@/lib/data/empleaidos'
 import Image from 'next/image'
 
+interface ConfirmData {
+  empleaidoId?: string
+  empleaidoName?: string
+  customName?: string
+  preferences?: Record<string, unknown>
+  [key: string]: unknown
+}
+
 interface Step3Props {
-  data: any
+  data: ConfirmData
   onComplete: () => void
   onBack: () => void
   isLoading: boolean

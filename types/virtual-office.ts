@@ -35,7 +35,7 @@ export interface VirtualOfficeState {
 export interface InteractionRequest {
   empleaidoId: string;
   message: string;
-  context?: Record<string, any>;
+  context?: Record<string, unknown>;
 }
 
 export interface InteractionResponse {

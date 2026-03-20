@@ -42,7 +42,7 @@ function logPass(message: string) {
   console.log(colors.green + `✓ PASS: ${message}` + colors.reset);
 }
 
-function logFail(message: string, error?: any) {
+function logFail(message: string, error?: unknown) {
   results.failed++;
   console.log(colors.red + `✗ FAIL: ${message}` + colors.reset);
   if (error) {
@@ -187,7 +187,7 @@ async function runTests() {
   // Test 5: Token Estimation
   logTest('Estimate tokens from text');
 
-  const estimatedTokens = estimateCost ? estimateTokens : 0;
+  void (estimateCost ? estimateTokens : 0);
   if (typeof estimateTokens === 'function') {
     const tokens = estimateTokens(testInput);
     logPass(`Estimated ${tokens} tokens from ${testInput.length} characters`);

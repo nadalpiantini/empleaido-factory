@@ -10,7 +10,6 @@ interface EmpleaidoCardProps {
 }
 
 export function EmpleaidoCard({
-  id,
   name,
   role,
   pricing,

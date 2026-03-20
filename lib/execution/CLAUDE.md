@@ -9,4 +9,10 @@
 |----|------|---|-------|------|
 | #17739 | 2:26 PM | 🔵 | Engine applies life stat updates after task completion | ~268 |
 | #17183 | 11:55 AM | 🔵 | Agent execution engine implements rate limiting and OpenClaw integration placeholder | ~334 |
+
+### Feb 11, 2026
+
+| ID | Time | T | Title | Read |
+|----|------|---|-------|------|
+| #18319 | 11:15 AM | 🔴 | Fixed Supabase imports across middleware and all API routes | ~304 |
 </claude-mem-context>

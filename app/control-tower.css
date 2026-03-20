@@ -1,0 +1,321 @@
+/*
+ * CONTROL TOWER MODE - EMPLEAIDO v2.0
+ * Torre de comando retro-espacial
+ *
+ * Objetivo: que el usuario sienta que opera una fábrica espacial
+ */
+
+:root {
+  /* Paleta emocional */
+  --tower-bg: #0E3A41;      /* Cabina cerrada */
+  --tower-panel: #1A434F;   /* Metal pintado */
+  --tower-text: #F3E4C8;    /* Luz cálida */
+  --tower-energy: #5ED3D0;  /* Reactor */
+  --tower-shadow: #082A31;  /* Profundidad */
+
+  /* Texturas */
+  --paper-grain-opacity: 0.08;
+  --halftone-opacity: 0.15;
+  --glow-energy: 0 0 30px rgba(94, 211, 208, 0.4);
+}
+
+/* ===== TEXTURA GLOBAL ===== */
+.control-tower {
+  position: relative;
+  background-color: var(--tower-bg);
+  /* Paper grain overlay */
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(243, 228, 200, var(--paper-grain-opacity)) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(94, 211, 208, var(--paper-grain-opacity) * 0.5) 1px, transparent 1px);
+  background-size: 80px 80px, 120px 120px;
+}
+
+.control-tower::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuOCIgbnVtT2N0YXZlcz0iNCIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNub2lzZSkiIG9wYWNpdHk9IjAuMDUiLz48L3N2Zz4=');
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ===== PANELES DE CONTROL ===== */
+.control-panel {
+  position: relative;
+  background-color: var(--tower-panel);
+  border: 4px solid var(--tower-text);
+  box-shadow:
+    0 0 0 2px var(--tower-shadow),
+    4px 4px 0 var(--tower-shadow);
+  padding: 24px;
+}
+
+/* Halftone estructural en sombras */
+.control-panel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 30% 30%, rgba(14, 58, 65, var(--halftone-opacity)) 2px, transparent 2px),
+    radial-gradient(circle at 70% 70%, rgba(8, 42, 49, var(--halftone-opacity) * 0.7) 2px, transparent 2px);
+  background-size: 40px 40px, 60px 60px;
+  pointer-events: none;
+}
+
+/* ===== RADAR CIRCULAR ===== */
+.control-radar {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border: 3px solid var(--tower-text);
+  border-radius: 50%;
+  background:
+    conic-gradient(from 0deg, transparent 0deg, var(--tower-energy) 90deg, transparent 90deg),
+    radial-gradient(circle, var(--tower-panel) 60%, var(--tower-shadow) 100%);
+  overflow: hidden;
+}
+
+.control-radar::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 50%;
+  background: var(--tower-energy);
+  transform-origin: bottom center;
+  animation: radar-sweep 4s linear infinite;
+}
+
+.control-radar::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--tower-energy);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: var(--glow-energy);
+}
+
+@keyframes radar-sweep {
+  0% { transform: translate(-50%, -100%) rotate(0deg); }
+  100% { transform: translate(-50%, -100%) rotate(360deg); }
+}
+
+/* ===== MEDIDOR DE ENERGÍA ===== */
+.energy-meter {
+  position: relative;
+  width: 24px;
+  height: 120px;
+  background: linear-gradient(to top, var(--tower-shadow) 0%, var(--tower-panel) 100%);
+  border: 3px solid var(--tower-text);
+  border-radius: 0;
+}
+
+.energy-level {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, var(--tower-energy) 0%, rgba(94, 211, 208, 0.6) 100%);
+  transition: height 0.3s ease-out;
+  box-shadow: inset 0 0 10px rgba(94, 211, 208, 0.5);
+}
+
+/* ===== BOTONES FÍSICOS ===== */
+.physical-button {
+  position: relative;
+  background: var(--tower-panel);
+  color: var(--tower-text);
+  border: 3px solid var(--tower-text);
+  padding: 16px 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.15s ease-out;
+  box-shadow:
+    4px 4px 0 var(--tower-shadow),
+    inset 0 0 0 1px rgba(243, 228, 200, 0.2);
+}
+
+.physical-button:hover {
+  background: var(--tower-energy);
+  color: var(--tower-shadow);
+  box-shadow:
+    2px 2px 0 var(--tower-shadow),
+    inset 0 0 0 1px rgba(14, 58, 65, 0.3);
+}
+
+.physical-button:active {
+  transform: translate(2px, 2px);
+  box-shadow:
+    0 0 0 var(--tower-shadow),
+    inset 0 0 0 1px rgba(14, 58, 65, 0.3);
+}
+
+/* ===== CARDS ASTEROIDE ===== */
+.asteroid-card {
+  position: relative;
+  background: var(--tower-panel);
+  border: 3px solid var(--tower-text);
+  padding: 20px;
+  /* Forma ligeramente irregular */
+  clip-path: polygon(0 10%, 10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%);
+  transition: all 0.3s ease-out;
+}
+
+.asteroid-card::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: var(--tower-energy);
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  z-index: -1;
+}
+
+.asteroid-card:hover::before {
+  opacity: 0.3;
+}
+
+/* ===== EMPLEAIDO ASTRO HÉROE ===== */
+.astro-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Intersección de tercios */
+  padding-top: 33.33%;
+  /* Perspectiva forzada */
+  transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);
+  transition: transform 0.3s ease-out;
+}
+
+.astro-hero:hover {
+  transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) scale(1.02);
+}
+
+.astro-hero::before {
+  /* Líneas diagonales sutiles al ejecutar */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 20px,
+    rgba(94, 211, 208, 0.1) 20px,
+    rgba(94, 211, 208, 0.1) 21px
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  pointer-events: none;
+}
+
+.astro-hero.active::before {
+  opacity: 1;
+  animation: diagonal-pulse 1s ease-out;
+}
+
+@keyframes diagonal-pulse {
+  0% { opacity: 0; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0; }
+}
+
+/* ===== MOTION LANGUAGE ===== */
+.diagonal-slide-in {
+  animation: diagonal-slide 0.35s ease-out;
+}
+
+@keyframes diagonal-slide {
+  0% {
+    opacity: 0;
+    transform: translate(-30px, -30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+.cyan-pulse {
+  animation: cyan-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes cyan-pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(94, 211, 208, 0.3);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 20px rgba(94, 211, 208, 0.6);
+  }
+}
+
+.micro-vibrate {
+  animation: micro-vibrate 0.2s ease-out;
+}
+
+@keyframes micro-vibrate {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-1px, 1px); }
+  75% { transform: translate(1px, -1px); }
+}
+
+/* ===== LAYOUT TORRE DE CONTROL ===== */
+.control-tower-layout {
+  display: grid;
+  grid-template-areas:
+    "radar status controls"
+    "hero hero hero"
+    "missions missions missions"
+    "footer footer footer";
+  grid-template-columns: 200px 1fr 300px;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 24px;
+  padding: 24px;
+  min-height: 100vh;
+}
+
+@media (max-width: 1024px) {
+  .control-tower-layout {
+    grid-template-areas:
+      "status"
+      "radar"
+      "hero"
+      "controls"
+      "missions"
+      "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, auto);
+  }
+}
+
+/* Áreas del layout */
+.control-radar-area { grid-area: radar; }
+.control-status-area { grid-area: status; }
+.control-controls-area { grid-area: controls; }
+.control-hero-area { grid-area: hero; }
+.control-missions-area { grid-area: missions; }
+.control-footer-area { grid-area: footer; }

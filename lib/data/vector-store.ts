@@ -18,7 +18,7 @@ const zai = new ZAIClient();
 export interface VectorMatch {
   id: string;
   content: string;
-  metadata: Record<string, any>;
+  metadata: Record<string, unknown>;
   similarity: number;
 }
 
@@ -29,7 +29,7 @@ export async function addKnowledgeEmbedding(
   empleaidoId: string,
   content: string,
   contentType: 'skill_description' | 'faq' | 'user_interaction' | string,
-  metadata: Record<string, any> = {}
+  metadata: Record<string, unknown> = {}
 ) {
   const embeddingResponse = await zai.generateEmbeddings(content);
   const embedding = embeddingResponse.data?.[0]?.embedding || [] as number[];
@@ -53,7 +53,7 @@ export async function addUserInteractionEmbedding(
   adoptionId: string,
   interactionText: string,
   interactionType: 'question' | 'command' | 'feedback' | string = 'question',
-  metadata: Record<string, any> = {}
+  metadata: Record<string, unknown> = {}
 ) {
   const embeddingResponse = await zai.generateEmbeddings(interactionText);
   const embedding = embeddingResponse.data?.[0]?.embedding || [] as number[];
@@ -91,7 +91,7 @@ export async function searchKnowledge(
 
   if (error) throw error;
 
-  return data.map((item: any) => ({
+  return data.map((item: Record<string, unknown>) => ({
     id: item.id,
     content: item.content,
     metadata: {}, // RPC only returns content and type currently
@@ -120,7 +120,7 @@ export async function searchUserInteractions(
 
   if (error) throw error;
 
-  return data.map((item: any) => ({
+  return data.map((item: Record<string, unknown>) => ({
     id: item.id,
     content: item.interaction_text,
     metadata: {

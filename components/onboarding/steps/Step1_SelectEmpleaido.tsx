@@ -6,7 +6,7 @@
 
 'use client'
 
-import { empleaidos } from '@/lib/data/empleaidos'
+import { empleaidos, type Empleaido } from '@/lib/data/empleaidos'
 import Image from 'next/image'
 
 interface Step1Props {
@@ -58,7 +58,7 @@ export function Step1_SelectEmpleaido({ onNext, selectedId }: Step1Props) {
 }
 
 interface EmpleaidoCardProps {
-  empleaido: any
+  empleaido: Empleaido
   isSelected: boolean
   onSelect: () => void
 }

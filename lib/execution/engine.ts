@@ -17,7 +17,7 @@ export interface ExecutionRequest {
   agentId: string
   userId: string
   input: string
-  context?: Record<string, any>
+  context?: Record<string, unknown>
 }
 
 export interface ExecutionResult {
@@ -74,8 +74,6 @@ async function checkRateLimit(userId: string, tier: string = 'free'): Promise<bo
  */
 export async function executeEmpleaido(request: ExecutionRequest): Promise<ExecutionResult> {
   const supabase = createRouteHandlerClient()
-  const startTime = Date.now()
-
   // 1. Verify user exists
   const { data: { user } } = await supabase.auth.getUser()
   if (!user || user.id !== request.userId) {
@@ -139,13 +137,13 @@ export async function executeEmpleaido(request: ExecutionRequest): Promise<Execu
 async function mockAgentExecution(
   agentId: string,
   input: string,
-  empleaido: any
+  _empleaido: unknown
 ): Promise<Omit<ExecutionResult, 'timestamp'>> {
   // Simulate processing time
   await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 1000))
 
   // Generate contextual response based on empleaido personality
-  const responses = generateResponse(agentId, input, empleaido)
+  const responses = generateResponse(agentId, input, _empleaido)
 
   return {
     output: responses,
@@ -158,7 +156,7 @@ async function mockAgentExecution(
 /**
  * Generate contextual response based on empleaido
  */
-function generateResponse(agentId: string, input: string, empleaido: any): string {
+function generateResponse(agentId: string, input: string, _empleaido: unknown): string {
   const lowerInput = input.toLowerCase()
 
   // SERA - Accounting specialist
@@ -252,7 +250,7 @@ async function logExecution(data: Omit<ExecutionLog, 'id' | 'created_at'>): Prom
 export async function getUserExecutionStats(userId: string, period: 'day' | 'week' | 'month' = 'month') {
   const supabase = createRouteHandlerClient()
   const now = new Date()
-  let startDate = new Date()
+  const startDate = new Date()
 
   switch (period) {
     case 'day':
@@ -309,7 +307,7 @@ export async function getUserExecutionStats(userId: string, period: 'day' | 'wee
 export async function getEmpleaidoStats(empleaidoId: string, period: 'day' | 'week' | 'month' = 'month') {
   const supabase = createRouteHandlerClient()
   const now = new Date()
-  let startDate = new Date()
+  const startDate = new Date()
 
   switch (period) {
     case 'day':

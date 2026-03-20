@@ -195,13 +195,13 @@ export interface EngineExecutionContext {
   engine_id: string;
   tenant_id: string;
   user_id: string;
-  input: any;
-  config?: Record<string, any>;
+  input: unknown;
+  config?: Record<string, unknown>;
 }
 
 export interface EngineExecutionResult {
   success: boolean;
-  output: any;
+  output: unknown;
   error?: string;
   tokens_used?: number;
   cost?: number;

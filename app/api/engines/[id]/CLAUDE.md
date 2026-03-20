@@ -14,5 +14,6 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #18319 | 11:15 AM | 🔴 | Fixed Supabase imports across middleware and all API routes | ~304 |
 | #18262 | 10:11 AM | 🔴 | Updated Supabase imports in engine API routes to use supabase-server | ~252 |
 </claude-mem-context>

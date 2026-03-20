@@ -132,7 +132,7 @@ export async function processOnboardingMessage(
  */
 async function handlePhase1Awakening(
   state: OnboardingState,
-  message: string
+  _message: string
 ): Promise<{ response: string; newPhase?: OnboardingPhase }> {
   const empleaidoNames: Record<string, string> = {
     sera: 'SERA #4094',
@@ -185,7 +185,7 @@ Acabo de activarme y estoy lista para trabajar contigo.
  */
 async function handlePhase2Sefirot(
   state: OnboardingState,
-  message: string
+  _message: string
 ): Promise<{ response: string; newPhase?: OnboardingPhase }> {
   const sefirotInfo: Record<string, { name: string; traits: string[] }> = {
     sera: {
@@ -304,7 +304,7 @@ Entendido. Un par de ajustes más:
  */
 async function handlePhase4Skills(
   state: OnboardingState,
-  message: string
+  _message: string
 ): Promise<{ response: string; newPhase?: OnboardingPhase }> {
   const empleaidoSkills: Record<string, { included: string[]; locked: string[] }> = {
     sera: {
@@ -376,7 +376,7 @@ Si necesitas algo fuera de mi scope, te lo indicaré claramente y te recomendar�
  */
 async function handlePhase5Complete(
   state: OnboardingState,
-  message: string
+  _message: string
 ): Promise<{ response: string; newPhase?: OnboardingPhase }> {
   const response = `
 🎉 **¡Felicidades!**

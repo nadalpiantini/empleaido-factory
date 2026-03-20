@@ -27,7 +27,7 @@ import { empleaidos } from '@/data/empleaidos';
 interface OfficeRoom {
   id: string;
   name: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string; size?: number }>;
   color: string;
   description: string;
   type: 'empleaido' | 'common';
@@ -316,7 +316,7 @@ function OfficeRoomDetail({ room, onBack, onChat }: { room: OfficeRoom; onBack: 
 
 export function VirtualOffice() {
   const [selectedRoom, setSelectedRoom] = useState<OfficeRoom | null>(null);
-  const [showChat, setShowChat] = useState(false);
+  const [, setShowChat] = useState(false);
 
   const handleChat = () => {
     setShowChat(true);

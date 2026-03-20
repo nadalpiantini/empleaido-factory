@@ -7,7 +7,8 @@
 
 // Import JSON directly - use absolute path
 import empleaidosJson from '@/data/empleaidos.json'
-const empleaidos = empleaidosJson as any[]
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- JSON import lacks type info
+const empleaidos = empleaidosJson as any as Empleaido[]
 
 export interface Empleaido {
   id: string
@@ -23,7 +24,7 @@ export interface Empleaido {
   }
   skills: {
     native: string[]
-    locked?: any[]
+    locked?: string[]
   }
   pricing?: {
     adoption_fee: number
@@ -41,7 +42,7 @@ export interface Empleaido {
  * Get empleaido by ID
  */
 export function getEmpleaido(id: string): Empleaido | null {
-  const empleaido = (empleaidos as any[]).find((e: any) => e.id === id)
+  const empleaido = empleaidos.find((e) => e.id === id)
   return empleaido || null
 }
 
@@ -49,7 +50,7 @@ export function getEmpleaido(id: string): Empleaido | null {
  * Get all empleaidos
  */
 export function getAllEmpleaidos(): Empleaido[] {
-  return empleaidos as Empleaido[]
+  return empleaidos
 }
 
 /**

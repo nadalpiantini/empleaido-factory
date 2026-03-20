@@ -9,15 +9,24 @@
 import { useState } from 'react'
 import Image from 'next/image'
 
+interface CustomizeData {
+  customName?: string
+  preferences?: {
+    communicationStyle?: string
+    language?: string
+    timezone?: string
+  }
+  [key: string]: unknown
+}
+
 interface Step2Props {
-  empleaidoId: string
   empleaidoName: string
-  data: any
-  onNext: (data: any) => void
+  data: CustomizeData
+  onNext: (data: CustomizeData) => void
   onBack: () => void
 }
 
-export function Step2_Customize({ empleaidoId, empleaidoName, data, onNext, onBack }: Step2Props) {
+export function Step2_Customize({ empleaidoName, data, onNext, onBack }: Step2Props) {
   const [customName, setCustomName] = useState(data.customName || '')
   const [communicationStyle, setCommunicationStyle] = useState(
     data.preferences?.communicationStyle || 'friendly'
@@ -165,7 +174,7 @@ export function Step2_Customize({ empleaidoId, empleaidoName, data, onNext, onBa
 
             <div className="mt-4 pt-4 border-t">
               <p className="text-sm text-gray-600 italic">
-                "{getPreviewMessage(empleaidoName, customName, communicationStyle, language)}"
+                &ldquo;{getPreviewMessage(empleaidoName, customName, communicationStyle, language)}&rdquo;
               </p>
             </div>
           </div>
@@ -199,7 +208,7 @@ interface CommunicationStyleOptionProps {
   onSelect: () => void
 }
 
-function CommunicationStyleOption({ value, label, description, selected, onSelect }: CommunicationStyleOptionProps) {
+function CommunicationStyleOption({ label, description, selected, onSelect }: CommunicationStyleOptionProps) {
   return (
     <div
       onClick={onSelect}

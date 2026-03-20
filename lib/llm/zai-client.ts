@@ -191,14 +191,13 @@ export class ZAIClient {
         temperature: options.temperature ?? 0.7,
         maxTokens: options.maxTokens ?? 2048,
         stream: true,
-      }) as any; // IncomingMessage
+      }) as unknown as NodeJS.ReadableStream;
 
       let fullContent = '';
 
       // Handle Node.js IncomingMessage stream
-      // TODO: Fix stream typing - temporary patch for deployment
       return new Promise((resolve, reject) => {
-        (stream as any).on('data', (chunk: Buffer) => {
+        (stream as NodeJS.ReadableStream).on('data', (chunk: Buffer) => {
           const text = chunk.toString();
           // SSE format: data: {...}
           const lines = text.split('\n');
@@ -220,7 +219,7 @@ export class ZAIClient {
           }
         });
 
-        (stream as any).on('end', () => {
+        (stream as NodeJS.ReadableStream).on('end', () => {
           resolve({
             id: 'stream-' + Date.now(),
             created: Date.now() / 1000,
@@ -240,7 +239,7 @@ export class ZAIClient {
           });
         });
 
-        (stream as any).on('error', (error: Error) => {
+        (stream as NodeJS.ReadableStream).on('error', (error: Error) => {
           reject(new ZAIError(`Chat stream failed: ${error.message}`));
         });
       });
@@ -288,7 +287,7 @@ export class ZAIClient {
 
       const response = await this.client.completions.create({
         model,
-        messages: [{ role: 'user', content: content as any }],
+        messages: [{ role: 'user', content: content as unknown as string }],
         temperature: options.temperature ?? 0.7,
         maxTokens: options.maxTokens ?? 2048,
       });
@@ -400,7 +399,7 @@ export class ZAIClient {
       });
 
       // Parse the response to extract search results
-      const content = (response as any).choices?.[0]?.message?.content || '[]';
+      const content = (response as Record<string, unknown> & { choices?: Array<{ message?: { content?: string } }> }).choices?.[0]?.message?.content || '[]';
       try {
         // Try to parse JSON from the response
         const jsonMatch = content.match(/\[[\s\S]*\]/);

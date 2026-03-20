@@ -170,7 +170,7 @@ export async function checkAnyServerPermission(
  * @param permission - Permission to check
  * @returns True if user has permission
  */
-export function useHasPermission(permission: Permission): boolean {
+export function useHasPermission(_permission: Permission): boolean {
   // This would be implemented in a React component with session context
   // For now, return false as placeholder
   return false;
@@ -248,7 +248,7 @@ export function useIsAdmin(): boolean {
  * ```
  */
 export function withPermission<
-  T extends Request | (Request & { json: () => Promise<any> }),
+  T extends Request,
 >(
   handler: (req: T, context: { user: { id: string; role: UserRole; tenantId: string } }) => Promise<Response>,
   requiredPermission: Permission
@@ -272,7 +272,7 @@ export function withPermission<
  * Middleware for API routes accepting multiple permissions
  */
 export function withAnyPermission<
-  T extends Request | (Request & { json: () => Promise<any> }),
+  T extends Request,
 >(
   handler: (req: T, context: { user: { id: string; role: UserRole; tenantId: string } }) => Promise<Response>,
   requiredPermissions: Permission[]
@@ -369,7 +369,7 @@ export function filterByTenant<T extends { tenant_id?: string }>(
 // EXPORTS
 // =====================================================
 
-export default {
+const rbacExports = {
   checkServerPermission,
   requirePermission,
   checkAnyServerPermission,
@@ -380,3 +380,4 @@ export default {
   canAccessTenant,
   filterByTenant,
 };
+export default rbacExports;

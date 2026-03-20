@@ -8,7 +8,7 @@ import { empleaidoSkills } from '@/lib/onboarding/data/empleaido-skills';
 export interface SkillExecutionRequest {
   empleaidoId: string;
   skill: string;
-  input: any;
+  input: Record<string, unknown>;
   userId: string;
 }
 
@@ -77,7 +77,12 @@ export async function validateSkillExecution(
 /**
  * Input validation against schema
  */
-function validateInput(input: any, schema: any): { valid: boolean; error?: string } {
+interface InputSchema {
+  required?: string[];
+  properties?: Record<string, { type?: string }>;
+}
+
+function validateInput(input: Record<string, unknown>, schema: InputSchema | undefined): { valid: boolean; error?: string } {
   if (!schema) {
     return { valid: true }; // No schema defined, allow
   }
@@ -98,7 +103,7 @@ function validateInput(input: any, schema: any): { valid: boolean; error?: strin
   if (schema.properties) {
     for (const [field, fieldSchema] of Object.entries(schema.properties)) {
       if (field in input) {
-        const type = (fieldSchema as any).type;
+        const type = fieldSchema.type;
         if (type && typeof input[field] !== type) {
           return {
             valid: false,
@@ -115,9 +120,9 @@ function validateInput(input: any, schema: any): { valid: boolean; error?: strin
 /**
  * Get list of unlocked (available) skills
  */
-function getUnlockedSkills(skillRegistry: any): string[] {
+function getUnlockedSkills(skillRegistry: Record<string, { status: string }>): string[] {
   return Object.entries(skillRegistry)
-    .filter(([_, def]: [string, any]) => def.status === 'native')
+    .filter(([, def]) => def.status === 'native')
     .map(([name]) => name);
 }
 
@@ -133,7 +138,7 @@ export function generateSafetyRejection(request: SkillExecutionRequest, result: 
     ziv: 'ZIV',
   };
 
-  const name = empleaidoNames[request.empleaidoId] || 'Tu empleaido';
+  const _name = empleaidoNames[request.empleaidoId] || 'Tu empleaido';
 
   if (result.reason?.includes('upgrade')) {
     return `
@@ -177,10 +182,9 @@ ${result.reason}
   `.trim();
 }
 
-function getMissingFields(input: any): string[] {
-  // Simple implementation
+function getMissingFields(input: Record<string, unknown>): string[] {
   return Object.entries(input)
-    .filter(([_, v]) => v === null || v === undefined || v === '')
+    .filter(([, v]) => v === null || v === undefined || v === '')
     .map(([k]) => k);
 }
 
@@ -190,8 +194,8 @@ function getMissingFields(input: any): string[] {
  */
 export async function executeCriticalSkill(
   request: SkillExecutionRequest,
-  executeFn: () => Promise<any>
-): Promise<{ success: boolean; result?: any; error?: string }> {
+  executeFn: () => Promise<unknown>
+): Promise<{ success: boolean; result?: unknown; error?: string }> {
   // 1. Execute skill
   const result = await executeFn();
 
@@ -222,7 +226,7 @@ export const PROFESSIONAL_DISCLAIMERS = {
  */
 export async function logSkillExecution(
   request: SkillExecutionRequest,
-  result: any,
+  result: unknown,
   validation: SkillValidationResult
 ) {
   // TODO: Implement audit logging to database

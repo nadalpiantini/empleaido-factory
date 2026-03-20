@@ -379,7 +379,7 @@ export function getPermissionsByCategory(): Record<string, Permission[]> {
 // DEFAULT EXPORT
 // =====================================================
 
-export default {
+const permissionsExports = {
   hasPermission,
   hasAnyPermission,
   hasAllPermissions,
@@ -390,3 +390,4 @@ export default {
   ROLE_DEFINITIONS,
   ROLE_PERMISSIONS,
 };
+export default permissionsExports;

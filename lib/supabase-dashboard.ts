@@ -31,7 +31,7 @@ export interface ActivityLog {
   target: string;
   activity_type: 'task' | 'levelup' | 'skill' | 'achievement';
   timestamp: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface DashboardStats {

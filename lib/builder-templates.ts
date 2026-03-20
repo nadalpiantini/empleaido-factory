@@ -4,7 +4,7 @@
  * Configuration templates and validation for the no-code builder.
  */
 
-import {empleaidos} from '@/lib/data/empleaidos'
+// import {empleaidos} from '@/lib/data/empleaidos'
 
 // ============================================
 // TYPES
@@ -57,7 +57,7 @@ export interface CustomField {
   options?: string[]
   required: boolean
   placeholder?: string
-  default_value?: any
+  default_value?: string | number | string[]
 }
 
 // ============================================
