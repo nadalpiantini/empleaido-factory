@@ -147,6 +147,13 @@
         }
       }
     },
+    "capabilities": {
+      "type": "object",
+      "description": "TopBrain capability switches (inherited from ~/.openclaw/capabilities/)",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
     "identity": {
       "type": "object",
       "properties": {

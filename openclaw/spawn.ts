@@ -17,6 +17,7 @@ import { SEPHIROT_TONE } from '../lib/sephirot-map';
 const OPENCLAW_HOME = process.env.OPENCLAW_HOME || path.join(process.env.HOME!, '.openclaw');
 const OPENCLAW_CONFIG = path.join(OPENCLAW_HOME, 'openclaw.json');
 const WORKSPACE_BASE = OPENCLAW_HOME;
+const CAPABILITIES_DIR = path.join(OPENCLAW_HOME, 'capabilities', 'empleaidos');
 
 // ============================================
 // TYPES
@@ -151,6 +152,10 @@ async function registerAgent(agent: OpenClawAgent): Promise<void> {
 // ============================================
 
 async function generateIdentity(empleaido: Empleaido, workspacePath: string): Promise<void> {
+  // Load capabilities from TopBrain registry
+  const capabilities = empleaido.capabilities || loadAgentCapabilities(empleaido.name);
+  const hasCapabilities = Object.keys(capabilities).length > 0;
+
   const content = `# ${empleaido.name} · EMPLEAIDO #${empleaido.serial}
 
 ## Identity
@@ -166,7 +171,11 @@ async function generateIdentity(empleaido: Empleaido, workspacePath: string): Pr
 - **Primary Sephirah**: ${empleaido.sephirot.primary}
 - **Secondary**: ${empleaido.sephirot.secondary.join(', ') || 'None'}
 - **Tone**: ${SEPHIROT_TONE[empleaido.sephirot.primary]}
+${hasCapabilities ? `
+## TopBrain Capabilities
 
+${formatCapabilities(capabilities)}
+` : ''}
 ## Motivation
 
 > ${empleaido.identity?.motivation || 'Serving with excellence.'}
@@ -335,6 +344,43 @@ Después de 10 interacciones, elimina este archivo.
   } catch (error) {
     console.warn(`Warning: Could not copy BOOTSTRAP.md template: ${error}`);
   }
+}
+
+// ============================================
+// CAPABILITIES
+// ============================================
+
+/**
+ * Load TopBrain capabilities for an agent from the registry
+ */
+function loadAgentCapabilities(agentName: string): Record<string, boolean> {
+  const capFile = path.join(CAPABILITIES_DIR, `${agentName.toLowerCase()}.capabilities.json`);
+  try {
+    if (fs.existsSync(capFile)) {
+      const data = JSON.parse(fs.readFileSync(capFile, 'utf8'));
+      return data.capabilities || {};
+    }
+  } catch {
+    // Silently fall back to empty capabilities
+  }
+  return {};
+}
+
+/**
+ * Format capabilities as markdown for IDENTITY.md
+ */
+function formatCapabilities(capabilities: Record<string, boolean>): string {
+  const LABELS: Record<string, string> = {
+    ears: 'Ears (STT — escuchar audio)',
+    voice: 'Voice (TTS — generar audio)',
+    memory: 'Memory (RAG — memoria semántica)',
+    hands: 'Hands (Browser automation)',
+    eyes: 'Eyes (Observabilidad)',
+  };
+
+  return Object.entries(capabilities)
+    .map(([key, enabled]) => `- ${enabled ? '[x]' : '[ ]'} ${LABELS[key] || key}`)
+    .join('\n');
 }
 
 // ============================================

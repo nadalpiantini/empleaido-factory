@@ -63,6 +63,8 @@ export interface Empleaido {
 
   identity?: EmpleaidoIdentity;
 
+  capabilities?: Record<string, boolean>;  // TopBrain capabilities (ears, voice, memory, hands, eyes)
+
   meta: {
     created_at: string;
     updated_at?: string;

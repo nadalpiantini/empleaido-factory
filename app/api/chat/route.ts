@@ -9,10 +9,18 @@
  */
 
 import { NextRequest } from 'next/server';
+import * as fs from 'fs';
+import * as path from 'path';
 import { empleaidos } from '@/data/empleaidos';
 import { ZAIClient } from '@/lib/llm/zai-client';
 import { getTone, getBehavior } from '@/lib/sephirot-map';
 import type { Message } from '@/lib/llm/zai-client';
+
+const CAPABILITIES_DIR = path.join(
+  process.env.OPENCLAW_HOME || path.join(process.env.HOME!, '.openclaw'),
+  'capabilities',
+  'empleaidos'
+);
 
 // =====================================================
 // SEPHIROT PROMPT GENERATION
@@ -28,10 +36,33 @@ interface ChatEmpleaido {
   role: { main: string; sub: string; tier: string };
   skills: { native: string[]; locked: string[] };
   life: { level: number; trust: number; energy: number; experience: number };
+  capabilities?: Record<string, boolean>;
+}
+
+const CAPABILITY_LABELS: Record<string, string> = {
+  ears: 'Ears (speech-to-text — can listen to audio)',
+  voice: 'Voice (text-to-speech — can speak responses)',
+  memory: 'Memory (RAG — semantic long-term memory)',
+  hands: 'Hands (browser automation — can navigate the web)',
+  eyes: 'Eyes (observability — monitoring and analytics)',
+};
+
+function loadCapabilities(agentName: string): Record<string, boolean> {
+  const capFile = path.join(CAPABILITIES_DIR, `${agentName.toLowerCase()}.capabilities.json`);
+  try {
+    if (fs.existsSync(capFile)) {
+      const data = JSON.parse(fs.readFileSync(capFile, 'utf8'));
+      return data.capabilities || {};
+    }
+  } catch {
+    // Fall back silently
+  }
+  return {};
 }
 
 function generateSEPHIROTPrompt(empleaido: ChatEmpleaido): string {
   const { name, serial, sephirot, role, skills, life } = empleaido;
+  const capabilities = empleaido.capabilities || loadCapabilities(name);
 
   const primarySephirah = sephirot.primary as keyof typeof getTone;
   const tone = getTone(primarySephirah);
@@ -85,6 +116,16 @@ Your communication tone: ${tone}
 5. **LANGUAGE**: Respond in the same language as the user (English, Spanish, etc.)
 
 6. **SAFETY**: Never provide harmful, illegal, or dangerous advice. Refuse politely if asked.
+
+## TOPBRAIN CAPABILITIES
+${Object.keys(capabilities).length > 0
+    ? Object.entries(capabilities)
+        .map(([key, on]) => `- ${on ? '✅' : '❌'} ${CAPABILITY_LABELS[key] || key}`)
+        .join('\n')
+    : '- No capabilities loaded'}
+${Object.entries(capabilities).some(([, on]) => on)
+    ? '\nYou may reference and use your enabled capabilities when relevant to the conversation.'
+    : ''}
 
 ## RESPONSE STYLE
 - Be helpful and direct
